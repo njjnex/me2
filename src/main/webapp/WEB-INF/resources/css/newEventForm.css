@@ -76,9 +76,9 @@ a:hover {
 	color: #f26525 
 }
 #signup-form { 
-	width: 510px; 
-	margin: 0 auto; 
-	margin-top: 10px; 
+	width: 45%; 
+	margin: 15px auto; 
+	margin-top: 60px; 
 	margin-bottom: 20px; 
 	background: #fff; 
 	padding: 40px; 

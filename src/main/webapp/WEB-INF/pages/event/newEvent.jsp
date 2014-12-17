@@ -5,12 +5,6 @@
 <%@ include file="../templates/header.jsp"%>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/newEventForm.css" />
 
-<!-- bootstrap -->
-    <link href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
-<!-- end bootstrap -->
-
 <!--BEGIN #signup-form -->
     <div id="signup-form">
         
@@ -23,7 +17,7 @@
 
 			<!-- 	<p>Пожалуйста заполните поля формы для добавления мероприятия.</p> -->
             
-        <form:form  id="send" action="newEvent.html" method="post" commandName="event" enctype="multipart/form-data">
+        <form:form  id="send" action="newEvent.html" method="post" commandName="event" enctype="multipart/form-data" >
             	
             	<div class="form-group">
    					 <form:label for="inputName" path="eventName">Название мероприятия *</form:label>
