@@ -7,16 +7,28 @@ form {
 	width: 80%;
 	margin: 15px auto;
 }
-table{
-	margin-left: 20%;
-	font-size: 100%;
-	
-}
+
 .col-sm-10 {
-	width: 40%;
+	width: 55%;
 }
 .help-block{
-	margin: 2% auto;
 	margin-left: 10%;
-	width: 45%;
+	width: 65%;
+	border: 1px;
+	border-color: grey;
+}
+.error {
+	color: #ff0000;
+	margin: 2%;
+	margin-right: auto;
+    font-size: 120%;
+	width: 50%;
+}
+
+.row{
+	margin-left: 10%;
+	width: 80%
+}
+#age-select{
+	width: 100%;
 }

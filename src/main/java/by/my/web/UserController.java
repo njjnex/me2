@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import by.my.entity.User;
 import by.my.logic.FileLoader;
-import by.my.logic.UserLogic;
 import by.my.service.UserService;
 
 @Controller
@@ -50,24 +49,16 @@ public class UserController {
 	public String processRegistration(
 			@Valid @ModelAttribute("userForm") User user,
 			BindingResult bindingResult, Map<String, Object> model,
-			@RequestParam("passwordRep") String passwordRep) {
+			@RequestParam("confirmPassword") String passwordRep) {
 
 		if (userService.getUser(user.getUsername()) != null) {
 			ObjectError error = new ObjectError("nonUniqueUser",
 					"Пользователь с таким именем уже существует.");
 			bindingResult.addError(error);
 		}
-		if(!passwordRep.equals(user.getPassword())){
-			ObjectError error = new ObjectError("passwordMissmatch",
-					"Пароли не совпадают");
-			bindingResult.addError(error);
-		}
 		if (bindingResult.hasErrors()) {
-			System.out.println(bindingResult.hasErrors() + " form has errors "
-					+ passwordRep + " " + user.getPassword() + " --- " + bindingResult.getErrorCount());
 			return "user/newUser";
 		} else {
-			System.out.println("no errors ");
 			user.setUserRole("ROLE_USER");
 			user.setEnabled(true);
 			userService.createUser(user);
