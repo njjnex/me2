@@ -27,8 +27,14 @@ form {
 
 .row{
 	margin-left: 10%;
-	width: 80%
+	width: 60%
 }
 #age-select{
 	width: 100%;
+}
+#blank-avatar{
+	width: 100px; 
+	height: 100px;
+	border-radius: 10px;
+	
 }

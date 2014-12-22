@@ -1,13 +1,14 @@
 package by.my.web;
 
 import java.io.IOException;
+import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
+import javax.sql.rowset.serial.SerialBlob;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import by.my.entity.User;
 import by.my.logic.FileLoader;
@@ -28,7 +30,7 @@ import by.my.service.UserService;
 public class UserController {
 
 	List<User> users = new ArrayList<User>();
-
+	boolean avatarLoaded;
 	@Autowired
 	UserService userService;
 
@@ -47,9 +49,27 @@ public class UserController {
 
 	@RequestMapping(value = "/newUser.html", method = RequestMethod.POST)
 	public String processRegistration(
-			@Valid @ModelAttribute("userForm") User user,
-			BindingResult bindingResult, Map<String, Object> model,
-			@RequestParam("confirmPassword") String passwordRep) {
+			@ModelAttribute("userForm") User user,
+			BindingResult bindingResult,
+			Map<String, Object> model,
+			@RequestParam("confirmPassword") String passwordRep,
+			@RequestParam(value = "file", required = false) MultipartFile file,
+			@RequestParam("terms") Boolean terms) {
+		
+		
+		//Converting Spring MultipartFile to Blob
+		Blob blob = null;
+		try {
+			byte[] bytes = file.getBytes();
+			blob = new SerialBlob(bytes);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		// No need to load user avatar from db if user didn't upload it
+		if (file.isEmpty()) {
+			user.setAvatarLoded(true);
+			avatarLoaded = true;
+		}
 
 		if (userService.getUser(user.getUsername()) != null) {
 			ObjectError error = new ObjectError("nonUniqueUser",
@@ -61,10 +81,10 @@ public class UserController {
 		} else {
 			user.setUserRole("ROLE_USER");
 			user.setEnabled(true);
+			user.setAvatar(blob);
 			userService.createUser(user);
-			return "redirect:/user-login.html";
+			return "redirect:/success.html";
 		}
-
 	}
 
 	@RequestMapping(value = "/admin.html")
@@ -110,6 +130,9 @@ public class UserController {
 	@RequestMapping(value = "terms.html", method = RequestMethod.GET)
 	public String terms() {
 		return "templates/terms";
-
+	}
+	@RequestMapping(value = "success.html", method = RequestMethod.GET)
+	public String registrationSuccess() {
+		return "user/registrationSuccess";
 	}
 }

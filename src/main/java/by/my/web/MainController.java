@@ -66,7 +66,7 @@ public class MainController {
 			 */
 			if (!event.isImageLoded()) {
 				ImageFromDBLoader imageLoader = new ImageFromDBLoader();
-				imageLoader.loadImage(event);
+				imageLoader.loadEventImage(event);
 				event.setImageLoded(true);
 				eventService.updateEvent(event);
 			}

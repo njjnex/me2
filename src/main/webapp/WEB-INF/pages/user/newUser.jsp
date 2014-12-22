@@ -4,30 +4,33 @@
 <title>Регистрация нового пользовотеля</title>
 <%@ include file="../templates/header.jsp"%>
 
-<!-- Bootstrap-validator and file upload-->
+<!-- Bootstrap-validator-->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/bootstrap-validator/css/bootstrapValidator.min.css" />
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/bootstrap-validator/js/bootstrapValidator.min.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/bootstrap-validator/js/language/ru_RU.js"></script>
-
-<link
-	href="${pageContext.request.contextPath}/resources/bootstrap-upload/css/fileinput.min.css"
-	media="all" rel="stylesheet" type="text/css" />
-<script
-	src="${pageContext.request.contextPath}/resources/bootstrap-upload/js/fileinput.min.js"
-	type="text/javascript"></script>
 <script
 	src="${pageContext.request.contextPath}/resources/js/validationUser.js"
-	type="text/javascript"></script>	
-<!-- End bootstrap-validator and file upload -->
+	type="text/javascript"></script>
+<!-- End bootstrap-validator -->
+
+<!-- File upload jasny -->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/bootstrap/jasny-bootstrap/css/jasny-bootstrap.min.css" />
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/bootstrap/jasny-bootstrap/js/jasny-bootstrap.min.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/fileInput.js"
+	type="text/javascript"></script>
+<!-- File upload jasny -->	
 
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/newUser.css" />
 
 <form:form class="form-horizontal" role="form" action="newUser.html"
-	method="post" commandName="userForm">
+	enctype="multipart/form-data" method="post" commandName="userForm">
 	<form:errors path="*" cssClass="error" element="div" />
 	<div class="form-group">
 		<form:label for="inputUser" class="col-sm-2 control-label"
@@ -73,7 +76,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-4">
+		<div class="col-md-6">
 			<div class="form-group">
 				<label class="col-sm-5 control-label">Пол</label>
 				<div class="col-sm-5">
@@ -105,20 +108,31 @@
 				</div>
 			</div>
 		</div>
-
-		<div class="form-group">
-			<label class="col-md-3 control-label">Фото</label>
-			<div class="col-md-5">
-				<form:input id="input-id" type="file" class="file" path="avatar"
-					data-preview-file-type="text" />
+		<div class="col-md-6">
+			<div class="form-group">
+				<div class="fileinput fileinput-new" data-provides="fileinput">
+					<div class="fileinput-new thumbnail" id="blank-avatar" >
+						<img src="${pageContext.request.contextPath}/resources/images/avatar_template.png"/>
+					</div>
+					<div class="fileinput-preview fileinput-exists thumbnail"
+						id="blank-avatar"></div>
+					<div>
+						<span class="btn btn-default btn-file" ><span
+							class="fileinput-new">Выберете фото</span><span
+							class="fileinput-exists">Изменить</span>
+							<form:label path="avatar" for="inputImage"/>
+							<input type="file"
+							name="file"></span> <a href="#"
+							class="btn btn-default fileinput-exists" data-dismiss="fileinput">Удалить</a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 	<br>
-	<p class="help-block">Для того чтобы присоеденится к мероприятию
-		либо создать свое необходимо чтобы личные данные были заполнены. Ваши
+	<p class="help-block">Ваши
 		личные данные будут отображаться только авторам мероприятий в которых
-		Вы участвуете для связи.</p>
+		Вы участвуете, для того чтобы с Вами можно было связаться.</p>
 	<br>
 
 
@@ -134,14 +148,12 @@
 	</div>
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
-			<button type="submit" class="btn btn-default">Регистрация</button>
+			<form:button type="submit" class="btn btn-default">Регистрация</form:button>
 		</div>
 	</div>
 </form:form>
 <script>
-$("#input-id").fileinput({
-	showCaption : false
-});
+	$('.fileinput').fileinput();
 </script>
 </body>
 </html>

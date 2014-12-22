@@ -1,7 +1,6 @@
 package by.my.entity;
 
 import java.sql.Blob;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 

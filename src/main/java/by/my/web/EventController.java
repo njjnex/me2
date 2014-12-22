@@ -3,7 +3,6 @@ package by.my.web;
 import java.io.IOException;
 import java.security.Principal;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -72,7 +71,6 @@ public class EventController {
 		if(file.isEmpty()){
 			event.setImageLoded(true);
 			imageLoaded = true;
-			 event.isImageLoded();
 		}
 		
 		eventService.createEvent(event, file);

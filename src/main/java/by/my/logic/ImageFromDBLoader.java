@@ -11,7 +11,7 @@ public class ImageFromDBLoader {
 	private String path = "/src/main/webapp/WEB-INF/resources/images/events/";
 
 		@SuppressWarnings("resource")
-		public void loadImage(Event event) {
+		public void loadEventImage(Event event) {
 		if (event.getImage() != null) {
 			try {
 				InputStream in = event.getImage().getBinaryStream();

@@ -12,7 +12,6 @@ public class UserLogic {
 	UserService userService;
 	
 	public boolean isUniqueUser(String username){
-		System.out.println(userService);
 		if (userService.getUser(username) != null)
 			return false;
 		else 

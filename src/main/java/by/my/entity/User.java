@@ -11,12 +11,10 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Size;
-
-import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "USER")
@@ -27,11 +25,9 @@ public class User{
 	@Column(name = "USER_ID")
 	private long id;
 	
-	@Size (min=4, max=16, message= "Имя пользователя должно содержать от 4 до 16 символов.")
 	@Column(name = "USERNAME")
 	private String username;
 	
-	@Size (min=3, max=16, message= "Длинна пароля от 3 до 16 символов.")
 	@Column(name = "PASSWORD")
 	private String password;
 	
@@ -53,10 +49,18 @@ public class User{
 	private String age;
 	@Column(name = "ROLE")
     private String userRole;
+	@Lob
 	@Column(name="AVATAR")
 	private Blob avatar;
+	@Column(name = "IS_AVATAR_LODED") 
+	private boolean avatarLoded = false;
 	
-	
+	public boolean isAvatarLoded() {
+		return avatarLoded;
+	}
+	public void setAvatarLoded(boolean avatarLoded) {
+		this.avatarLoded = avatarLoded;
+	}
 	public Blob getAvatar() {
 		return avatar;
 	}

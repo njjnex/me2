@@ -1,7 +1,6 @@
 package by.my.logic;
 
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 
 import by.my.entity.Event;
