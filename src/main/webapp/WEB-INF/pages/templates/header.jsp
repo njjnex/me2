@@ -40,7 +40,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="${pageContext.request.contextPath}/main.html">Главная</a>
+      <a class="navbar-brand" href="${pageContext.request.contextPath}/main.html" style="width:50px; height:30px;"><img src="${pageContext.request.contextPath}/resources/images/house-logo.png" style="width:30px; height:30px"/></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -56,7 +56,7 @@
             <li><a href="${pageContext.request.contextPath}/myEvents.html">Мои события</a></li>
           </ul>
         </li>
-        <li><a href="${pageContext.request.contextPath}/newEvent.html">Создать событие</a></li>
+        <li><a href="${pageContext.request.contextPath}/newEvent.html">Добавить мероприятие</a></li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">

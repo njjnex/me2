@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-
-
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <title>Новое событие</title>
 <%@ include file="../templates/header.jsp"%>
+
 <!-- Bootstrap-validator-->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/bootstrap-validator/css/bootstrapValidator.min.css" />
@@ -12,7 +11,7 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/bootstrap-validator/js/language/ru_RU.js"></script>
 <script
-	src="${pageContext.request.contextPath}/resources/js/validationUser.js"
+	src="${pageContext.request.contextPath}/resources/js/validationEvent.js"
 	type="text/javascript"></script>
 <!-- End bootstrap-validator -->
 
@@ -24,71 +23,96 @@
 <script
 	src="${pageContext.request.contextPath}/resources/js/fileInput.js"
 	type="text/javascript"></script>
-<!-- File upload jasny -->
+<!-- End file upload jasny -->
+
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/newUser.css" />
 
-		<form:form id="send" action="newEvent.html" method="post"
-			commandName="event" enctype="multipart/form-data">
+<form:form class="form-horizontal" role="form"
+	action="newEvent.html" method="post" commandName="event"
+	enctype="multipart/form-data">
+	<form:errors path="*" cssClass="error" element="div" />
+	<div class="form-group">
+		<form:label for="inputName" path="eventName"
+			class="col-sm-5 control-label">Название мероприятия *</form:label>
+		<div class="col-sm-10">
+			<form:input type="text" class="form-control" id="inputName"
+				placeholder="Введите название" path="eventName" />
+		</div>
+	</div>
+	<div class="form-group">
+		<form:label path="dateStarts" for="inputDate"
+			class="col-sm-5 control-label">Дата и время начала *</form:label>
+		<div class="col-sm-10">
+			<form:input type="datetime-local" class="form-control" id="inputDate"
+				placeholder="Дата мероприятия" path="dateStarts" />
+		</div>
+	</div>
+	<div class="form-group">
+		<form:label path="eventMembersCount" for="inputMembers"
+			class="col-sm-5 control-label">Максимум участников *</form:label>
+		<div class="col-sm-10">
+			<form:input type="number" class="form-control" id="inputMembers"
+				placeholder="Максимум участников" path="eventMembersCount" />
+		</div>
+	</div>
 
-			<div class="form-group">
-				<form:label for="inputName" path="eventName">Название мероприятия *</form:label>
-				<form:input type="text" class="form-control" id="inputName"
-					placeholder="Введите название" path="eventName" />
-			</div>
+	<div class="form-group">
+		<form:label path="place" for="inputPlace"
+			class="col-sm-5 control-label">Место проведения *</form:label>
+		<div class="col-sm-10">
+			<form:input type="text" class="form-control" id="inputPlace"
+				placeholder="Введите конкретное место - адрес" path="place" />
+		</div>
+	</div>
 
-			<div class="form-group">
-				<form:label path="dateStarts" for="inputDate">Дата и время начала *</form:label>
-				<form:input type="datetime-local" class="form-control"
-					id="inputDate" placeholder="Дата мероприятия" path="dateStarts" />
-			</div>
+	<div class="form-group">
 
-			<div class="form-group">
-				<form:label path="eventMembersCount" for="inputMembers">Количество участников *</form:label>
-				<form:input type="number" class="form-control" id="inputMembers"
-					placeholder="Максимум участников" path="eventMembersCount" />
-			</div>
-
-			<div class="form-group">
-				<form:label path="place" for="inputPlace">Место проведения *</form:label>
-				<form:input type="text" class="form-control" id="inputPlace"
-					placeholder="Введите конкретное место - адрес" path="place" />
-			</div>
-
-			<div class="form-group">
-				<div class="fileinput fileinput-new" data-provides="fileinput">
-					<div class="fileinput-new thumbnail" id="blank-avatar" >
-						<img src="${pageContext.request.contextPath}/resources/images/avatar_template.png"/>
-					</div>
-					<div class="fileinput-preview fileinput-exists thumbnail"
-						id="blank-avatar"></div>
-					<div>
-						<span class="btn btn-default btn-file" ><span
-							class="fileinput-new">Выберете фото</span><span
-							class="fileinput-exists">Изменить</span>
-							<form:label path="image" for="inputImage"/>
-							<input type="file"
-							name="file"></span> <a href="#"
-							class="btn btn-default fileinput-exists" data-dismiss="fileinput">Удалить</a>
-					</div>
+		<div class="fileinput fileinput-new" data-provides="fileinput"
+			class="col-sm-5 control-label">
+			<div class="col-sm-10">
+				<div class="fileinput-new thumbnail" id="blank-avatar">
+					<img
+						src="${pageContext.request.contextPath}/resources/images/event_template.png" />
+				</div>
+				<div class="fileinput-preview fileinput-exists thumbnail"
+					id="blank-avatar"></div>
+				<div>
+					<span class="btn btn-default btn-file"><span
+						class="fileinput-new">Выберете фото</span><span
+						class="fileinput-exists">Изменить</span> <form:label path="image"
+							for="inputImage" /> <input type="file" name="file"
+						data-bv-file="true" data-bv-file-extension="jpeg,png,jpg,bmb"
+						data-bv-file-maxsize="800000"
+						data-bv-file-message="Выберете изображение размером не более 800 kB"></span>
+					<a href="#" class="btn btn-default fileinput-exists"
+						data-dismiss="fileinput">Удалить</a>
 				</div>
 			</div>
+		</div>
+	</div>
 
-			<div class="form-group">
-				<form:label path="description" for="inputInformation">Информация для участников</form:label>
-				<form:textarea path="description" class="form-control" rows="5"></form:textarea>
-			</div>
+	<div class="form-group">
+		<form:label path="description" for="inputInformation" class="col-sm-5 control-label">Информация для участников</form:label>
+		<div class="col-sm-10">
+			<form:textarea path="description" class="form-control" rows="5"></form:textarea>
+		</div>
+	</div>
+<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+	<button type="submit" class="btn btn-default">Создать событие</button>
+</div>
+</div>
 
-			<button type="submit" class="btn btn-default">Создать
-				событие</button>
+</form:form>
 
 
-		</form:form>
-
-		
 
 <script>
 	$('.fileinput').fileinput();
+	$(document).ready(function() {
+		$('.fileinput').bootstrapValidator();
+	});
 </script>
 
 </body>

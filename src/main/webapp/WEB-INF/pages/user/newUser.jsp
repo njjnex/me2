@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <title>Регистрация нового пользовотеля</title>
 <%@ include file="../templates/header.jsp"%>
@@ -24,7 +23,7 @@
 <script
 	src="${pageContext.request.contextPath}/resources/js/fileInput.js"
 	type="text/javascript"></script>
-<!-- File upload jasny -->
+<!-- End file upload jasny -->
 
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/newUser.css" />
@@ -121,8 +120,8 @@
 						<span class="btn btn-default btn-file"><span
 							class="fileinput-new">Выберете фото</span><span
 							class="fileinput-exists">Изменить</span> <form:label
-								path="avatar" for="inputImage" /> <input type="file" name="file"
-							data-bv-file="true" data-bv-file-extension="jpeg,png"
+								path="avatar" for="inputImage" /> <input type="file"
+							name="file" data-bv-file="true" data-bv-file-extension="jpeg,png"
 							data-bv-file-type="image/jpeg,image/png"
 							data-bv-file-maxsize="800000"
 							data-bv-file-message="Выберете изображение размером не более 800 kB"></span>

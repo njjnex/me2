@@ -1,6 +1,5 @@
 body, html {
-    margin:10px;
-    margin-top: 40px;
+   margin-top: 40px;
      
 }
 form {
@@ -10,6 +9,9 @@ form {
 
 .col-sm-10 {
 	width: 55%;
+}
+.col-sm-5{
+	margin-left: 20px;
 }
 .help-block{
 	margin-left: 10%;
