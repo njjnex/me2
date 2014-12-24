@@ -1,6 +1,21 @@
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
+
+<title>Новое событие</title>
+<%@ include file="../templates/header.jsp"%>
+<!-- Bootstrap-validator-->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/bootstrap-validator/css/bootstrapValidator.min.css" />
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/bootstrap-validator/js/bootstrapValidator.min.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/bootstrap-validator/js/language/ru_RU.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/js/validationUser.js"
+	type="text/javascript"></script>
+<!-- End bootstrap-validator -->
+
 <!-- File upload jasny -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/bootstrap/jasny-bootstrap/css/jasny-bootstrap.min.css" />
@@ -10,23 +25,8 @@
 	src="${pageContext.request.contextPath}/resources/js/fileInput.js"
 	type="text/javascript"></script>
 <!-- File upload jasny -->
-
-<title>Новое событие</title>
-<%@ include file="../templates/header.jsp"%>
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/newEventForm.css" />
-
-<!--BEGIN #signup-form -->
-<div id="signup-form">
-
-	<!--BEGIN #subscribe-inner -->
-	<div id="signup-inner">
-
-		<div class="clearfix" id="header">
-			<h1>Создайте свое событие!</h1>
-		</div>
-
-		<!-- 	<p>Пожалуйста заполните поля формы для добавления мероприятия.</p> -->
+	href="${pageContext.request.contextPath}/resources/css/newUser.css" />
 
 		<form:form id="send" action="newEvent.html" method="post"
 			commandName="event" enctype="multipart/form-data">
@@ -57,17 +57,19 @@
 
 			<div class="form-group">
 				<div class="fileinput fileinput-new" data-provides="fileinput">
-					<div class="fileinput-new thumbnail"
-						style="width: 200px; height: 150px;"></div>
+					<div class="fileinput-new thumbnail" id="blank-avatar" >
+						<img src="${pageContext.request.contextPath}/resources/images/avatar_template.png"/>
+					</div>
 					<div class="fileinput-preview fileinput-exists thumbnail"
-						style="max-width: 200px; max-height: 150px;"></div>
+						id="blank-avatar"></div>
 					<div>
-						<span class="btn btn-default btn-file"><span
+						<span class="btn btn-default btn-file" ><span
 							class="fileinput-new">Выберете фото</span><span
-							class="fileinput-exists">Заменить</span> <form:label path="image"
-								for="inputImage" /> <input type="file" name="file"></span> <a
-							href="#" class="btn btn-default fileinput-exists"
-							data-dismiss="fileinput">Удалить</a>
+							class="fileinput-exists">Изменить</span>
+							<form:label path="image" for="inputImage"/>
+							<input type="file"
+							name="file"></span> <a href="#"
+							class="btn btn-default fileinput-exists" data-dismiss="fileinput">Удалить</a>
 					</div>
 				</div>
 			</div>
@@ -83,14 +85,7 @@
 
 		</form:form>
 
-
-		<p class="help-block">* Обязательные поля</p>
-
-	</div>
-
-	<!--END #signup-inner -->
-</div>
-
+		
 
 <script>
 	$('.fileinput').fileinput();

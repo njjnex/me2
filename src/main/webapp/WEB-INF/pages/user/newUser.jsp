@@ -24,7 +24,7 @@
 <script
 	src="${pageContext.request.contextPath}/resources/js/fileInput.js"
 	type="text/javascript"></script>
-<!-- File upload jasny -->	
+<!-- File upload jasny -->
 
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/newUser.css" />
@@ -111,28 +111,32 @@
 		<div class="col-md-6">
 			<div class="form-group">
 				<div class="fileinput fileinput-new" data-provides="fileinput">
-					<div class="fileinput-new thumbnail" id="blank-avatar" >
-						<img src="${pageContext.request.contextPath}/resources/images/avatar_template.png"/>
+					<div class="fileinput-new thumbnail" id="blank-avatar">
+						<img
+							src="${pageContext.request.contextPath}/resources/images/avatar_template.png" />
 					</div>
 					<div class="fileinput-preview fileinput-exists thumbnail"
 						id="blank-avatar"></div>
 					<div>
-						<span class="btn btn-default btn-file" ><span
+						<span class="btn btn-default btn-file"><span
 							class="fileinput-new">Выберете фото</span><span
-							class="fileinput-exists">Изменить</span>
-							<form:label path="avatar" for="inputImage"/>
-							<input type="file"
-							name="file"></span> <a href="#"
-							class="btn btn-default fileinput-exists" data-dismiss="fileinput">Удалить</a>
+							class="fileinput-exists">Изменить</span> <form:label
+								path="avatar" for="inputImage" /> <input type="file" name="file"
+							data-bv-file="true" data-bv-file-extension="jpeg,png"
+							data-bv-file-type="image/jpeg,image/png"
+							data-bv-file-maxsize="800000"
+							data-bv-file-message="Выберете изображение размером не более 800 kB"></span>
+						<a href="#" class="btn btn-default fileinput-exists"
+							data-dismiss="fileinput">Удалить</a>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<br>
-	<p class="help-block">Ваши
-		личные данные будут отображаться только авторам мероприятий в которых
-		Вы участвуете, для того чтобы с Вами можно было связаться.</p>
+	<p class="help-block">Ваши личные данные будут отображаться только
+		авторам мероприятий в которых Вы участвуете, для того чтобы с Вами
+		можно было связаться.</p>
 	<br>
 
 
@@ -154,6 +158,9 @@
 </form:form>
 <script>
 	$('.fileinput').fileinput();
+	$(document).ready(function() {
+		$('.fileinput').bootstrapValidator();
+	});
 </script>
 </body>
 </html>

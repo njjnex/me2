@@ -11,4 +11,5 @@ public interface UserDao {
 	public void removeUser(User user);
 	public void createUser(User user);
 	public List<User> getAllUsers();
+	public void updateUser(User user);
 }

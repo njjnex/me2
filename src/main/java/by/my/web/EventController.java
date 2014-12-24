@@ -24,7 +24,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import by.my.entity.Event;
 import by.my.entity.User;
-import by.my.logic.EventState;
 import by.my.service.EventService;
 import by.my.service.UserService;
 
@@ -111,70 +110,6 @@ public class EventController {
 		eventService.unjoinEvent(eventId, userId);
 		model.addAttribute("event", event);
 		return "redirect:/main.html";
-	}
-
-	@RequestMapping(value = "active.html")
-	public String active(
-			@RequestParam(value = "event", required = false) String name,
-			Model model) {
-
-		if (name != null) {
-			eventList = eventService.search(name);
-		} else {
-			eventList = eventService.getEvents();
-		}
-		EventState state = new EventState();
-		eventList = state.isActive(eventList);
-
-		String search = "active";
-		model.addAttribute("search", search);
-
-		model.addAttribute("events", eventList);
-
-		return "main";
-
-	}
-
-	@RequestMapping(value = "unactive.html")
-	public String unactive(
-			@RequestParam(value = "event", required = false) String name,
-			Model model) {
-
-		if (name != null) {
-			eventList = eventService.search(name);
-		} else {
-			eventList = eventService.getEvents();
-		}
-		EventState state = new EventState();
-		eventList = state.isUnactive(eventList);
-
-		String search = "unactive";
-		model.addAttribute("search", search);
-
-		model.addAttribute("events", eventList);
-
-		return "main";
-
-	}
-
-	@RequestMapping(value = "myEvents.html")
-	public String myEvents(
-			@RequestParam(value = "event", required = false) String name,
-			Model model, Principal principal) {
-		if (name != null) {
-			eventList = eventService.search(name);
-		} else {
-			eventList = eventService.getEvents();
-		}
-		String username = principal.getName();
-		User user = userService.getUser(username);
-		eventList = eventService.getUsersEvents(user);
-
-		String search = "myEvents";
-		model.addAttribute("search", search);
-		model.addAttribute("events", eventList);
-
-		return "main";
 	}
 
 	@RequestMapping(value = "events/{eventId}")

@@ -43,9 +43,9 @@ public class EventDaoImpl implements EventDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Event> getEvents() {
-
+		
 		return sessionFactory.getCurrentSession()
-				.createQuery("FROM Event event").list();
+				.createQuery("FROM Event event order by active desc, dateStarts asc").list();
 	}
 
 	@Override

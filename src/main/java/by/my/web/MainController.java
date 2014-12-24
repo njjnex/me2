@@ -1,10 +1,7 @@
 package by.my.web;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.security.Principal;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,8 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import by.my.entity.Event;
+import by.my.entity.User;
+import by.my.logic.EventState;
 import by.my.logic.ImageFromDBLoader;
 import by.my.service.EventService;
+import by.my.service.UserService;
 
 @Controller
 public class MainController {
@@ -26,55 +26,86 @@ public class MainController {
 
 	@Autowired
 	EventService eventService;
-	
+
+	@Autowired
+	UserService userService;
+
 	@RequestMapping(value = "/main.html")
 	public String mainView(
 			@RequestParam(value = "searchEventName", required = false) String searchEventName,
 			Model model, HttpServletRequest request) {
 
-		/* Checks if request comes from search form.*/
+		/* Checks if request comes from search form. */
 		if (searchEventName != null) {
 			eventList = eventService.search(searchEventName);
 		} else {
-			eventList = eventService.getEvents();
+			EventState eventState = new EventState();
+			eventList = eventState.upToDateEvents(eventService.getEvents());
 		}
-
-		Iterator<Event> it = eventList.iterator();
-		while (it.hasNext()) {
-			Event event = it.next();
-			/*
-			 * Checks if event is active by comparing today date with event
-			 * dateStarts
-			 */
-			String dateS = event.getDateStarts();
-			try {
-				Date date = new SimpleDateFormat("dd-MM-yyyy' в 'HH:mm").parse(dateS);
-				Date today = new Date();
-
-				if (today.before(date)) {
-					event.setActive(true);
-				} else {
-					event.setActive(false);
-				}
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-			
-			/*
-			 * Check's if event image was loaded from db to server if not loads
-			 * image to the server
-			 */
+		/*
+		 * Check's if event image was loaded from db to server if not loads
+		 * image to the server
+		 */
+		for (Event event : eventList) {
 			if (!event.isImageLoded()) {
 				ImageFromDBLoader imageLoader = new ImageFromDBLoader();
 				imageLoader.loadEventImage(event);
 				event.setImageLoded(true);
 				eventService.updateEvent(event);
 			}
-
 		}
-		
+		model.addAttribute("events", eventList);
+		return "main";
+	}
+
+	@RequestMapping(value = "active.html")
+	public String active(
+			@RequestParam(value = "searchEventName", required = false) String searchEventName,
+			Model model) {
+
+		if (searchEventName != null) {
+			eventList = eventService.search(searchEventName);
+		} else {
+			EventState eventState = new EventState();
+			eventList = eventState.upToDateEvents(eventService.getEvents());
+			eventList = eventState.isActive(eventList);
+		}
 		model.addAttribute("events", eventList);
 		return "main";
 
 	}
+
+	@RequestMapping(value = "unactive.html")
+	public String unactive(
+			@RequestParam(value = "searchEventName", required = false) String searchEventName,
+			Model model) {
+
+		if (searchEventName != null) {
+			eventList = eventService.search(searchEventName);
+		} else {
+			EventState eventState = new EventState();
+			eventList = eventState.upToDateEvents(eventService.getEvents());
+			eventList = eventState.isUnactive(eventList);
+		}
+		model.addAttribute("events", eventList);
+		return "main";
+
+	}
+
+	@RequestMapping(value = "myEvents.html")
+	public String myEvents(
+			@RequestParam(value = "searchEventName", required = false) String searchEventName,
+			Model model, Principal principal) {
+		if (searchEventName != null) {
+			eventList = eventService.search(searchEventName);
+		} else {
+			eventList = eventService.getEvents();
+			String username = principal.getName();
+			User user = userService.getUser(username);
+			eventList = eventService.getUsersEvents(user);
+		}
+		model.addAttribute("events", eventList);
+		return "main";
+	}
+
 }

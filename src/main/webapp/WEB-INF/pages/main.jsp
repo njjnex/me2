@@ -44,7 +44,7 @@
     
         <h3><a class ="event-name" href="events/${event.id}"> ${event.eventName}</a>
         	<span>
-        		<object data="./resources/images/events/${event.id}.jpg"
+        		<object data="${pageContext.request.contextPath}/resources/images/events/${event.id}.jpg"
 					style="width: 98px; height: 98px; border: 2 px solid; border-radius: 50px; border-color: #f676b2;">
 					<img src="./resources/images/party.jpg"
 					style="width: 98px; height: 98px; border: 2 px solid; border-radius: 50px; border-color: #f676b2;">

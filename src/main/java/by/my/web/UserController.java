@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.rowset.serial.SerialBlob;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import by.my.entity.User;
 import by.my.logic.FileLoader;
+import by.my.logic.ImageFromDBLoader;
 import by.my.service.UserService;
 
 @Controller
@@ -48,16 +50,13 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/newUser.html", method = RequestMethod.POST)
-	public String processRegistration(
-			@ModelAttribute("userForm") User user,
-			BindingResult bindingResult,
-			Map<String, Object> model,
+	public String processRegistration(@ModelAttribute("userForm") User user,
+			BindingResult bindingResult, Map<String, Object> model,
 			@RequestParam("confirmPassword") String passwordRep,
 			@RequestParam(value = "file", required = false) MultipartFile file,
 			@RequestParam("terms") Boolean terms) {
-		
-		
-		//Converting Spring MultipartFile to Blob
+
+		// Converting Spring MultipartFile to Blob
 		Blob blob = null;
 		try {
 			byte[] bytes = file.getBytes();
@@ -83,6 +82,13 @@ public class UserController {
 			user.setEnabled(true);
 			user.setAvatar(blob);
 			userService.createUser(user);
+						
+			if (!user.isAvatarLoded()) {
+				ImageFromDBLoader imageLoader = new ImageFromDBLoader();
+				imageLoader.loadUserAvatar(user);
+				user.setAvatarLoded(true);
+				userService.updateUser(user);
+			}
 			return "redirect:/success.html";
 		}
 	}
@@ -103,10 +109,20 @@ public class UserController {
 		return "redirect:/admin.html";
 	}
 
-	@RequestMapping(value = "{username}/userdetails.html")
-	public String details(@PathVariable("username") String username, Model model) {
-		User user = userService.getUser(username);
+	@RequestMapping(value = "/userdetails.html")
+	public String details(Model model) {
 
+		String aUser = SecurityContextHolder.getContext().getAuthentication()
+				.getName();
+		User user = userService.getUser(aUser);
+		
+		if (!user.isAvatarLoded()) {
+			ImageFromDBLoader imageLoader = new ImageFromDBLoader();
+			imageLoader.loadUserAvatar(user);
+			user.setAvatarLoded(true);
+			userService.updateUser(user);
+		}
+		
 		model.addAttribute("user", user);
 		return "user/userdetails";
 	}
@@ -131,6 +147,7 @@ public class UserController {
 	public String terms() {
 		return "templates/terms";
 	}
+
 	@RequestMapping(value = "success.html", method = RequestMethod.GET)
 	public String registrationSuccess() {
 		return "user/registrationSuccess";

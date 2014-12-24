@@ -21,9 +21,12 @@
 	</head>
 
 <body>
+   
+  
 	<%
 		String aUser = SecurityContextHolder.getContext()
 				.getAuthentication().getName();
+	
 	%>
 	<c:set var="activeUser" value="<%=aUser%>" scope="session" />
 			
@@ -63,7 +66,7 @@
       <sec:authorize access="authenticated" var="authenticated" />
 			<c:choose>
 				<c:when test="${authenticated}">
-				  <li><a href="${pageContext.request.contextPath}/${activeUser}/userdetails.html">${activeUser}</a></li>
+				  <li><a href="${pageContext.request.contextPath}/userdetails.html">${activeUser}</a></li>
 				  <li><a href='${pageContext.request.contextPath}/logout.html'>Выход</a></li>
 				</c:when>
 				<c:otherwise>

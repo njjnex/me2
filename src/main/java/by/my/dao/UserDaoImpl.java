@@ -38,7 +38,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public User getUser(String username) {
-		System.out.println("users" + username);
+		System.out.println("Get user " + username);
 
 		User user = (User) sessionFactory
 				.getCurrentSession()
@@ -55,5 +55,11 @@ public class UserDaoImpl implements UserDao {
 	public List<User> getAllUsers() {
 		return sessionFactory.getCurrentSession().createQuery("FROM User user")
 				.list();
+	}
+
+	@Override
+	public void updateUser(User user) {
+		sessionFactory.getCurrentSession().merge(user);
+		
 	}
 }
