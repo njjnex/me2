@@ -1,7 +1,7 @@
-<nav class="navbar navbar-default navbar-fixed-bottom" id="footer">
-  <div class="container">
-    my footer
-  </div>
-</nav>
+<div class="navbar-fixed-bottom row-fluid" id="footer">
+	<div class="navbar-inner">
+		<div class="container">My footer</div>
+	</div>
+</div>
 </body>
 </html>

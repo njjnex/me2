@@ -109,8 +109,14 @@ public class UserController {
 		return "redirect:/admin.html";
 	}
 
-	@RequestMapping(value = "/userdetails.html")
-	public String details(Model model) {
+	@RequestMapping(value = "{id}/userDetails.html")
+	public String userDetails(@PathVariable("userId") long id, Model model) {
+		User user = userService.getUserById(id);
+		model.addAttribute("user", user);
+		return "user/userDetails";
+	}
+	@RequestMapping(value = "/myDetails.html")
+	public String myDetails(Model model) {
 
 		String aUser = SecurityContextHolder.getContext().getAuthentication()
 				.getName();
@@ -124,7 +130,7 @@ public class UserController {
 		}
 		
 		model.addAttribute("user", user);
-		return "user/userdetails";
+		return "user/myDetails";
 	}
 
 	@RequestMapping(value = "{username}/downloadDetails.html")

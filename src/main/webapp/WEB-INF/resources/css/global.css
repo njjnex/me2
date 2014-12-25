@@ -1,8 +1,28 @@
-body{
-  padding-top: 40px;
-  padding-bottom: 40px;
-  background-color: #eee; 
+body {
+	padding-top: 40px;
+	padding-bottom: 80px;
+	background-color: #eef;
 }
-#footer{
-	background: grey;
+
+#header {
+	background-color: #5bc0de;
+	border: 0px;
+}
+
+#footer {
+	background: #337ab7;
+}
+
+ul .btn {
+	margin: 10px;
+	margin-right: 10px;
+}
+
+.navbar .nav>a {
+	float: none;
+	line-height: 19px;
+	font: 16px 'Lucida Sans', 'trebuchet MS', Arial, Helvetica;
+	text-decoration: none;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	color: #fff;
 }

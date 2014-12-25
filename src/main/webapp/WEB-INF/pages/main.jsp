@@ -95,10 +95,9 @@
 			</c:otherwise>	
          </c:choose>	           
         <ul>
-            <li>Время мероприятия <b>${event.dateStarts}</b></li>
+            <li>Время мероприятия <b><br>${event.dateStarts}</b></li>
             <li>Необходимо участников: <b>${event.eventMembersCount}</b></li>
             <li>Зарегистрировались:<b>${i}</b></li>
-			<li>Нужно еще: <b>${event.eventMembersCount - i}</b></li>
 			<li>Автор мероприятия:<b><br>${event.createdBy.username}</b></li>			
         </ul> 
         </div>
