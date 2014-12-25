@@ -34,24 +34,24 @@
 	<form:errors path="*" cssClass="error" element="div" />
 	<div class="form-group">
 		<form:label for="inputName" path="eventName"
-			class="col-sm-5 control-label">Название мероприятия *</form:label>
-		<div class="col-sm-10">
+			class="col-md-3 control-label">Название мероприятия *</form:label>
+		<div class="col-md-5">
 			<form:input type="text" class="form-control" id="inputName"
 				placeholder="Введите название" path="eventName" />
 		</div>
 	</div>
 	<div class="form-group">
 		<form:label path="dateStarts" for="inputDate"
-			class="col-sm-5 control-label">Дата и время начала *</form:label>
-		<div class="col-sm-10">
+			class="col-md-3 control-label">Дата и время начала *</form:label>
+		<div class="col-md-5">
 			<form:input type="datetime-local" class="form-control" id="inputDate"
 				placeholder="Дата мероприятия" path="dateStarts" />
 		</div>
 	</div>
 	<div class="form-group">
 		<form:label path="eventMembersCount" for="inputMembers"
-			class="col-sm-5 control-label">Максимум участников *</form:label>
-		<div class="col-sm-10">
+			class="col-md-3 control-label">Максимум участников *</form:label>
+		<div class="col-md-5">
 			<form:input type="number" class="form-control" id="inputMembers"
 				placeholder="Максимум участников" path="eventMembersCount" />
 		</div>
@@ -59,21 +59,21 @@
 
 	<div class="form-group">
 		<form:label path="place" for="inputPlace"
-			class="col-sm-5 control-label">Место проведения *</form:label>
-		<div class="col-sm-10">
+			class="col-md-3 control-label">Место проведения *</form:label>
+		<div class="col-md-5">
 			<form:input type="text" class="form-control" id="inputPlace"
 				placeholder="Введите конкретное место - адрес" path="place" />
 		</div>
 	</div>
 
-	<div class="form-group">
+	<div class="form-group" id="avatar">
 
 		<div class="fileinput fileinput-new" data-provides="fileinput"
-			class="col-sm-5 control-label">
-			<div class="col-sm-10">
+			class="col-md-3 control-label">
+			<div class="col-md-5">
 				<div class="fileinput-new thumbnail" id="blank-avatar">
 					<img
-						src="${pageContext.request.contextPath}/resources/images/event_template.png" />
+						src="${pageContext.request.contextPath}/resources/images/events/template.png" />
 				</div>
 				<div class="fileinput-preview fileinput-exists thumbnail"
 					id="blank-avatar"></div>
@@ -93,13 +93,13 @@
 	</div>
 
 	<div class="form-group">
-		<form:label path="description" for="inputInformation" class="col-sm-5 control-label">Информация для участников</form:label>
-		<div class="col-sm-10">
+		<form:label path="description" for="inputInformation" class="col-md-3 control-label">Информация для участников</form:label>
+		<div class="col-md-5">
 			<form:textarea path="description" class="form-control" rows="5"></form:textarea>
 		</div>
 	</div>
 <div class="form-group">
-		<div class="col-sm-offset-2 col-sm-10">
+		<div class="col-sm-offset-3 col-md-5">
 	<button type="submit" class="btn btn-default">Создать событие</button>
 </div>
 </div>

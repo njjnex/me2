@@ -112,7 +112,7 @@
 				<div class="fileinput fileinput-new" data-provides="fileinput">
 					<div class="fileinput-new thumbnail" id="blank-avatar">
 						<img
-							src="${pageContext.request.contextPath}/resources/images/avatar_template.png" />
+							src="${pageContext.request.contextPath}/resources/images/avatars/template.png" />
 					</div>
 					<div class="fileinput-preview fileinput-exists thumbnail"
 						id="blank-avatar"></div>

@@ -19,7 +19,7 @@
 	<!-- end bootstrap -->
 				
 	</head>
-
+<link href="${pageContext.request.contextPath}/resources/css/global.css" rel="stylesheet">
 <body>
    
   
@@ -76,7 +76,7 @@
 			</c:choose>
        
       </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+    </div>
+  </div>
 </nav>
 		

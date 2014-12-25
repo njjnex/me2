@@ -3,10 +3,10 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main.css" />
 
 
-<!-- <title>Главная страница</title>
+<title>Находите новых друзей.</title>
 			
 </head>
-<body> -->
+<body>
 	<form class="form-wrapper cf" action="${pageContext.request.contextPath}/main.html" method="post">
         <input type="text" name="searchEventName" placeholder="Название мероприятия..." required>
         <button type="submit">Искать</button>
@@ -46,7 +46,7 @@
         	<span>
         		<object data="${pageContext.request.contextPath}/resources/images/events/${event.id}.jpg"
 					style="width: 98px; height: 98px; border: 2 px solid; border-radius: 50px; border-color: #f676b2;">
-					<img src="./resources/images/party.jpg"
+					<img src="./resources/images/events/template.png"
 					style="width: 98px; height: 98px; border: 2 px solid; border-radius: 50px; border-color: #f676b2;">
 			    </object>		
 			</span>
@@ -104,6 +104,4 @@
         </div>
          </c:forEach>
       </div>
-      
-   </body>
-</html>
+  <%@ include file="./templates/footer.jsp" %>
