@@ -8,14 +8,11 @@
    <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/jquery.form-validator.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/menu.js"></script>
-
+	
 	<!-- bootstrap -->
-    	<link href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    	<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
-   		<script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
-    	<script src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap-collapse.js"></script>
+    	<link href="${pageContext.request.contextPath}/resources/bootstrap/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    	<script src="${pageContext.request.contextPath}/resources/bootstrap/bootstrap/js/bootstrap.min.js"></script>
+    	<script src="${pageContext.request.contextPath}/resources/bootstrap/bootstrap/js/bootstrap-collapse.js"></script>
 	<!-- end bootstrap -->
 				
 	</head>

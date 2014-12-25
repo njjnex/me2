@@ -5,11 +5,11 @@
 
 <!-- Bootstrap-validator-->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/bootstrap-validator/css/bootstrapValidator.min.css" />
+	href="${pageContext.request.contextPath}/resources/bootstrap/bootstrap-validator/css/bootstrapValidator.min.css" />
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/bootstrap-validator/js/bootstrapValidator.min.js"></script>
+	src="${pageContext.request.contextPath}/resources/bootstrap/bootstrap-validator/js/bootstrapValidator.min.js"></script>
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/bootstrap-validator/js/language/ru_RU.js"></script>
+	src="${pageContext.request.contextPath}/resources/bootstrap/bootstrap-validator/js/language/ru_RU.js"></script>
 <script
 	src="${pageContext.request.contextPath}/resources/js/validationUser.js"
 	type="text/javascript"></script>
@@ -26,7 +26,7 @@
 <!-- End file upload jasny -->
 
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/newUser.css" />
+	href="${pageContext.request.contextPath}/resources/css/form.css" />
 
 <form:form class="form-horizontal" role="form" action="newUser.html"
 	enctype="multipart/form-data" method="post" commandName="userForm">
@@ -161,5 +161,4 @@
 		$('.fileinput').bootstrapValidator();
 	});
 </script>
-</body>
-</html>
+<%@ include file="../templates/footer.jsp"%>
