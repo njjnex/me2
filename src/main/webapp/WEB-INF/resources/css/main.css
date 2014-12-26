@@ -401,3 +401,10 @@ a:visited:hover.event-name{
 .clear {
   zoom:1
 }
+.error {
+	color: #ff0000;
+	margin: 2%;
+	margin-right: auto;
+    font-size: 150%;
+	width: 50%;
+}

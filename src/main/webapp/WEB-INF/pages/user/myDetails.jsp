@@ -100,7 +100,7 @@
 							<tbody id="items">
 								<c:forEach var="event" items="${user.userCreatedEvents}">
 									<tr>
-										<td>${event.eventName}</td>
+										<td><a href="${pageContext.request.contextPath}/events/${event.id}">${event.eventName}</a></td>
 										<td>${event.dateStarts}</td>
 										<td>${event.place}</td>
 										<td>${event.eventMembersCount}</td>

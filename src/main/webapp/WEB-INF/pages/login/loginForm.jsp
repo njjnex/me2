@@ -20,6 +20,7 @@
 	src="${pageContext.request.contextPath}/resources/js/validationSignIn.js"></script>
 
 <body>
+<div class="error"><p class="text-center">${error}</p></div>
 	<div class="container">
 		<form class="form-signin" role="form" id="login" name="login-form"
 			class="login-form" action="<c:url value='j_spring_security_check'/>"

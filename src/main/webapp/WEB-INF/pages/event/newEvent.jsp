@@ -100,7 +100,7 @@
 	</div>
 <div class="form-group">
 		<div class="col-sm-offset-3 col-md-5">
-	<button type="submit" class="btn btn-default">Создать событие</button>
+	<button type="submit" class="btn btn-primary btn-lg">Создать событие</button>
 </div>
 </div>
 

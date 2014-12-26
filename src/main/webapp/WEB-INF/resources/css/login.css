@@ -32,3 +32,10 @@
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+.error {
+	color: #ff0000;
+	margin: 2%;
+	margin-right: auto;
+    font-size: 150%;
+	
+}

@@ -156,6 +156,11 @@ public class UserController {
 	@RequestMapping(value = "{id}/userDetails.html")
 	public String userDetails(@PathVariable("id") long id, Model model) {
 		User user = userService.getUserById(id);
+		int joined = user.getUserJoinedEvents().size();
+		int created = user.getUserCreatedEvents().size();
+		
+		model.addAttribute("joinedU",joined);
+		model.addAttribute("createdU",created);
 		model.addAttribute("user", user);
 		return "user/userDetails";
 	}
@@ -166,19 +171,18 @@ public class UserController {
 		String aUser = SecurityContextHolder.getContext().getAuthentication()
 				.getName();
 		User user = userService.getUser(aUser);
-		int joined = user.getUserJoinedEvents().size();
-		int created = user.getUserCreatedEvents().size();
-		int activeJoined = 0;
-			for(Event event: user.getUserJoinedEvents()){
-				if (event.isActive()) activeJoined++;
-			}
 		if (!user.isAvatarLoded()) {
 			ImageFromDBLoader imageLoader = new ImageFromDBLoader();
 			imageLoader.loadUserAvatar(user);
 			user.setAvatarLoded(true);
 			userService.updateUser(user);
 		}
-		
+		int joined = user.getUserJoinedEvents().size();
+		int created = user.getUserCreatedEvents().size();
+		int activeJoined = 0;
+			for(Event event: user.getUserJoinedEvents()){
+				if (event.isActive()) activeJoined++;
+			}
 		model.addAttribute("joined",joined);
 		model.addAttribute("created",created);
 		model.addAttribute("activeJoined",activeJoined);

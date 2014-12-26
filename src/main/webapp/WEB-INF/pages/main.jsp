@@ -44,11 +44,9 @@
     
         <h3><a class ="event-name" href="events/${event.id}"> ${event.eventName}</a>
         	<span>
-        		<object data="${pageContext.request.contextPath}/resources/images/events/${event.id}.jpg"
+        		<img src="${pageContext.request.contextPath}/resources/images/events/${event.id}.jpg" onerror="if (this.src != '${event.id}.jpg') this.src = '${pageContext.request.contextPath}/resources/images/events/template.png';"
 					style="width: 98px; height: 98px; border: 2 px solid; border-radius: 50px; border-color: #f676b2;">
-					<img src="./resources/images/events/template.png"
-					style="width: 98px; height: 98px; border: 2 px solid; border-radius: 50px; border-color: #f676b2;">
-			    </object>		
+			    		
 			</span>
 		</h3>
 				
@@ -98,7 +96,7 @@
             <li>Время мероприятия <b><br>${event.dateStarts}</b></li>
             <li>Необходимо участников: <b>${event.eventMembersCount}</b></li>
             <li>Зарегистрировались:<b>${i}</b></li>
-			<li>Автор мероприятия:<b><br>${event.createdBy.username}</b></li>			
+			<li>Автор мероприятия:<b><br><a href="${pageContext.request.contextPath}/${event.createdBy.id}/userDetails.html">${event.createdBy.username}</a></b></li>			
         </ul> 
         </div>
          </c:forEach>

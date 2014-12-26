@@ -100,11 +100,11 @@
 					<c:when test="${authenticated}">
 						<li><button type="button" class="btn btn-success"
 								onclick="window.location.href='${pageContext.request.contextPath}/myDetails.html'"> Личный кабинет ${activeUser}</button></li>
-						<li><button type="button" class="btn btn-danger"
+						<li><button type="button" class="btn btn-primary"
 								onclick="window.location.href='${pageContext.request.contextPath}/logout.html'">Выход</button></li>
 					</c:when>
 					<c:otherwise>
-						<li><button type="button" class="btn btn-info"
+						<li><button type="button" class="btn btn-primary"
 								onclick="window.location.href='${pageContext.request.contextPath}/newUser.html'">Регистрация</button></li>
 						<li><button type="button" class="btn btn-success"
 								data-toggle="modal" data-target="#myModal">Bход</button></li>

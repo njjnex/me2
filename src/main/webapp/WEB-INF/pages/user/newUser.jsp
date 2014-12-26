@@ -151,7 +151,7 @@
 	</div>
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
-			<form:button type="submit" class="btn btn-default">Регистрация</form:button>
+			<form:button type="submit" class="btn btn btn-primary btn-lg">Регистрация</form:button>
 		</div>
 	</div>
 </form:form>
