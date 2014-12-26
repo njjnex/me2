@@ -4,8 +4,6 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,7 +31,7 @@ public class MainController {
 	@RequestMapping(value = "/main.html")
 	public String mainView(
 			@RequestParam(value = "searchEventName", required = false) String searchEventName,
-			Model model, HttpServletRequest request) {
+			Model model) {
 
 		/* Checks if request comes from search form. */
 		if (searchEventName != null) {

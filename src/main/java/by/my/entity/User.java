@@ -33,8 +33,6 @@ public class User{
 	
 	@Column(name = "EMAIL")
 	private String email;
-	@Column(name = "BIRTH_DATE")
-	private Date birthDate;
 	@OneToMany(mappedBy="createdBy", cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	private Set<Event> userCreatedEvents = new HashSet<Event>(); 
 	@ManyToMany(mappedBy="eventMembersJoined",cascade={CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH}, fetch=FetchType.EAGER)
@@ -111,12 +109,6 @@ public class User{
 	}
 	public void setEmail(String email) {
 		this.email = email;
-	}
-	public Date getBirthDate() {
-		return birthDate;
-	}
-	public void setBirthDate(Date birthDate) {
-		this.birthDate = birthDate;
 	}
 	public Set<Event> getUserCreatedEvents() {
 		return userCreatedEvents;

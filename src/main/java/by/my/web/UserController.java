@@ -1,6 +1,7 @@
 package by.my.web;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import by.my.entity.Event;
 import by.my.entity.User;
 import by.my.logic.FileLoader;
 import by.my.logic.ImageFromDBLoader;
@@ -41,7 +43,6 @@ public class UserController {
 		User userForm = new User();
 		userForm.setAge(null);
 		userForm.setAvatar(null);
-		userForm.setBirthDate(null);
 		userForm.setGender(null);
 		userForm.setPhone(null);
 
@@ -82,7 +83,7 @@ public class UserController {
 			user.setEnabled(true);
 			user.setAvatar(blob);
 			userService.createUser(user);
-						
+
 			if (!user.isAvatarLoded()) {
 				ImageFromDBLoader imageLoader = new ImageFromDBLoader();
 				imageLoader.loadUserAvatar(user);
@@ -90,6 +91,49 @@ public class UserController {
 				userService.updateUser(user);
 			}
 			return "redirect:/success.html";
+		}
+	}
+
+	@RequestMapping(value = "/updateUser.html", method = RequestMethod.POST)
+	public String updateUser(@RequestParam("email") String email,
+			@RequestParam("password") String password,
+			@RequestParam("phone") String phone,
+			@RequestParam(value = "file", required = false) MultipartFile file,
+			Principal principal, Model model) {
+
+		User user = userService.getUser(principal.getName());
+		Blob blob = null;
+
+		if ((user.getPassword().equals(password))) {
+			// if user avatar changed
+			if (!file.isEmpty()) {
+				try {
+					user.setAvatarLoded(false);
+					avatarLoaded = false;
+					byte[] bytes = file.getBytes();
+					blob = new SerialBlob(bytes);
+					user.setAvatar(blob);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+			if (!user.isAvatarLoded()) {
+				ImageFromDBLoader imageLoader = new ImageFromDBLoader();
+				imageLoader.loadUserAvatar(user);
+				user.setAvatarLoded(true);
+			}
+			// if email changed
+			if (!email.isEmpty())
+				user.setEmail(email);
+			// if phone changed
+			if (!phone.isEmpty())
+				user.setPhone(phone);
+
+			userService.updateUser(user);
+			return "redirect:/myDetails.html";
+		} else {
+			model.addAttribute("error", "Неверный пароль");
+			return "forward:/myDetails.html";
 		}
 	}
 
@@ -110,18 +154,24 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "{id}/userDetails.html")
-	public String userDetails(@PathVariable("userId") long id, Model model) {
+	public String userDetails(@PathVariable("id") long id, Model model) {
 		User user = userService.getUserById(id);
 		model.addAttribute("user", user);
 		return "user/userDetails";
 	}
+
 	@RequestMapping(value = "/myDetails.html")
 	public String myDetails(Model model) {
 
 		String aUser = SecurityContextHolder.getContext().getAuthentication()
 				.getName();
 		User user = userService.getUser(aUser);
-		
+		int joined = user.getUserJoinedEvents().size();
+		int created = user.getUserCreatedEvents().size();
+		int activeJoined = 0;
+			for(Event event: user.getUserJoinedEvents()){
+				if (event.isActive()) activeJoined++;
+			}
 		if (!user.isAvatarLoded()) {
 			ImageFromDBLoader imageLoader = new ImageFromDBLoader();
 			imageLoader.loadUserAvatar(user);
@@ -129,6 +179,9 @@ public class UserController {
 			userService.updateUser(user);
 		}
 		
+		model.addAttribute("joined",joined);
+		model.addAttribute("created",created);
+		model.addAttribute("activeJoined",activeJoined);
 		model.addAttribute("user", user);
 		return "user/myDetails";
 	}

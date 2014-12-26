@@ -15,7 +15,7 @@ public class LoginController {
 	
 	@RequestMapping(value="/error-login.html", method=RequestMethod.GET)
 	public String errorLoginForm(Model model){
-		
+		model.addAttribute("error", "Не верный пароль!");
 		return "/login/loginForm";
 	}
 	
