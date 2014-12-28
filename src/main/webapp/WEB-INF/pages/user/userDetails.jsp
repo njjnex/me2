@@ -30,12 +30,12 @@
                 <div class="col-xs-12 col-sm-4 emphasis">
                     <h2><strong>${joinedU}</strong></h2>                    
                     <p><small>Участвовал</small></p>
-                    <button class="btn btn-success btn-block"><span class="fa fa-plus-circle"></span>Посмотреть</button>
+                    <button class="btn btn-success btn-block" onclick="window.location.href='${pageContext.request.contextPath}/${user.id}/joinedEvent.html'"><span class="fa fa-plus-circle"></span>Посмотреть</button>
                 </div>
                 <div class="col-xs-12 col-sm-4 emphasis">
                     <h2><strong>${createdU}</strong></h2>                    
                     <p><small>Создал</small></p>
-                    <button class="btn btn-info btn-block"><span class="fa fa-user"></span>Посмотреть</button>
+                    <button class="btn btn-info btn-block" onclick="window.location.href='${pageContext.request.contextPath}/${user.id}/createdEvent.html'"><span class="fa fa-user"></span>Посмотреть</button>
                 </div>
                 <div class="col-xs-12 col-sm-4 emphasis">
                     <h2><strong>${createdU + joinedU}</strong></h2>                    

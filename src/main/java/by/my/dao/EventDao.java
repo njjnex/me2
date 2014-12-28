@@ -18,4 +18,5 @@ public interface EventDao {
 	public List<Event> getUsersEvents(User user);
 	void joinEvent(long eventId, long userId);
 	public List<Event> search(String name);
+	public List<Event> getUserJoinedEvents(User user);
 }

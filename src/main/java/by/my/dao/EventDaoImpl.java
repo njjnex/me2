@@ -34,39 +34,28 @@ public class EventDaoImpl implements EventDao {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-
 		}
-
 		session.save(event);
 	}
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Event> getEvents() {
-		
 		return sessionFactory.getCurrentSession()
-				.createQuery("FROM Event event order by active desc, dateStarts asc").list();
+				.createQuery("FROM Event event order by active desc, id desc").list();
 	}
-
 	@Override
 	public void removeEvent(Event event) {
 		sessionFactory.getCurrentSession().delete(event);
 	}
-
 	@Override
 	public Event getEventByID(long eventId) {
 		return (Event) sessionFactory.getCurrentSession().get(Event.class,
-				eventId);
-
+			eventId);
 	}
-
 	@Override
 	public void updateEvent(Event event) {
-
 		sessionFactory.getCurrentSession().merge(event);
-
 	}
-	
 	@Override
 	public void joinEvent(long eventId, long userId) {
 		String query = "insert into myproject.members_joined_event (JOINED_EVENT_ID,USER_ID) VALUES (:event_id, :user_id)";
@@ -75,7 +64,6 @@ public class EventDaoImpl implements EventDao {
 		q.setLong("user_id", userId);
 		q.executeUpdate();
 	}
-	
 	@Override
 	public void unjoinEvent(long eventId, long userId) {
 		String query = "delete from myproject.members_joined_event where JOINED_EVENT_ID  = :event_id and USER_ID = :user_id";
@@ -84,20 +72,24 @@ public class EventDaoImpl implements EventDao {
 		q.setLong("user_id", userId);
 		q.executeUpdate();
 	}
-	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Event> getUsersEvents(User user) {
 		return sessionFactory.getCurrentSession()
 				.createQuery("FROM Event event WHERE event.createdBy = :user")
 				.setParameter("user", user).list();
-
 	}
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Event> search(String name) {
 		 return sessionFactory.getCurrentSession().createQuery("FROM Event event WHERE event.eventName = :name").setParameter("name", name).list();
 		
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Event> getUserJoinedEvents(User user) {
+		return sessionFactory.getCurrentSession()
+				.createQuery("FROM Event event WHERE :user in elements(event.eventMembersJoined)")
+				.setParameter("user", user).list();
 	}
 }

@@ -73,5 +73,9 @@ public class EventServiceImpl implements EventService {
 	public List<Event> search(String name) {
 		return eventDao.search(name);
 	}
-	
+	@Override
+	@Transactional
+	public List<Event> getUserJoinedEvents(User user) {
+		return eventDao.getUserJoinedEvents(user);
+	}
 }

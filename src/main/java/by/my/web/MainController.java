@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -105,5 +106,20 @@ public class MainController {
 		model.addAttribute("events", eventList);
 		return "main";
 	}
-
+	@RequestMapping(value = "{userId}/joinedEvent.html")
+	public String userJoinedEvent(@PathVariable("userId") long userId, Model model){
+		User user = userService.getUserById(userId);
+		eventList = eventService.getUserJoinedEvents(user);
+		
+		model.addAttribute("events", eventList);
+		return "main";
+	}
+	@RequestMapping(value = "{userId}/createdEvent.html")
+	public String userCreatedEvent(@PathVariable("userId") long userId, Model model){
+		User user = userService.getUserById(userId);
+		eventList = eventService.getUsersEvents(user);
+		
+		model.addAttribute("events", eventList);
+		return "main";
+	}
 }
