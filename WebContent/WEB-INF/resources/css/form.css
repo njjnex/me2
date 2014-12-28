@@ -1,0 +1,45 @@
+body, html {
+   margin-top: 20px;
+     
+}
+form {
+	width: 80%;
+	margin: 15px auto;
+}
+
+.col-sm-10 {
+	width: 55%;
+}
+.col-sm-5{
+	margin-left: 20px;
+}
+.help-block{
+	margin-left: 10%;
+	width: 65%;
+	border: 1px;
+	border-color: grey;
+}
+.error {
+	color: #ff0000;
+	margin: 2%;
+	margin-right: auto;
+    font-size: 120%;
+	width: 50%;
+}
+
+.row{
+	margin-left: 10%;
+	width: 60%
+}
+#age-select{
+	width: 100%;
+}
+#blank-avatar{
+	width: 100px; 
+	height: 100px;
+	border-radius: 10px;
+	
+}
+#avatar{
+	margin-left: 24%;
+}
