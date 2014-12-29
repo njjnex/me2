@@ -57,16 +57,17 @@ public class UserController {
 			@RequestParam(value = "file", required = false) MultipartFile file,
 			@RequestParam("terms") Boolean terms) {
 
-		// Converting Spring MultipartFile to Blob
 		Blob blob = null;
-		try {
-			byte[] bytes = file.getBytes();
-			blob = new SerialBlob(bytes);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		
+		// Converting Spring MultipartFile to Blob
 		// No need to load user avatar from db if user didn't upload it
-		if (file.isEmpty()) {
+		if (file != null && file.isEmpty()) {
+			try {
+				byte[] bytes = file.getBytes();
+				blob = new SerialBlob(bytes);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			user.setAvatarLoded(true);
 			avatarLoaded = true;
 		}
@@ -158,9 +159,9 @@ public class UserController {
 		User user = userService.getUserById(id);
 		int joined = user.getUserJoinedEvents().size();
 		int created = user.getUserCreatedEvents().size();
-		
-		model.addAttribute("joinedU",joined);
-		model.addAttribute("createdU",created);
+
+		model.addAttribute("joinedU", joined);
+		model.addAttribute("createdU", created);
 		model.addAttribute("user", user);
 		return "user/userDetails";
 	}
@@ -180,12 +181,13 @@ public class UserController {
 		int joined = user.getUserJoinedEvents().size();
 		int created = user.getUserCreatedEvents().size();
 		int activeJoined = 0;
-			for(Event event: user.getUserJoinedEvents()){
-				if (event.isActive()) activeJoined++;
-			}
-		model.addAttribute("joined",joined);
-		model.addAttribute("created",created);
-		model.addAttribute("activeJoined",activeJoined);
+		for (Event event : user.getUserJoinedEvents()) {
+			if (event.isActive())
+				activeJoined++;
+		}
+		model.addAttribute("joined", joined);
+		model.addAttribute("created", created);
+		model.addAttribute("activeJoined", activeJoined);
 		model.addAttribute("user", user);
 		return "user/myDetails";
 	}

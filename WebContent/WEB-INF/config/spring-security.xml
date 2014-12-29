@@ -32,16 +32,16 @@
 	<!-- Hibernate configuration -->
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
-		p:driverClassName="com.mysql.jdbc.Driver" p:url="jdbc:mysql://${OPENSHIFT_MYSQL_DB_HOST}:3306/${OPENSHIFT_APP_NAME}"
-		p:username="${OPENSHIFT_MYSQL_DB_USERNAME}" p:password="${OPENSHIFT_MYSQL_DB_PASSWORD}" />
+		p:driverClassName="com.mysql.jdbc.Driver" p:url="jdbc:mysql://127.2.94.2:3306/container?useUnicode=true&characterEncoding=UTF-8"
+		p:username="admins3adFBW" p:password="f98T2fLGQ4W5" />
 		
 	<security:authentication-manager>
 	  <security:authentication-provider>
 		<security:jdbc-user-service data-source-ref="dataSource"
 		  users-by-username-query=
-		    "select username,password, enabled from user where username=?"
+		    "select USERNAME, PASSWORD, ENABLED from USER where USERNAME=?"
 		  authorities-by-username-query=
-		    "select username, role from user where username =?  " />
+		    "select USERNAME, ROLE from USER where USERNAME =?  " />
 	  </security:authentication-provider>
 	</security:authentication-manager>
 

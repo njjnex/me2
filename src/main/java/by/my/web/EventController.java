@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import javax.servlet.http.HttpSession;
 
@@ -49,6 +50,8 @@ public class EventController {
 			Principal principal, Map<String, Object> model,
 			@RequestParam(value = "file", required = false) MultipartFile file,
 			HttpSession session) throws HibernateException, IOException {
+		
+		System.out.println("----------" + event.getDescription());
 		
 		// Converting date format
 		try {
