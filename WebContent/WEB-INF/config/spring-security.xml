@@ -32,7 +32,7 @@
 	<!-- Hibernate configuration -->
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
-		p:driverClassName="com.mysql.jdbc.Driver" p:url="jdbc:mysql://$OPENSHIFT_MYSQL_DB_HOST:3306/${OPENSHIFT_APP_NAME}"
+		p:driverClassName="com.mysql.jdbc.Driver" p:url="jdbc:mysql://${OPENSHIFT_MYSQL_DB_HOST}:3306/${OPENSHIFT_APP_NAME}"
 		p:username="${OPENSHIFT_MYSQL_DB_USERNAME}" p:password="${OPENSHIFT_MYSQL_DB_PASSWORD}" />
 		
 	<security:authentication-manager>
