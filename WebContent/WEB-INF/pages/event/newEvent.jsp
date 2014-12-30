@@ -105,9 +105,6 @@
 </div>
 
 </form:form>
-
-
-
 <script>
 	$('.fileinput').fileinput();
 	$(document).ready(function() {

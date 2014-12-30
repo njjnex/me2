@@ -44,7 +44,7 @@
     
         <h3><a class ="event-name" href="events/${event.id}"> ${event.eventName}</a>
         	<span>
-        		<img src="${pageContext.request.contextPath}/resources/images/events/${event.id}.jpg" onerror="if (this.src != '${event.id}.jpg') this.src = '${pageContext.request.contextPath}/resources/images/events/template.png';"
+        		<img src="/static/event${event.id}.jpg" onerror="if (this.src != '${event.id}.jpg') this.src = '${pageContext.request.contextPath}/resources/images/events/template.png';"
 					style="width: 98px; height: 98px; border: 2 px solid; border-radius: 50px; border-color: #f676b2;">
 			    		
 			</span>

@@ -16,7 +16,7 @@
   limitations under the License.
 -->
 <!-- The contents of this file will be loaded for each web application -->
-<Context>
+<Context path="/" aliases="/static=/var/lib/openshift/54a139fd5973cae06e000179/app-root/data">
     <!-- Default set of monitored resources -->
     <WatchedResource>WEB-INF/web.xml</WatchedResource>
 

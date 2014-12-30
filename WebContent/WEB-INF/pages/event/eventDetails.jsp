@@ -14,7 +14,7 @@
 		<div class="event">
 		<div class="plan">
 			<h3>${event.eventName}
-				<span><img src="${pageContext.request.contextPath}/resources/images/events/${event.id}.jpg"
+				<span><img src="/static/event${event.id}.jpg"
 				style="width: 98px; height: 98px; border: 2 px solid; border-radius: 50px; border-color: #f676b2;">
 			</span>
 			</h3>

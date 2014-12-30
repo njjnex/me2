@@ -7,10 +7,11 @@ import java.util.Iterator;
 import java.util.List;
 
 import by.my.entity.Event;
+import by.my.service.EventService;
+import by.my.service.EventServiceImpl;
 
 public class EventState {
-	
-	
+		
 	public List<Event> isActive(List<Event> eventList) {
 		
 		for (Iterator<Event> iterator = eventList.iterator(); iterator

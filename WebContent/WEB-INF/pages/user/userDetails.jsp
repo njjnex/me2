@@ -22,7 +22,7 @@
                 </div>             
                 <div class="col-xs-12 col-sm-4 text-center">
                     <figure>
-                        <img src="${pageContext.request.contextPath}/resources/images/avatars/${user.id}.jpg" onerror="if (this.src != '${user.id}.jpg') this.src = '${pageContext.request.contextPath}/resources/images/avatars/template.png';" class="img-circle img-responsive">
+                        <img src="/static/avatar${user.id}.jpg" onerror="if (this.src != '${user.id}.jpg') this.src = '${pageContext.request.contextPath}/resources/images/avatars/template.png';" class="img-circle img-responsive">
                     </figure>
                 </div>
             </div>            
