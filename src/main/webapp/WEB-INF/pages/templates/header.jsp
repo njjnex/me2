@@ -28,9 +28,6 @@
 	src="${pageContext.request.contextPath}/resources/bootstrap/bootstrap-validator/js/bootstrapValidator.min.js"></script>
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/bootstrap/bootstrap-validator/js/language/ru_RU.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/js/validationUser.js"
-	type="text/javascript"></script>
 <!-- End bootstrap-validator -->
 
 <script

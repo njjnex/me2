@@ -31,7 +31,7 @@ $(document).ready(function() {
 					},
 				}
 			},
-			inputMembers : {
+			eventMembersCount : {
 				validators : {
 					notEmpty : {
 						message : 'Укажите максимальное количество участников'

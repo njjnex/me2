@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<title>Новое событие</title>
+<title>Новое мероприятие.</title>
 <%@ include file="../templates/header.jsp"%>
 
 <!-- Bootstrap-validator-->
@@ -28,13 +28,12 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/form.css" />
 
-<form:form class="form-horizontal" role="form"
-	action="newEvent.html" method="post" commandName="event"
-	enctype="multipart/form-data">
-	
+<form:form class="form-horizontal" role="form" action="newEvent.html" method="post"
+	 enctype="multipart/form-data" commandName="event">
+		
 	<div class="form-group">
-		<form:label for="inputName" path="eventName"
-			class="col-md-3 control-label">Название мероприятия *</form:label>
+		<form:label for="inputName" class="col-md-3 control-label" 
+			path="eventName">Название мероприятия *</form:label>
 		<div class="col-md-5">
 			<form:input type="text" class="form-control" id="inputName"
 				placeholder="Введите название" path="eventName" />
@@ -52,7 +51,7 @@
 		<form:label path="eventMembersCount" for="inputMembers"
 			class="col-md-3 control-label">Максимум участников *</form:label>
 		<div class="col-md-5">
-			<form:input type="number" class="form-control" id="inputMembers"
+			<form:input type="text" class="form-control" id="inputMembers"
 				placeholder="Максимум участников" path="eventMembersCount" />
 		</div>
 	</div>
@@ -105,14 +104,10 @@
 </div>
 
 </form:form>
-
-
-
 <script>
-	/* $('.fileinput').fileinput();
+	$('.fileinput').fileinput();
 	$(document).ready(function() {
 		$('.fileinput').bootstrapValidator();
-	}); */
+	}); 
 </script>
-
 <%@ include file="../templates/footer.jsp"%>

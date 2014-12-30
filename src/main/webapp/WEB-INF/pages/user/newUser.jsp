@@ -122,7 +122,6 @@
 							class="fileinput-exists">Изменить</span> <form:label
 								path="avatar" for="inputImage" /> <input type="file"
 							name="file" data-bv-file="true" data-bv-file-extension="jpeg,png"
-							data-bv-file-type="image/jpeg,image/png"
 							data-bv-file-maxsize="800000"
 							data-bv-file-message="Выберете изображение размером не более 800 kB"></span>
 						<a href="#" class="btn btn-default fileinput-exists"
@@ -137,9 +136,6 @@
 		авторам мероприятий в которых Вы участвуете, для того чтобы с Вами
 		можно было связаться.</p>
 	<br>
-
-
-
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
 			<div class="checkbox">

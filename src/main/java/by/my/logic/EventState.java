@@ -6,10 +6,17 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-import by.my.entity.Event;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import by.my.entity.Event;
+import by.my.service.EventService;
+
+@Service
 public class EventState {
 	
+	@Autowired
+	EventService eventService;
 	
 	public List<Event> isActive(List<Event> eventList) {
 		
@@ -46,11 +53,10 @@ public class EventState {
 				Date date = new SimpleDateFormat("dd-MM-yyyy' в 'HH:mm")
 						.parse(dateS);
 				Date today = new Date();
-				if (today.before(date))
-					event.setActive(true);
-				else
+				if (!today.before(date)){
 					event.setActive(false);
-				
+					eventService.updateEvent(event);
+				}
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
