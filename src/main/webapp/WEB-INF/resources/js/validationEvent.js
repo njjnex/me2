@@ -47,9 +47,9 @@ $(document).ready(function() {
 				validators : {
 					notEmpty : {
 						message : 'Укажите место где пройдет событие.'
-					},
+					}
 				}
-			},
+			}
 		}
 	});
 });

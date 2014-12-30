@@ -31,7 +31,7 @@
 <form:form class="form-horizontal" role="form"
 	action="newEvent.html" method="post" commandName="event"
 	enctype="multipart/form-data">
-	<form:errors path="*" cssClass="error" element="div" />
+	
 	<div class="form-group">
 		<form:label for="inputName" path="eventName"
 			class="col-md-3 control-label">Название мероприятия *</form:label>
@@ -100,7 +100,7 @@
 	</div>
 <div class="form-group">
 		<div class="col-sm-offset-3 col-md-5">
-	<button type="submit" class="btn btn-primary btn-lg">Создать событие</button>
+	<form:button type="submit" class="btn btn-primary btn-lg">Создать событие</form:button>
 </div>
 </div>
 
@@ -109,10 +109,10 @@
 
 
 <script>
-	$('.fileinput').fileinput();
+	/* $('.fileinput').fileinput();
 	$(document).ready(function() {
 		$('.fileinput').bootstrapValidator();
-	});
+	}); */
 </script>
 
 <%@ include file="../templates/footer.jsp"%>
