@@ -25,9 +25,10 @@ public class MainController {
 
 	@Autowired
 	EventService eventService;
-
 	@Autowired
 	UserService userService;
+	@Autowired
+	EventState eventState;
 
 	@RequestMapping(value = "/main.html")
 	public String mainView(
@@ -38,7 +39,6 @@ public class MainController {
 		if (searchEventName != null) {
 			eventList = eventService.search(searchEventName);
 		} else {
-			EventState eventState = new EventState();
 			eventList = eventState.upToDateEvents(eventService.getEvents());
 		}
 		/*
@@ -66,7 +66,6 @@ public class MainController {
 			eventList = eventService.search(searchEventName);
 		} else {
 			EventState eventState = new EventState();
-			eventList = eventState.upToDateEvents(eventService.getEvents());
 			eventList = eventState.isActive(eventList);
 		}
 		model.addAttribute("events", eventList);
@@ -83,7 +82,6 @@ public class MainController {
 			eventList = eventService.search(searchEventName);
 		} else {
 			EventState eventState = new EventState();
-			eventList = eventState.upToDateEvents(eventService.getEvents());
 			eventList = eventState.isUnactive(eventList);
 		}
 		model.addAttribute("events", eventList);

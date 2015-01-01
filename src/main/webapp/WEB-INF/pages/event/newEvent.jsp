@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<title>Новое событие</title>
+<title>Новое мероприятие.</title>
 <%@ include file="../templates/header.jsp"%>
 
 <!-- Bootstrap-validator-->
@@ -100,7 +100,7 @@
 	</div>
 <div class="form-group">
 		<div class="col-sm-offset-3 col-md-5">
-	<button type="submit" class="btn btn-primary btn-lg">Создать событие</button>
+	<form:button type="submit" class="btn btn-primary btn-lg">Создать событие</form:button>
 </div>
 </div>
 
