@@ -51,31 +51,30 @@
 		</h3>
 				
 <c:choose>
-	<c:when test="${activeUser=='Admin'}"> <a class="remove" href="${event.id}/deleteEvent.html">Удалить</a></c:when>
+	<c:when test="${activeUser=='Admin'}"> <<button type="button" class="btn btn-danger" onclick="windows.location.href='${event.id}/deleteEvent.html'">Удалить</a></c:when>
 		<c:otherwise>			
 			<c:choose>
-					<c:when test="${!event.active and (event.createdBy.username ne activeUser)}"><a class="finished">Прошло</a></c:when>
+					<c:when test="${!event.active and (event.createdBy.username ne activeUser)}"><button type="button" class="btn btn-warning" disabled="disabled">Прошло</button></c:when>
 					<c:otherwise>
 						<c:choose>
 							<c:when test="${joined}">
-								<a class="signout" href="${event.id}/unjoinEvent.html">Отказаться</a>
+								<button type="button" class="btn btn-primary" onclick="windows.location.href='${event.id}/unjoinEvent.html'">Отказаться</button>
 							</c:when>
 							<c:otherwise>
 								<c:choose>
 									<c:when test="${event.eventMembersCount eq i}">
-										<a class="signup"> Заполнено</a>
+										<button type="button" class="btn btn-default" disabled="disabled"> Заполнено</button>
 									</c:when>
 									<c:otherwise>
 										<c:choose>
 											<c:when test="${event.createdBy.username ne activeUser}">
-												<a class="signup" href="${event.id}/joinEvent.html">Участвую!</a>
+												<button type="button" class="btn btn-info" onclick="window.location.href='${event.id}/joinEvent.html'">Участвую!</button>
 												<% alreadyJoined = true; %>
 											</c:when>
 											<c:otherwise>
 												<c:choose>
 													<c:when test="${(i eq 0)}">
-														<a class="remove"
-															href="${event.id}/deleteEvent.html">Удалить</a>
+														<<button type="button" class="btn btn-danger" onclick="window.location.href='${event.id}/deleteEvent.html'">Удалить</button>
 													</c:when>
 													<c:otherwise>
 														<a class="empty">_____</a>

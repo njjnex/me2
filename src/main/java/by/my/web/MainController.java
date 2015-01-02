@@ -65,7 +65,7 @@ public class MainController {
 		if (searchEventName != null) {
 			eventList = eventService.search(searchEventName);
 		} else {
-			EventState eventState = new EventState();
+			eventList = eventService.getEvents();
 			eventList = eventState.isActive(eventList);
 		}
 		model.addAttribute("events", eventList);
@@ -81,7 +81,7 @@ public class MainController {
 		if (searchEventName != null) {
 			eventList = eventService.search(searchEventName);
 		} else {
-			EventState eventState = new EventState();
+			eventList = eventService.getEvents();
 			eventList = eventState.isUnactive(eventList);
 		}
 		model.addAttribute("events", eventList);
