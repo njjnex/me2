@@ -208,8 +208,7 @@
 												class="fileinput-exists">Изменить</span><input type="file"
 												name="file" data-bv-file="true"
 												value="${pageContext.request.contextPath}/resources/images/avatars/${user.id}.jpg"
-												data-bv-file-extension="jpeg,png"
-												data-bv-file-type="image/jpeg,image/png"
+												data-bv-file-extension="jpeg,png,jpg"
 												data-bv-file-maxsize="800000"
 												data-bv-file-message="Выберете изображение размером не более 800 kB"></span>
 											<a href="#" class="btn btn-default fileinput-exists"
