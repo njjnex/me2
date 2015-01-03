@@ -1,16 +1,32 @@
 body {
 	padding-top: 40px;
-	padding-bottom: 80px;
+	padding-bottom: 180px;
 	background-color: #E8F9FC;
+	
 }
+.container-fluid{
+	color:#80091B;
+}
+.navbar-brand navbar-text{
+	color:#80091B;
+}
+
+
 
 #header {
 	background-color: #5bc0de;
 	border: 0px;
+	text-align: center;
+	
+}
+navbar-default .navbar-brand {
+  color: #F90529;
 }
 
 #footer {
 	background: #5bc0de;
+	color: #FCFAFA;
+	text-align: center;
 }
 
 ul .btn {
