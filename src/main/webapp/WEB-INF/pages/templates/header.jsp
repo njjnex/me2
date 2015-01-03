@@ -29,7 +29,6 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/bootstrap/bootstrap-validator/js/language/ru_RU.js"></script>
 <!-- End bootstrap-validator -->
-
 <script
 	src="${pageContext.request.contextPath}/resources/js/validationSignIn.js"></script>
 
