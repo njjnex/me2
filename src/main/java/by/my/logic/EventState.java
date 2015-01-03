@@ -12,26 +12,35 @@ import org.springframework.stereotype.Service;
 import by.my.entity.Event;
 import by.my.service.EventService;
 
+/**
+ * @author njjnex Helper class that do some special event logic.
+ */
 @Service
 public class EventState {
-	
+
 	@Autowired
 	EventService eventService;
-	
-	public List<Event> isActive(List<Event> eventList) {
-		
+
+	/**
+	 * Checks if event is up to date or it have been already passed
+	 * @return list of events in future
+	 */
+	public List<Event> isActive() {
+		List<Event>eventList = eventService.getEvents();
 		for (Iterator<Event> iterator = eventList.iterator(); iterator
 				.hasNext();) {
 			Event event = iterator.next();
 			if (!event.isActive())
 				iterator.remove();
 		}
-
 		return eventList;
 	}
-
-	public List<Event> isUnactive(List<Event> eventList) {
-
+	/**
+	 * Checks if event is up to date or it have been already passed
+	 * @return list of passed events
+	 */
+	public List<Event> isUnactive() {
+		List<Event>eventList = eventService.getEvents();
 		for (Iterator<Event> iterator = eventList.iterator(); iterator
 				.hasNext();) {
 			Event event = iterator.next();
@@ -40,9 +49,12 @@ public class EventState {
 		}
 		return eventList;
 	}
-	/*
-	 * Checks if event is active by comparing today date with event
-	 * dateStarts
+
+	/**
+	 *  The logic that checks if event is active by comparing today date with event dateStarts
+	 *  if it's not than mark this event state as unactive and save it to db.
+	 *  @ param eventList list of all events
+	 *  @return eventlist list of all events with set params if they active ir not
 	 */
 	public List<Event> upToDateEvents(List<Event> eventList) {
 
@@ -53,7 +65,7 @@ public class EventState {
 				Date date = new SimpleDateFormat("dd-MM-yyyy' в 'HH:mm")
 						.parse(dateS);
 				Date today = new Date();
-				if (!today.before(date)){
+				if (!today.before(date)) {
 					event.setActive(false);
 					eventService.updateEvent(event);
 				}
@@ -61,7 +73,7 @@ public class EventState {
 				e.printStackTrace();
 			}
 		}
-		 
+
 		return eventList;
 	}
 }

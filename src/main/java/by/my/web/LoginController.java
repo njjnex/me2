@@ -18,5 +18,4 @@ public class LoginController {
 		model.addAttribute("error", "Неверный логин или пароль!");
 		return "forward:/user-login.html";
 	}
-	
 }

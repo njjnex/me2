@@ -1,6 +1,11 @@
 <%@ include file="/WEB-INF/pages/templates/header.jsp"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%
+	response.setHeader("Cache-Control", "no-cache"); //HTTP 1.1 
+	response.setHeader("Pragma", "no-cache"); //HTTP 1.0 
+	response.setDateHeader("Expires", 0); //prevents caching at the proxy server
+%>
 <title>Личный кабинет</title>
 
 <!-- Bootstrap-validator-->
@@ -56,11 +61,18 @@
 					<li class="list-group-item text-muted">Профиль <i
 						class="fa fa-dashboard fa-1x"></i></li>
 					<li class="list-group-item text-right"><span class="pull-left"><strong>Пол</strong></span>
-						<c:if test="${user.gender eq 'male'}"><p>Мужской</p></c:if> <c:if
-							test="${user.gender eq 'female'}"><p>Женский</p></c:if><p></p></li>
-					<li class="list-group-item text-right"><span class="pull-left"><strong>Возраст</strong></span><p>${user.age}</p> </li>
-					<li class="list-group-item text-right"><span class="pull-left"><strong>Email</strong></span><p>${user.email}</p> </li>
-					<li class="list-group-item text-right"><span class="pull-left"><strong>Телефон</strong></span><p>${user.phone}</p> </li>
+						<c:if test="${user.gender eq 'male'}">
+							<p>Мужской</p>
+						</c:if> <c:if test="${user.gender eq 'female'}">
+							<p>Женский</p>
+						</c:if>
+						<p></p></li>
+					<li class="list-group-item text-right"><span class="pull-left"><strong>Возраст</strong></span>
+					<p>${user.age}</p></li>
+					<li class="list-group-item text-right"><span class="pull-left"><strong>Email</strong></span>
+					<p>${user.email}</p></li>
+					<li class="list-group-item text-right"><span class="pull-left"><strong>Телефон</strong></span>
+					<p>${user.phone}</p></li>
 				</ul>
 
 				<div class="panel panel-default">
@@ -100,13 +112,18 @@
 							<tbody id="items">
 								<c:forEach var="event" items="${user.userCreatedEvents}">
 									<tr>
-										<td><a href="${pageContext.request.contextPath}/events/${event.id}">${event.eventName}</a></td>
+										<td><a
+											href="${pageContext.request.contextPath}/events/${event.id}">${event.eventName}</a></td>
 										<td>${event.dateStarts}</td>
 										<td>${event.place}</td>
 										<td>${event.eventMembersCount}</td>
 										<td><c:forEach var="user"
-												items="${event.eventMembersJoined}"><a href="${pageContext.request.contextPath}/${user.id}/userDetails.html">${user.username}</a>
-												<%i = i + 1;%><br>
+												items="${event.eventMembersJoined}">
+												<a
+													href="${pageContext.request.contextPath}/${user.id}/userDetails.html">${user.username}</a>
+												<%
+													i = i + 1;
+												%><br>
 											</c:forEach></td>
 									</tr>
 								</c:forEach>
@@ -185,10 +202,9 @@
 							<div class="form-group">
 
 								<div class="col-xs-6">
-									<label for="password"><h4>Пароль</h4></label>
-									<input type="password" class="form-control" name="password"
-										id="password"
-										placeholder="Пароль"
+									<label for="password"><h4>Пароль</h4></label> <input
+										type="password" class="form-control" name="password"
+										id="password" placeholder="Пароль"
 										title="enter your password.">
 								</div>
 							</div>

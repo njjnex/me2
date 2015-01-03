@@ -1,14 +1,11 @@
 package by.my.web;
 
-import java.io.IOException;
 import java.security.Principal;
 import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletResponse;
 import javax.sql.rowset.serial.SerialBlob;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +23,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import by.my.entity.Event;
 import by.my.entity.User;
-import by.my.logic.FileLoader;
 import by.my.logic.ImageFromDBLoader;
 import by.my.service.UserService;
 
@@ -147,10 +143,15 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "{userId}/deleteUser.html")
-	public String deleteUser(@PathVariable("userId") long id, Model model) {
-		User user = userService.getUserById(id);
-		userService.removeUser(user);
-		return "redirect:/admin.html";
+	public String deleteUser(@PathVariable("userId") long id,
+			Principal principal, Model model) {
+		if (principal.getName().equals("Admin")) {
+			User user = userService.getUserById(id);
+			userService.removeUser(user);
+			return "redirect:/admin.html";
+		}else{
+			return "main";
+		}
 	}
 
 	@RequestMapping(value = "{id}/userDetails.html")
@@ -158,9 +159,9 @@ public class UserController {
 		User user = userService.getUserById(id);
 		int joined = user.getUserJoinedEvents().size();
 		int created = user.getUserCreatedEvents().size();
-		
-		model.addAttribute("joinedU",joined);
-		model.addAttribute("createdU",created);
+
+		model.addAttribute("joinedU", joined);
+		model.addAttribute("createdU", created);
 		model.addAttribute("user", user);
 		return "user/userDetails";
 	}
@@ -180,32 +181,17 @@ public class UserController {
 		int joined = user.getUserJoinedEvents().size();
 		int created = user.getUserCreatedEvents().size();
 		int activeJoined = 0;
-			for(Event event: user.getUserJoinedEvents()){
-				if (event.isActive()) activeJoined++;
-			}
-		model.addAttribute("joined",joined);
-		model.addAttribute("created",created);
-		model.addAttribute("activeJoined",activeJoined);
+		for (Event event : user.getUserJoinedEvents()) {
+			if (event.isActive())
+				activeJoined++;
+		}
+		model.addAttribute("joined", joined);
+		model.addAttribute("created", created);
+		model.addAttribute("activeJoined", activeJoined);
 		model.addAttribute("user", user);
 		return "user/myDetails";
 	}
-
-	@RequestMapping(value = "{username}/downloadDetails.html")
-	public void getFile(@PathVariable("username") String username,
-			HttpServletResponse response) throws IOException {
-		User user = userService.getUser(username);
-
-		FileLoader fl = new FileLoader();
-		String myString = fl.userString(user);
-		response.setContentType("text/plain");
-		response.setHeader("Content-Disposition",
-				"attachment;filename=" + user.getUsername() + ".txt");
-		ServletOutputStream out = response.getOutputStream();
-		out.write(myString.getBytes("UTF-8"));
-		out.flush();
-		out.close();
-	}
-
+	
 	@RequestMapping(value = "terms.html", method = RequestMethod.GET)
 	public String terms() {
 		return "templates/terms";
