@@ -1,6 +1,10 @@
-<div class="navbar-fixed-bottom row-fluid" id="footer">
+<div class="navbar-default navbar-fixed-bottom" id="footer">
 	<div class="navbar-inner">
-		<div class="container">My footer</div>
+		<p class="text-right">
+			me2.by Все права зашишены.<a href="mailto:njjnex@gmail.com"> Напишите нам.</a>
+		</p>
+
+
 	</div>
 </div>
 </body>
