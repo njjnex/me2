@@ -4,13 +4,22 @@ body {
 	background-color: #E8F9FC;
 }
 
+
+
 #header {
 	background-color: #5bc0de;
 	border: 0px;
+	text-align: center;
+	
+}
+navbar-default .navbar-brand {
+  color: #F90529;
 }
 
 #footer {
 	background: #5bc0de;
+	color: #FCFAFA;
+	text-align: center;
 }
 
 ul .btn {

@@ -27,21 +27,21 @@
 			default-target-url="/index.jsp" authentication-failure-url="/error-login.html" />
 		<security:logout logout-url="/logout.html" logout-success-url="/index.jsp" />
 
-	</security:http>
+</security:http>
 	
 	<!-- Hibernate configuration -->
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
-		p:driverClassName="com.mysql.jdbc.Driver" p:url="mysql://$OPENSHIFT_MYSQL_DB_HOST:$OPENSHIFT_MYSQL_DB_PORT/me2container"
-		p:username="adminkhNjDTh" p:password="cPyVYM-fFhWT" />
+		p:driverClassName="com.mysql.jdbc.Driver" p:url="jdbc:mysql://127.2.94.2:3306/container?useUnicode=true&amp;characterEncoding=UTF-8"
+		p:username="admins3adFBW" p:password="f98T2fLGQ4W5"	/>
 		
 	<security:authentication-manager>
 	  <security:authentication-provider>
 		<security:jdbc-user-service data-source-ref="dataSource"
 		  users-by-username-query=
-		    "select username,password, enabled from user where username=?"
+		    "select USERNAME, PASSWORD, ENABLED from USER where USERNAME=?"
 		  authorities-by-username-query=
-		    "select username, role from user where username =?  " />
+		    "select USERNAME, ROLE from USER where USERNAME =?  " />
 	  </security:authentication-provider>
 	</security:authentication-manager>
 
