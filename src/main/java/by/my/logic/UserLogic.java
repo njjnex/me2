@@ -5,16 +5,21 @@ import org.springframework.stereotype.Component;
 
 import by.my.service.UserService;
 
+/**
+ * @author njjnex 
+ * 	Checks if username is unique by comparing with usernames from
+ *  database
+ */
 @Component
 public class UserLogic {
-	
+
 	@Autowired
 	UserService userService;
-	
-	public boolean isUniqueUser(String username){
+
+	public boolean isUniqueUser(String username) {
 		if (userService.getUser(username) != null)
 			return false;
-		else 
-			return true;	
+		else
+			return true;
 	}
 }

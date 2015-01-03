@@ -40,7 +40,6 @@ public class EventController {
 	public String viewRegistration(Map<String, Object> model) {
 		Event event = new Event();
 		model.put("event", event);
-
 		return "event/newEvent";
 	}
 
@@ -53,7 +52,8 @@ public class EventController {
 		// Converting date format
 		try {
 			String dateStarts = event.getDateStarts();
-			DateFormat outputFormat = new SimpleDateFormat("dd-MM-yyyy' в 'HH:mm");
+			DateFormat outputFormat = new SimpleDateFormat(
+					"dd-MM-yyyy' в 'HH:mm");
 			DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
 			Date date = inputFormat.parse(dateStarts);
 			String outputDate = outputFormat.format(date);
@@ -61,21 +61,16 @@ public class EventController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		String createdUserName = principal.getName();		
+		String createdUserName = principal.getName();
 		User createdUser = userService.getUser(createdUserName);
 		event.setCreatedBy(createdUser);
-						
-		//No need to load image from db if user didn't upload it
-		if(file.isEmpty()){
+		// No need to load image from db if user didn't upload it
+		if (file.isEmpty()) {
 			event.setImageLoded(true);
 			imageLoaded = true;
 		}
-		
 		eventService.createEvent(event, file);
 		session.setAttribute("imagesLoded", imageLoaded);
-		
-
 		return "redirect:/main.html";
 	}
 
@@ -85,9 +80,7 @@ public class EventController {
 		String joinedUserName = principal.getName();
 		User joinedUser = userService.getUser(joinedUserName);
 		long userId = joinedUser.getId();
-
 		eventService.joinEvent(eventId, userId);
-
 		return "redirect:/main.html";
 	}
 
@@ -95,7 +88,6 @@ public class EventController {
 	public String delete(@PathVariable long eventId, Model model) {
 		Event event = eventService.getEventByID(eventId);
 		eventService.removeEvent(event);
-
 		return "redirect:/main.html";
 	}
 
@@ -106,7 +98,6 @@ public class EventController {
 		String joinedUserName = principal.getName();
 		User joinedUser = userService.getUser(joinedUserName);
 		long userId = joinedUser.getId();
-
 		eventService.unjoinEvent(eventId, userId);
 		model.addAttribute("event", event);
 		return "redirect:/main.html";

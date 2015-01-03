@@ -61,12 +61,11 @@ public class MainController {
 	public String active(
 			@RequestParam(value = "searchEventName", required = false) String searchEventName,
 			Model model) {
-
 		if (searchEventName != null) {
 			eventList = eventService.search(searchEventName);
 		} else {
 			EventState eventState = new EventState();
-			eventList = eventState.isActive(eventList);
+			eventList = eventState.isActive();
 		}
 		model.addAttribute("events", eventList);
 		return "main";
@@ -77,12 +76,11 @@ public class MainController {
 	public String unactive(
 			@RequestParam(value = "searchEventName", required = false) String searchEventName,
 			Model model) {
-
 		if (searchEventName != null) {
 			eventList = eventService.search(searchEventName);
 		} else {
 			EventState eventState = new EventState();
-			eventList = eventState.isUnactive(eventList);
+			eventList = eventState.isUnactive();
 		}
 		model.addAttribute("events", eventList);
 		return "main";
@@ -108,7 +106,6 @@ public class MainController {
 	public String userJoinedEvent(@PathVariable("userId") long userId, Model model){
 		User user = userService.getUserById(userId);
 		eventList = eventService.getUserJoinedEvents(user);
-		
 		model.addAttribute("events", eventList);
 		return "main";
 	}
@@ -116,7 +113,6 @@ public class MainController {
 	public String userCreatedEvent(@PathVariable("userId") long userId, Model model){
 		User user = userService.getUserById(userId);
 		eventList = eventService.getUsersEvents(user);
-		
 		model.addAttribute("events", eventList);
 		return "main";
 	}

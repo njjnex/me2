@@ -29,7 +29,6 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/bootstrap/bootstrap-validator/js/language/ru_RU.js"></script>
 <!-- End bootstrap-validator -->
-
 <script
 	src="${pageContext.request.contextPath}/resources/js/validationSignIn.js"></script>
 
@@ -119,7 +118,7 @@
 			method="post">
 			<div class="modal-dialog modal-sm">
 				<div class="modal-content">
-					<div class="modal-header">
+					<div class="panel-heading">
 						<button type="button" class="close" data-dismiss="modal"
 							aria-label="Close">
 							<span aria-hidden="true">&times;</span>
