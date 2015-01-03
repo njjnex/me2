@@ -58,7 +58,7 @@
 					<c:otherwise>
 						<c:choose>
 							<c:when test="${joined}">
-								<button type="button" class="btn btn-primary" onclick="windows.location.href='${event.id}/unjoinEvent.html'">Отказаться</button>
+								<button type="button" class="btn btn-primary" onclick="window.location.href='${pageContext.request.contextPath}/${event.id}/unjoinEvent.html'">Отказаться</button>
 							</c:when>
 							<c:otherwise>
 								<c:choose>

@@ -93,7 +93,7 @@
 								
 									<c:if test="${(i eq 0) && (event.createdBy.username eq activeUser)}">
 										<button type="button" class="btn btn-danger"
-											onclick="window.location.href='${event.id}/deleteEvent.html'">Удалить</button>
+											onclick="window.location.href='${pageContext.request.contextPath}/${event.id}/deleteEvent.html'">Удалить</button>
 									</c:if>
 									<c:if test="${(i ne 0) && (event.createdBy.username eq activeUser)}">
 										<button type="button" class="btn btn-danger"
@@ -105,7 +105,7 @@
 								<c:choose>
 									<c:when test="${activeUser=='Admin'}">
 										<button type="button" class="btn btn-danger"
-											onclick="windows.location.href='${event.id}/deleteEvent.html'">Удалить</button>
+											onclick="windows.location.href='${pageContext.request.contextPath}/${event.id}/deleteEvent.html'">Удалить</button>
 									</c:when>
 									<c:otherwise>
 										<c:choose>
@@ -118,7 +118,7 @@
 												<c:choose>
 													<c:when test="${joined}">
 														<button type="button" class="btn btn-primary"
-															onclick="windows.location.href='${event.id}/unjoinEvent.html'">Отказаться</button>
+															onclick="window.location.href='${pageContext.request.contextPath}/${event.id}/unjoinEvent.html'">Отказаться</button>
 													</c:when>
 													<c:otherwise>
 														<c:choose>
@@ -131,7 +131,7 @@
 																	<c:when
 																		test="${event.createdBy.username ne activeUser}">
 																		<button type="button" class="btn btn-info"
-																			onclick="window.location.href='${event.id}/joinEvent.html'">Участвую!</button>
+																			onclick="window.location.href='${pageContext.request.contextPath}/${event.id}/joinEvent.html'">Участвую!</button>
 																		<%
 																			alreadyJoined = true;
 																		%>
@@ -152,6 +152,5 @@
 			</div>
 		</div>
 	</div>
-
-</body>
-</html>
+	</body>
+<%@ include file="../templates/footer.jsp"%>

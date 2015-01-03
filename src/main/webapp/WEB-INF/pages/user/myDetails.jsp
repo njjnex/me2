@@ -68,11 +68,11 @@
 						</c:if>
 						<p></p></li>
 					<li class="list-group-item text-right"><span class="pull-left"><strong>Возраст</strong></span>
-					<p>${user.age}</p></li>
+						<p>${user.age}</p></li>
 					<li class="list-group-item text-right"><span class="pull-left"><strong>Email</strong></span>
-					<p>${user.email}</p></li>
+						<p>${user.email}</p></li>
 					<li class="list-group-item text-right"><span class="pull-left"><strong>Телефон</strong></span>
-					<p>${user.phone}</p></li>
+						<p>${user.phone}</p></li>
 				</ul>
 
 				<div class="panel panel-default">
@@ -254,12 +254,6 @@
 		<!--/col-9-->
 	</div>
 	<!--/row-->
-
-	<%-- <div id="content">
-		<button id="mybutton"
-			onclick="location.href='${pageContext.request.contextPath}/${user.username}/downloadDetails.html'">Выгрузить
-			в файл</button>
-	</div> --%>
 	<script>
 		$('.fileinput').fileinput();
 		$(document).ready(function() {
