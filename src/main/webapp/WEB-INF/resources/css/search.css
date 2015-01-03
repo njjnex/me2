@@ -1,11 +1,12 @@
 /* Form wrapper styling */
 .form-wrapper {
-    width: 350px;
+    width: 400px;
     height: 42px;
-    padding: 5px;
-    margin: 55px auto 25px auto;
+    padding: 4px;
+    margin: 55px auto 35px auto;
     background: #fff;
-    /* border: 1px solid; */
+    border: 1px solid; 
+    border-color: #DFDFDF;
     border-radius: 10px;
     box-shadow: 0 1px 1px rgba(0,0,0,.4) inset, 0 1px 0 rgba(255,255,255,.2);
 }
@@ -13,11 +14,11 @@
 /* Form text input */
  
 .form-wrapper input {
-    width: 230px;
+    width: 240px;
     height: 32px;
-    padding: 10px 5px;
+    padding: 0px 5px;
     float: left;    
-    font: bold 15px 'lucida sans', 'trebuchet MS', 'Tahoma';
+    font: bold 16px 'lucida sans', 'trebuchet MS', 'Tahoma';
     border: 0;
     background: #fff;
     border-radius: 3px 0 0 3px;      
@@ -61,7 +62,7 @@
     color: #fff;
     text-transform: uppercase;
     background: #d83c3c;
-    border-radius: 5px;      
+    border-radius: 7px;      
     text-shadow: 0 -1px 0 rgba(0, 0 ,0, .3);
 }   
    

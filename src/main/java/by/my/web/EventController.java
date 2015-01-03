@@ -48,7 +48,6 @@ public class EventController {
 			Principal principal, Map<String, Object> model,
 			@RequestParam(value = "file", required = false) MultipartFile file,
 			HttpSession session) throws HibernateException, IOException {
-			
 		// Converting date format
 		try {
 			String dateStarts = event.getDateStarts();

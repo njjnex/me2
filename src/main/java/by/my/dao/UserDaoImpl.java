@@ -21,14 +21,12 @@ public class UserDaoImpl implements UserDao {
 		Query q = sessionFactory.getCurrentSession().createSQLQuery(query);
 		q.setLong("user_id", userId);
 		q.executeUpdate();
-
 		sessionFactory.getCurrentSession().delete(user);
 	}
 
 	@Override
 	public void createUser(User user) {
 		sessionFactory.getCurrentSession().save(user);
-
 	}
 
 	@Override
@@ -38,16 +36,12 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public User getUser(String username) {
-		System.out.println("Get user " + username);
-
 		User user = (User) sessionFactory
 				.getCurrentSession()
 				.createQuery(
 						"select u from User u where u.username = :username")
 				.setParameter("username", username).uniqueResult();
-
 		return user;
-
 	}
 
 	@SuppressWarnings("unchecked")
@@ -60,6 +54,5 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public void updateUser(User user) {
 		sessionFactory.getCurrentSession().merge(user);
-		
 	}
 }

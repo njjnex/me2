@@ -25,7 +25,6 @@ public class EventDaoImpl implements EventDao {
 	public void createEvent(Event event, MultipartFile file) {
 		Session session = sessionFactory.getCurrentSession();
 		if (file != null) {
-
 			Blob blob;
 			try {
 				blob = Hibernate.getLobCreator(session).createBlob(
@@ -41,7 +40,7 @@ public class EventDaoImpl implements EventDao {
 	@Override
 	public List<Event> getEvents() {
 		return sessionFactory.getCurrentSession()
-				.createQuery("FROM Event event order by active desc, id desc").list();
+				.createQuery("FROM Event event order by active desc, id desc").list(); //sorting shows active events first
 	}
 	@Override
 	public void removeEvent(Event event) {
