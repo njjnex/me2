@@ -32,8 +32,8 @@
 	<!-- Hibernate configuration -->
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
-		p:driverClassName="com.mysql.jdbc.Driver" p:url="jdbc:mysql://127.2.94.2:3306/container?useUnicode=true&amp;characterEncoding=UTF-8"
-		p:username="admins3adFBW" p:password="f98T2fLGQ4W5"	/>
+		p:driverClassName="com.mysql.jdbc.Driver" p:url="jdbc:mysql://127.3.35.2:3306/container?useUnicode=true&amp;characterEncoding=UTF-8"
+		p:username="admindDp7Z1U" p:password="3TE46byUaKXy"	/>
 		
 	<security:authentication-manager>
 	  <security:authentication-provider>
