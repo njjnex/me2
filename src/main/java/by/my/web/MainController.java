@@ -30,7 +30,7 @@ public class MainController {
 	@Autowired
 	EventState eventState;
 
-	@RequestMapping(value = "/main.html")
+	@RequestMapping(value = {"", "/","/main.html"})
 	public String mainView(
 			@RequestParam(value = "searchEventName", required = false) String searchEventName,
 			Model model) {

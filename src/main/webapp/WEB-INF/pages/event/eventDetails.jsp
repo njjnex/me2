@@ -43,7 +43,7 @@
 									<div class="col-xs-12 col-sm-4">
 										<figure>
 											<img class="img-circle img-responsive" alt=""
-												src="${pageContext.request.contextPath}/resources/images/events/${event.id}.jpg">
+												src="/static/event${event.id}.jpg" onerror="if (this.src != 'event${event.id}.jpg') this.src = '${pageContext.request.contextPath}/resources/images/events/template.png';">
 										</figure>
 
 										<div class="text-center">

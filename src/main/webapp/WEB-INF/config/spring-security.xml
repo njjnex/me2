@@ -19,13 +19,15 @@
 	<security:intercept-url pattern="/user-login.html" access="permitAll"/>
 	<security:intercept-url pattern="/error-login.html" access="permitAll"/>
 	<security:intercept-url pattern="/resources/**" access="permitAll"/>
+	<security:intercept-url pattern="/" access="permitAll"/>
+	<security:intercept-url pattern="/static/**" access="permitAll"/>
 	<security:intercept-url pattern="/**" access="hasAnyRole('ROLE_USER','ROLE_ADMIN')" />
 	<security:intercept-url pattern="/admin.html" access="hasRole('ROLE_ADMIN')" />
 		
 				
 		<security:form-login login-page="/user-login.html"
-			default-target-url="/index.jsp" authentication-failure-url="/error-login.html" />
-		<security:logout logout-url="/logout.html" logout-success-url="/index.jsp" />
+			default-target-url="/" authentication-failure-url="/error-login.html" />
+		<security:logout logout-url="/logout.html" logout-success-url="/" />
 
 </security:http>
 	
