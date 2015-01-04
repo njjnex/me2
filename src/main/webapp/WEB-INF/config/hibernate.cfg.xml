@@ -7,6 +7,7 @@
     <session-factory>
        <mapping class="by.my.entity.Event" />
        <mapping class="by.my.entity.User" /> 
+       <mapping class="by.my.entity.Message" /> 
      </session-factory>
          
 </hibernate-configuration>

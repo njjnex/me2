@@ -23,8 +23,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import by.my.entity.Event;
+import by.my.entity.Message;
 import by.my.entity.User;
 import by.my.service.EventService;
+import by.my.service.MessageService;
 import by.my.service.UserService;
 
 @Controller
@@ -35,6 +37,8 @@ public class EventController {
 	EventService eventService;
 	@Autowired
 	UserService userService;
+	@Autowired
+	MessageService messageService;
 
 	@RequestMapping(value = "newEvent.html", method = RequestMethod.GET)
 	public String viewRegistration(Map<String, Object> model) {
@@ -106,6 +110,28 @@ public class EventController {
 	public String eventDetails(@PathVariable("eventId") long eventId,
 			Model model) {
 		Event event = eventService.getEventByID(eventId);
+		List<Message> messageList = messageService.getEventMessages(event);
+		
+		model.addAttribute("messages", messageList);
+		model.addAttribute("event", event);
+		return "event/eventDetails";
+	}
+	@RequestMapping(value = "events/{eventId}/postMessage.html", method = RequestMethod.POST)
+	public String postMessage(@PathVariable("eventId") long eventId, @RequestParam("text") String text, Model model, Principal principal){
+		User user = userService.getUser(principal.getName());
+		Event event = eventService.getEventByID(eventId);
+		String date = new SimpleDateFormat("dd-MM-yyyy' в 'HH:mm").format(new Date());
+				
+		Message message = new Message();
+			message.setAuthor(user);
+			message.setDate(date);
+			message.setText(text);
+			message.setEvent(event);
+			messageService.save(message);
+			
+			List<Message> messageList = messageService.getEventMessages(event);
+			System.out.println(messageList);
+		model.addAttribute("messages", messageList);
 		model.addAttribute("event", event);
 		return "event/eventDetails";
 	}

@@ -69,39 +69,52 @@
 													мероприятия:</strong><a
 												href="${pageContext.request.contextPath}/${event.createdBy.id}/userDetails.html">
 													${event.createdBy.username}</a></li>
-											<li class="list-group-item list-group-item-warning"><strong>Контакты:
-											</strong> <i class="fa fa-envelope"> ${event.createdBy.email} </i> <i
-												class="fa fa-phone"> ${event.createdBy.phone} </i></li>
+											<li class="list-group-item list-group-item-warning"><strong>Контакты:</strong>
+												<c:choose>
+													<c:when test="${joined}">
+
+														<i class="fa fa-envelope"> ${event.createdBy.email} </i>
+														<i class="fa fa-phone"> ${event.createdBy.phone} </i>
+													</c:when>
+													<c:otherwise>
+														<span class="label label-primary">Только для
+															участников мероприятия</span>
+													</c:otherwise>
+												</c:choose></li>
 										</ul>
 									</div>
 								</div>
 							</div>
 						</div>
 
+
+
+
 						<div class="bs-callout bs-callout-danger">
 							<h4>Место проведения</h4>
 							<p>${event.place}</p>
-						</div>
 
-						<div class="bs-callout bs-callout-danger">
 							<h4>Описание</h4>
 							<p>
 								<c:if test="${event.description eq null}"> Описание отстствует...</c:if>
 								${event.description}
 							</p>
 							<p>
-								
-									<c:if test="${(i eq 0) && (event.createdBy.username eq activeUser)}">
-										<button type="button" class="btn btn-danger"
-											onclick="window.location.href='${pageContext.request.contextPath}/${event.id}/deleteEvent.html'">Удалить</button>
-									</c:if>
-									<c:if test="${(i ne 0) && (event.createdBy.username eq activeUser)}">
-										<button type="button" class="btn btn-danger"
-											onclick="window.location.href='${event.id}/deleteEvent.html'"
-											disabled="disabled">Нельзя удалить событие с участниками.</button>
-									</c:if>	
-									
-								
+
+								<c:if
+									test="${(i eq 0) && (event.createdBy.username eq activeUser)}">
+									<button type="button" class="btn btn-danger"
+										onclick="window.location.href='${pageContext.request.contextPath}/${event.id}/deleteEvent.html'">Удалить</button>
+								</c:if>
+								<c:if
+									test="${(i ne 0) && (event.createdBy.username eq activeUser)}">
+									<button type="button" class="btn btn-danger"
+										onclick="window.location.href='${event.id}/deleteEvent.html'"
+										disabled="disabled">Нельзя удалить событие с
+										участниками.</button>
+								</c:if>
+
+
 								<c:choose>
 									<c:when test="${activeUser=='Admin'}">
 										<button type="button" class="btn btn-danger"
@@ -150,7 +163,39 @@
 					</div>
 				</div>
 			</div>
+
+
+			<div class="bs-callout bs-callout-danger">
+				<h4>Сообщения</h4>
+				<form action="${event.id}/postMessage.html" method="post">
+					<c:choose>
+						<c:when test="${activeUser eq 'anonymousUser'}">
+							<h5>Неизвестный пользователь.</h5>
+							<div class="form-group">
+								<textarea class="form-control" rows="3" id="disabledInput"
+									type="text"
+									placeholder="Для того чтобы оставлять сообщения необходимо зарегистрироваться..."
+									disabled></textarea>
+							</div>
+							<button type="submit" class="btn btn-default" disabled="disabled">Отправить</button>
+						</c:when>
+						<c:otherwise>
+							<h5>${activeUser}</h5>
+							<div class="form-group">
+								<textarea class="form-control" rows="3" type="text" name="text"
+									placeholder="Оставьте сообшение..."></textarea>
+							</div>
+							<button type="submit" class="btn btn-default">Отправить</button>
+						</c:otherwise>
+					</c:choose>
+				</form>
+					<c:forEach var="message" items="${messageList}">
+					${message.author} <br>
+					${message.date}<br>
+					${message.text}<br>
+					</c:forEach>
+			</div>
 		</div>
 	</div>
-	</body>
+</body>
 <%@ include file="../templates/footer.jsp"%>
