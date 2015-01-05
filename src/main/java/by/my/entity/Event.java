@@ -50,7 +50,7 @@ public class Event{
 	private String description;
 	@Column(name="PLACE")
 	private String place;
-	@OneToMany(mappedBy = "eventMessage", fetch=FetchType.LAZY)
+	@OneToMany(mappedBy = "event", fetch=FetchType.LAZY)
 	private Set<Message> messages;
 	
 		

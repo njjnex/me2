@@ -1,16 +1,6 @@
 <%@ include file="../templates/header.jsp"%>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/eventDetails.css" />
-
-<!-- bootstrap -->
-<link
-	href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
-<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
-<!-- end bootstrap -->
-
 </head>
 <body>
 	<%
@@ -167,7 +157,7 @@
 
 			<div class="bs-callout bs-callout-danger">
 				<h4>Сообщения</h4>
-				<form action="${event.id}/postMessage.html" method="post">
+				<form action="${pageContext.request.contextPath}/events/${event.id}/postMessage.html" method="post">
 					<c:choose>
 						<c:when test="${activeUser eq 'anonymousUser'}">
 							<h5>Неизвестный пользователь.</h5>
@@ -189,8 +179,8 @@
 						</c:otherwise>
 					</c:choose>
 				</form>
-					<c:forEach var="message" items="${messageList}">
-					${message.author} <br>
+					<c:forEach var="message" items="${messages}">
+					${message.author.username} <br>
 					${message.date}<br>
 					${message.text}<br>
 					</c:forEach>
