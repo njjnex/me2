@@ -1,16 +1,6 @@
 <%@ include file="../templates/header.jsp"%>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/eventDetails.css" />
-
-<!-- bootstrap -->
-<link
-	href="${pageContext.request.contextPath}/resources/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
-<script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/bootstrap/js/bootstrap.min.js"></script>
-<!-- end bootstrap -->
-
 </head>
 <body>
 	<%
@@ -26,6 +16,7 @@
 						request.setAttribute("joined", alreadyJoined);
 			%>
 		</c:if>
+		
 		<%
 			i++;
 				request.setAttribute("i", i);
@@ -43,7 +34,8 @@
 									<div class="col-xs-12 col-sm-4">
 										<figure>
 											<img class="img-circle img-responsive" alt=""
-												src="/static/event${event.id}.jpg" onerror="if (this.src != 'event${event.id}.jpg') this.src = '${pageContext.request.contextPath}/resources/images/events/template.png';">
+												src="${pageContext.request.contextPath}/resources/images/events/${event.id}.jpg" 
+												onerror="if (this.src != '${event.id}.jpg') this.src = '${pageContext.request.contextPath}/resources/images/events/template.png';">
 										</figure>
 
 										<div class="text-center">
@@ -69,21 +61,31 @@
 													мероприятия:</strong><a
 												href="${pageContext.request.contextPath}/${event.createdBy.id}/userDetails.html">
 													${event.createdBy.username}</a></li>
-											<li class="list-group-item list-group-item-warning"><strong>Контакты:
-											</strong> <i class="fa fa-envelope"> ${event.createdBy.email} </i> <i
-												class="fa fa-phone"> ${event.createdBy.phone} </i></li>
+											<li class="list-group-item list-group-item-warning"><strong>Контакты:</strong>
+												<c:choose>
+													<c:when test="${joined || (activeUser eq event.createdBy.username)}">
+
+														<i class="fa fa-envelope"> ${event.createdBy.email} </i>
+														<i class="fa fa-phone"> ${event.createdBy.phone} </i>
+													</c:when>
+													<c:otherwise>
+														<span class="label label-primary">Только для
+															участников мероприятия</span>
+													</c:otherwise>
+												</c:choose></li>
 										</ul>
 									</div>
 								</div>
 							</div>
 						</div>
 
+
+
+
 						<div class="bs-callout bs-callout-danger">
 							<h4>Место проведения</h4>
 							<p>${event.place}</p>
-						</div>
 
-						<div class="bs-callout bs-callout-danger">
 							<h4>Описание</h4>
 							<p>
 								<c:if test="${event.description eq null}"> Описание отстствует...</c:if>
@@ -153,7 +155,39 @@
 					</div>
 				</div>
 			</div>
-</body>
-</html>
+
+
+			<div class="bs-callout bs-callout-danger">
+				<h4>Сообщения</h4>
+				<form action="${pageContext.request.contextPath}/events/${event.id}/postMessage.html" method="post">
+					<c:choose>
+						<c:when test="${activeUser eq 'anonymousUser'}">
+							<h5>Неизвестный пользователь.</h5>
+							<div class="form-group">
+								<textarea class="form-control" rows="3" id="disabledInput"
+									type="text"
+									placeholder="Для того чтобы оставлять сообщения необходимо зарегистрироваться..."
+									disabled></textarea>
+							</div>
+							<button type="submit" class="btn btn-default" disabled="disabled">Отправить</button>
+						</c:when>
+						<c:otherwise>
+							<h5>${activeUser}</h5>
+							<div class="form-group">
+								<textarea class="form-control" rows="3" type="text" name="text"
+									placeholder="Оставьте сообшение..."></textarea>
+							</div>
+							<button type="submit" class="btn btn-default">Отправить</button>
+						</c:otherwise>
+					</c:choose>
+				</form>
+					<c:forEach var="message" items="${messages}">
+					${message.author.username} <br>
+					${message.date}<br>
+					${message.text}<br>
+					</c:forEach>
+			</div>
+		</div>
+	</div>
 </body>
 <%@ include file="../templates/footer.jsp"%>

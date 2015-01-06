@@ -3,8 +3,10 @@
 #event-details {
 	margin: 15px auto;
 	text-align: center;
+	
 	/*width: 1114px; /* total computed width = 222 x 3 + 226  for 4 plans in row*/
 	width: 892px;  /*computed width = 222 x 3 + 226 */
+	
 	 
 }
 #event-details .event {
@@ -20,12 +22,17 @@
 	border-radius: 30px; 
 	
 }
-#event-details h3 {
+#event-table.clear{
+	 width: 1095px;
+	 margin-bottom:80px;
+	padding-botoom:80px;
+}
+#event-table.clear .plan  h3, #event-table.clear .noplan h3 {
 	font-size: 20px;
 	font-weight: normal;
 	padding: 20px;
 	margin: -20px -20px 50px -20px;
-	background-color: #eee;
+	background-color: #fff;
 	background-image: -moz-linear-gradient(#fff,#eee);
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#eee));    
 	background-image: -webkit-linear-gradient(#fff, #eee);
@@ -68,26 +75,35 @@
 #event-table {
 	margin: 15px auto;
 	text-align: center;
+	margin-bottom:80px;
+	/* padding-botoom:80px; */
 	/*width: 1114px; /* total computed width = 222 x 4 + 226  for 4 plans in row*/
 	 width: 1006px; total /*computed width = 222 x 3 + 226 */
 }
-
+#event-table.clear .plan h3{
+	
+}
 #event-table .plan {
 	font: 12px 'Lucida Sans', 'trebuchet MS', Arial, Helvetica;
 	text-shadow: 0 1px rgba(255,255,255,.8);        
-	background: #fff;      
-	border: 1px solid #ddd;
+	background: #fff; 
 	color: #333;
 	padding: 20px;
 	width: 180px; /* plan width = 180 + 20 + 20 + 1 + 1 = 222px */      
 	float: left;
 	position: relative;
+	border-color:#DFDEDE;
+	border-style: solid;
+    border-radius: 20px;
+    
 }
 #event-table .noplan {
 	font: 12px 'Lucida Sans', 'trebuchet MS', Arial, Helvetica;
 	text-shadow: 0 1px rgba(255,255,255,.8);        
-	background: #F8FAD7;      
-	border: 1px solid #ddd;
+	background: #F8FAD7; 
+	border-color:#DFDEDE;     
+	border-style: solid;
+   	border-radius: 20px;
 	color: #333;
 	padding: 20px;
 	width: 180px; /* plan width = 180 + 20 + 20 + 1 + 1 = 222px */      
@@ -108,17 +124,6 @@
 	box-shadow: 20px 0 10px -10px rgba(0, 0, 0, .15), -20px 0 10px -10px rgba(0, 0, 0, .15);    
 }
 
-#event-table .plan:nth-child(1) {
-	-moz-border-radius: 5px 0 0 5px;
-	-webkit-border-radius: 5px 0 0 5px;
-	border-radius: 5px 0 0 5px;        
-}
-
-#event-table .plan:nth-child(4) {
-	-moz-border-radius: 0 5px 5px 0;
-	-webkit-border-radius: 0 5px 5px 0;
-	border-radius: 0 5px 5px 0;        
-}
 
 /* --------------- */	
 
@@ -169,18 +174,6 @@ a:visited:hover.event-name{
 	-webkit-border-radius: 5px 5px 0 0;
 	border-radius: 5px 5px 0 0; 		
 }
-
-#event-table .plan:nth-child(1) h3 {
-	-moz-border-radius: 5px 0 0 0;
-	-webkit-border-radius: 5px 0 0 0;
-	border-radius: 5px 0 0 0;       
-}
-
-#event-table .plan:nth-child(4) h3 {
-	-moz-border-radius: 0 5px 0 0;
-	-webkit-border-radius: 0 5px 0 0;
-	border-radius: 0 5px 0 0;       
-}	
 
 #event-table h3 span {
 	display: block;
@@ -408,3 +401,7 @@ a:visited:hover.event-name{
     font-size: 150%;
 	width: 50%;
 }
+
+
+	
+	

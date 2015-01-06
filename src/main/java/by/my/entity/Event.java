@@ -15,6 +15,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -49,10 +50,16 @@ public class Event{
 	private String description;
 	@Column(name="PLACE")
 	private String place;
+	@OneToMany(mappedBy = "event", fetch=FetchType.LAZY)
+	private Set<Message> messages;
 	
-	
-	
-	
+		
+	public Set<Message> getMessages() {
+		return messages;
+	}
+	public void setMessages(Set<Message> messages) {
+		this.messages = messages;
+	}
 	public String getPlace() {
 		return place;
 	}
