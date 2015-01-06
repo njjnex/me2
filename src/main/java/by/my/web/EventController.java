@@ -51,7 +51,8 @@ public class EventController {
 			HttpServletRequest request) {
 		Event event = new Event();
 		model.put("event", event);
-		logger.info("User:" + request.getUserPrincipal().getName()
+		logger.info(request.getRequestURL() + " User:"
+				+ request.getUserPrincipal().getName()
 				+ "going to create new event.");
 		return "event/newEvent";
 	}
@@ -90,23 +91,34 @@ public class EventController {
 
 	@RequestMapping(value = "{eventId}/joinEvent.html")
 	public String joinEvent(@PathVariable long eventId, Model model,
-			Principal principal) {
+			Principal principal, HttpServletRequest request) {
 		String joinedUserName = principal.getName();
 		User joinedUser = userService.getUser(joinedUserName);
-		long userId = joinedUser.getId();
-		eventService.joinEvent(eventId, userId);
-		logger.info("Joined event ID: " + eventId + " by USER: " + joinedUserName);
-		return "redirect:/main.html";
+		Boolean alreadyJoined = false;
+		// Checking if user already joined this event
+		for (Event event : joinedUser.getUserJoinedEvents()) {
+			if (event.getId() == eventId)
+				alreadyJoined = true;
+		}
+		if (!alreadyJoined) {
+			long userId = joinedUser.getId();
+			eventService.joinEvent(eventId, userId);
+			logger.info(request.getRequestURL() + " Joined event ID: "
+					+ eventId + " by USER: " + joinedUserName);
+		}
+		return "event/eventDetails";
 	}
 
 	@RequestMapping(value = "{eventId}/deleteEvent.html")
 	public String delete(@PathVariable long eventId, Model model,
 			Principal principal) {
 		Event event = eventService.getEventByID(eventId);
+		//Only user that created event can delete it or Admin
 		if ((principal.getName().equals(event.getCreatedBy().getUsername()))
 				|| principal.getName().equals("Admin")) {
 			eventService.removeEvent(event);
-			logger.info("Event delited: " + event.getEventName() + " by user: " + principal.getName());
+			logger.info("Event delited: " + event.getEventName() + " by user: "
+					+ principal.getName());
 		}
 		return "redirect:/main.html";
 	}
@@ -120,8 +132,9 @@ public class EventController {
 		long userId = joinedUser.getId();
 		eventService.unjoinEvent(eventId, userId);
 		model.addAttribute("event", event);
-		logger.info("Unjoined event ID: " + eventId + " by USER: " + joinedUserName);
-		return "redirect:/main.html";
+		logger.info("Unjoined event ID: " + eventId + " by USER: "
+				+ joinedUserName);
+		return "event/eventDetails";
 	}
 
 	@RequestMapping(value = "events/{eventId}")
@@ -135,24 +148,29 @@ public class EventController {
 		return "event/eventDetails";
 	}
 
-	@RequestMapping(value = "events/{eventId}/postMessage.html", method = RequestMethod.POST)
+	@RequestMapping(value = "events/{eventId}/postMessage.html")
 	public String postMessage(@PathVariable("eventId") long eventId,
-			@RequestParam("text") String text, Model model, Principal principal) {
-		User user = userService.getUser(principal.getName());
+			@RequestParam(value = "text", required = false) String text,
+			Model model, Principal principal) {
 		Event event = eventService.getEventByID(eventId);
-		String date = new SimpleDateFormat("dd-MM-yyyy' в 'HH:mm")
-				.format(new Date());
-
-		Message message = new Message();
-		message.setAuthor(user);
-		message.setDate(date);
-		message.setText(text);
-		message.setEvent(event);
-		messageService.save(message);
+		//User post message
+		if (!(text == null || text.equals(""))) {
+			User user = userService.getUser(principal.getName());
+			String date = new SimpleDateFormat("dd-MM-yyyy' в 'HH:mm")
+					.format(new Date());
+			Message message = new Message();
+			message.setAuthor(user);
+			message.setDate(date);
+			message.setText(text);
+			message.setEvent(event);
+			messageService.save(message);
+			logger.info("Post message: " + text + "; to event "
+					+ event.getEventName() + " ; by user " + user.getUsername());
+		}
 		List<Message> messageList = messageService.getEventMessages(event);
 		model.addAttribute("event", event);
 		model.addAttribute("messages", messageList);
-		logger.info("Post message: " + text + "; to event " + event.getEventName() + " ; by user " + user.getUsername());
+
 		return "event/eventDetails";
 	}
 }

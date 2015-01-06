@@ -48,7 +48,7 @@ public class UserController {
 		userForm.setPhone(null);
 
 		model.put("userForm", userForm);
-		logger.info("Going to register:" + request.getRemoteAddr());
+		logger.info(request.getHeader("Referer") + " --> " + request.getRequestURL() + " Going to register:" + request.getRemoteAddr());
 		return "user/newUser";
 	}
 
@@ -146,7 +146,7 @@ public class UserController {
 		users = userService.getAllUsers();
 
 		model.addAttribute("users", users);
-		logger.warn("Admin is on this page from: " + request.getRemoteAddr());
+		logger.warn(request.getHeader("Referer") + " --> " + request.getRequestURL() + "Admin is on this page from: " + request.getRemoteAddr());
 		return "user/admin";
 
 	}

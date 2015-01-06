@@ -59,8 +59,9 @@ public class MainController {
 				eventService.updateEvent(event);
 			}
 		}
-		logger.info("Main page visited by: " + request.getRemoteAddr() + " principal: " + request.getUserPrincipal());
+		logger.info(request.getHeader("Referer") + " --> " + request.getRequestURL() + "visited by: " + request.getRemoteAddr() + " principal: " + request.getUserPrincipal() + " refer: " + request.getHeader("Referer"));
 		logger.info("Got:  " + eventList.size() + " events.");
+		logger.info("Got:  " + request.getLocalAddr() + " events." + request.getQueryString() + request.getRequestURL());
 		
 		model.addAttribute("events", eventList);
 		return "main";
@@ -73,12 +74,11 @@ public class MainController {
 		if (searchEventName != null) {
 			eventList = eventService.search(searchEventName);
 		} else {
-			eventList = eventState.isActive();
+			eventList = eventState.isActive(eventService.getEvents());
 		}
-		logger.info("Active events was checked by " + request.getRemoteAddr() + " " + request.getUserPrincipal());
+		logger.info(request.getHeader("Referer") + " --> " + request.getRequestURL() + "visited by: " + request.getRemoteAddr() + " " + request.getUserPrincipal());
 		model.addAttribute("events", eventList);
 		return "main";
-
 	}
 
 	@RequestMapping(value = "unactive.html")
@@ -88,12 +88,11 @@ public class MainController {
 		if (searchEventName != null) {
 			eventList = eventService.search(searchEventName);
 		} else {
-			eventList = eventState.isUnactive();
+			eventList = eventState.isUnactive(eventService.getEvents());
 		}
-		logger.info("Unactive events cheched by " + request.getRemoteAddr() + " " + request.getUserPrincipal());
+		logger.info(request.getHeader("Referer") + " --> " + request.getRequestURL() + "visited by: " + request.getRemoteAddr() + " : " + request.getUserPrincipal());
 		model.addAttribute("events", eventList);
 		return "main";
-
 	}
 
 	@RequestMapping(value = "myEvents.html")
@@ -115,7 +114,7 @@ public class MainController {
 	public String userJoinedEvent(@PathVariable("userId") long userId, Model model, HttpServletRequest request){
 		User user = userService.getUserById(userId);
 		eventList = eventService.getUserJoinedEvents(user);
-		logger.info("User: " + request.getRemoteAddr() + " checked " + user.getUsername() + " joined events.");
+		logger.info(request.getHeader("Referer") + " --> " + request.getRequestURL() +" user: " + request.getUserPrincipal().getName() + " checked " + user.getUsername() + " joined events.");
 		model.addAttribute("events", eventList);
 		return "main";
 	}
@@ -123,7 +122,7 @@ public class MainController {
 	public String userCreatedEvent(@PathVariable("userId") long userId, Model model, HttpServletRequest request){
 		User user = userService.getUserById(userId);
 		eventList = eventService.getUsersEvents(user);
-		logger.info("User: " + request.getRemoteAddr() + " checked " + user.getUsername() + " created events.");
+		logger.info(request.getHeader("Referer") + " --> " + request.getRequestURL() +" user: " + request.getUserPrincipal().getName() + " checked " + user.getUsername() + " created events.");
 		model.addAttribute("events", eventList);
 		return "main";
 	}

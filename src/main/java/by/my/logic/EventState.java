@@ -6,11 +6,9 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import by.my.entity.Event;
-import by.my.service.EventService;
 
 /**
  * @author njjnex Helper class that do some special event logic.
@@ -18,15 +16,11 @@ import by.my.service.EventService;
 @Service
 public class EventState {
 
-	@Autowired
-	EventService eventService;
-
 	/**
 	 * Checks if event is up to date or it have been already passed
 	 * @return list of events in future
 	 */
-	public List<Event> isActive() {
-		List<Event>eventList = eventService.getEvents();
+	public List<Event> isActive(List<Event> eventList) {
 		for (Iterator<Event> iterator = eventList.iterator(); iterator
 				.hasNext();) {
 			Event event = iterator.next();
@@ -39,8 +33,7 @@ public class EventState {
 	 * Checks if event is up to date or it have been already passed
 	 * @return list of passed events
 	 */
-	public List<Event> isUnactive() {
-		List<Event>eventList = eventService.getEvents();
+	public List<Event> isUnactive(List<Event> eventList) {
 		for (Iterator<Event> iterator = eventList.iterator(); iterator
 				.hasNext();) {
 			Event event = iterator.next();
@@ -49,7 +42,6 @@ public class EventState {
 		}
 		return eventList;
 	}
-
 	/**
 	 *  The logic that checks if event is active by comparing today date with event dateStarts
 	 *  if it's not than mark this event state as unactive and save it to db.
@@ -67,7 +59,6 @@ public class EventState {
 				Date today = new Date();
 				if (!today.before(date)) {
 					event.setActive(false);
-					eventService.updateEvent(event);
 				}
 			} catch (ParseException e) {
 				e.printStackTrace();

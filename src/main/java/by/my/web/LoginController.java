@@ -15,7 +15,8 @@ public class LoginController {
 	private static final Logger logger = LogManager.getLogger(LoginController.class);
 	
 	@RequestMapping(value="/user-login.html", method=RequestMethod.GET)
-	public String userLoginForm(Model model){
+	public String userLoginForm(Model model, HttpServletRequest request){
+		logger.info(request.getHeader("Referer") + " --> " + request.getRequestURL());
 		return "/login/loginForm";
 	}
 	

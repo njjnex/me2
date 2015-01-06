@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class LoggingAspect {
 	LoggingAspect(){
-		System.out.println("start aspect");
+		System.out.println("Launching aspect");
 	}
 	Logger logger = LogManager.getLogger(LoggingAspect.class);
 		
