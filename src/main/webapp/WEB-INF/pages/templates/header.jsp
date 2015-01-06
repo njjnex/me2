@@ -114,7 +114,7 @@
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<form class="form-signin" role="form" id="login" name="login-form"
-			class="login-form" action="${pageContext.request.contextPath}/'j_spring_security_check'/>"
+			class="login-form" action="${pageContext.request.contextPath}/<c:url value='j_spring_security_check'/>"
 			method="post">
 			<div class="modal-dialog modal-sm">
 				<div class="modal-content">
