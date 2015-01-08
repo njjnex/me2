@@ -106,7 +106,7 @@ public class EventController {
 			logger.info(request.getRequestURL() + " Joined event ID: "
 					+ eventId + " by USER: " + joinedUserName);
 		}
-		return "event/eventDetails";
+		return "redirect:/events/{eventId}";
 	}
 
 	@RequestMapping(value = "{eventId}/deleteEvent.html")
@@ -134,7 +134,7 @@ public class EventController {
 		model.addAttribute("event", event);
 		logger.info("Unjoined event ID: " + eventId + " by USER: "
 				+ joinedUserName);
-		return "event/eventDetails";
+		return "redirect:/events/{eventId}";
 	}
 
 	@RequestMapping(value = "events/{eventId}")

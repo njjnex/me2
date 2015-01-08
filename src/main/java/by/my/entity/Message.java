@@ -1,7 +1,9 @@
 package by.my.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -23,7 +25,7 @@ public class Message {
 	@OneToOne
 	@JoinColumn(name="AUTHOR_ID", referencedColumnName="USER_ID")
 	private User author;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	@JoinColumn(name="EVENT_ID", referencedColumnName="EVENT_ID")
 	private Event event;
 	

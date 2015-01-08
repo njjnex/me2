@@ -101,7 +101,7 @@
 								<c:if
 									test="${(i ne 0) && (event.createdBy.username eq activeUser)}">
 									<button type="button" class="btn btn-danger"
-										onclick="window.location.href='${event.id}/deleteEvent.html'"
+										onclick="window.location.href='${pageContext.request.contextPath}/${event.id}/deleteEvent.html'"
 										disabled="disabled">Нельзя удалить событие с
 										участниками.</button>
 								</c:if>
@@ -110,7 +110,7 @@
 								<c:choose>
 									<c:when test="${activeUser=='Admin'}">
 										<button type="button" class="btn btn-danger"
-											onclick="windows.location.href='${pageContext.request.contextPath}/${event.id}/deleteEvent.html'">Удалить</button>
+											onclick="window.location.href='${pageContext.request.contextPath}/${event.id}/deleteEvent.html'">Удалить</button>
 									</c:when>
 									<c:otherwise>
 										<c:choose>
