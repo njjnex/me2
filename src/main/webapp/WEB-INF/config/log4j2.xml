@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="INFO">
 	<Appenders>
-		<RollingFile name="myRollingFile" fileName="D:/app.log"
-			filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+		<RollingFile name="myRollingFile" fileName="/var/lib/openshift/54a90aa35973cad0ae00009c/app-root/data/logs/execute.log"
+			filePattern="$${date:yyyy-MM}-app-%d{MM-dd-yyyy}-%i.log">
 			<PatternLayout>
 				<pattern>%d %p %C{1.} [%t] %m%n</pattern>
 			</PatternLayout>

@@ -31,11 +31,14 @@
 
 </security:http>
 	
-	<!-- Hibernate configuration -->
+	<!-- Hibernate-related Configuration -->
+	 <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+          p:location="/WEB-INF/config/jdbcMySQL.properties" />
+	
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
-		p:driverClassName="com.mysql.jdbc.Driver" p:url="jdbc:mysql://127.3.35.2:3306/container?useUnicode=true&amp;characterEncoding=UTF-8"
-		p:username="admindDp7Z1U" p:password="3TE46byUaKXy"	/>
+		p:driverClassName="${jdbc.driverClassName}" p:url="${jdbc.databaseUrl}"
+		p:username="${jdbc.username}" p:password="${jdbc.password}"	/>
 		
 	<security:authentication-manager>
 	  <security:authentication-provider>
