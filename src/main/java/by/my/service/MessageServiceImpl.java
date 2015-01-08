@@ -13,6 +13,7 @@ import by.my.entity.Message;
 
 @Service
 public class MessageServiceImpl implements MessageService {
+	
 	@Autowired
 	MessageDao messageDao;
 
