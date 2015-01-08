@@ -39,6 +39,7 @@
 		<servlet-name>dispatcherServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+
 	<!-- Spring Security Configuration File -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
@@ -68,6 +69,7 @@
 		<param-name>log4jConfiguration</param-name>
 		<param-value>WEB-INF/config/log4j2.xml</param-value>
 	</context-param>
+	
 	<!-- End log4j2 -->
 	<jsp-config>
 		<jsp-property-group>
