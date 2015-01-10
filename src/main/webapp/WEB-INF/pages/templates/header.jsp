@@ -106,15 +106,57 @@
 								data-toggle="modal" data-target="#myModal">Bход</button></li>
 					</c:otherwise>
 				</c:choose>
-
 			</ul>
+			<%--  <!-- DROPDOWN LOGIN STARTS HERE  -->
+                <ul id="signInDropdown" class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-info navbar-btn dropdown-toggle"><i class="glyphicon glyphicon-user"></i> Вход <span class="caret"></span></button>
+                        <ul class="dropdown-menu custom-colors">
+                          <li style="width: 220px; height: 200px; border-radius: 50 px;">
+                                <form class="navbar-form form" role="form" name="login-form"
+			action="${pageContext.request.contextPath}/<c:url value='j_spring_security_check'/>"
+			method="post">
+                                    <div class="form-group">
+                                      <h1 style="font-size: 22px; font-family: Segoe,Aria,sans-serif; text-align: center; margin-top: 0px; padding-bottom: 10px; font-weight: bold; color: #428BCA;">Здравствуйте</h1>
+                                      <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-user color-blue"></i></span>
+                                            <!--LOGIN-->
+                                            <input class="form-control" name="j_username" id="j_username"
+								type="text"  
+								placeholder="Логин" required autofocus>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                          <span class="input-group-addon"><i class="glyphicon glyphicon-lock color-blue"></i></span>
+                                            <!--PASSWORD-->
+                                            <input name="j_password" id="j_password" type="password"
+								id="inputPassword" class="form-control" placeholder="Пароль"
+								required>
+                                        </div>
+                                    </div>
+                                   
+                                     <div class="form-group">
+                                        <!--BUTTON-->
+                                        <button type="submit" class="btn btn-primary form-control">Войти</button>
+                                    </div>
+                                    <div class="form-group">
+                                       
+                                    </div>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- DROPDOWN LOGIN ENDS HERE  --> --%>
 		</div>
 	</div>
 	<!-- Modal -->
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<form class="form-signin" role="form" id="login" name="login-form"
-			class="login-form" action="${pageContext.request.contextPath}/'j_spring_security_check'/>"
+			class="login-form" action="${pageContext.request.contextPath}/<c:url value='j_spring_security_check'/>"
 			method="post">
 			<div class="modal-dialog modal-sm">
 				<div class="modal-content">

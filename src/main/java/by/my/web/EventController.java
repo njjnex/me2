@@ -9,8 +9,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,10 +43,17 @@ public class EventController {
 	@Autowired
 	MessageService messageService;
 
+	private static final Logger logger = LogManager
+			.getLogger(EventController.class);
+
 	@RequestMapping(value = "newEvent.html", method = RequestMethod.GET)
-	public String viewRegistration(Map<String, Object> model) {
+	public String viewRegistration(Map<String, Object> model,
+			HttpServletRequest request) {
 		Event event = new Event();
 		model.put("event", event);
+		logger.info(request.getRequestURL() + " User:"
+				+ request.getUserPrincipal().getName()
+				+ "going to create new event.");
 		return "event/newEvent";
 	}
 
@@ -74,23 +84,42 @@ public class EventController {
 		}
 		eventService.createEvent(event, file);
 		session.setAttribute("imagesLoded", imageLoaded);
+		logger.info("New event:" + event.getEventName() + " was created by: "
+				+ event.getCreatedBy().getUsername());
 		return "redirect:/main.html";
 	}
 
 	@RequestMapping(value = "{eventId}/joinEvent.html")
 	public String joinEvent(@PathVariable long eventId, Model model,
-			Principal principal) {
+			Principal principal, HttpServletRequest request) {
 		String joinedUserName = principal.getName();
 		User joinedUser = userService.getUser(joinedUserName);
-		long userId = joinedUser.getId();
-		eventService.joinEvent(eventId, userId);
-		return "redirect:/main.html";
+		Boolean alreadyJoined = false;
+		// Checking if user already joined this event
+		for (Event event : joinedUser.getUserJoinedEvents()) {
+			if (event.getId() == eventId)
+				alreadyJoined = true;
+		}
+		if (!alreadyJoined) {
+			long userId = joinedUser.getId();
+			eventService.joinEvent(eventId, userId);
+			logger.info(request.getRequestURL() + " Joined event ID: "
+					+ eventId + " by USER: " + joinedUserName);
+		}
+		return "redirect:/events/{eventId}";
 	}
 
 	@RequestMapping(value = "{eventId}/deleteEvent.html")
-	public String delete(@PathVariable long eventId, Model model) {
+	public String delete(@PathVariable long eventId, Model model,
+			Principal principal) {
 		Event event = eventService.getEventByID(eventId);
-		eventService.removeEvent(event);
+		//Only user that created event can delete it or Admin
+		if ((principal.getName().equals(event.getCreatedBy().getUsername()))
+				|| principal.getName().equals("Admin")) {
+			eventService.removeEvent(event);
+			logger.info("Event delited: " + event.getEventName() + " by user: "
+					+ principal.getName());
+		}
 		return "redirect:/main.html";
 	}
 
@@ -103,7 +132,9 @@ public class EventController {
 		long userId = joinedUser.getId();
 		eventService.unjoinEvent(eventId, userId);
 		model.addAttribute("event", event);
-		return "redirect:/main.html";
+		logger.info("Unjoined event ID: " + eventId + " by USER: "
+				+ joinedUserName);
+		return "redirect:/events/{eventId}";
 	}
 
 	@RequestMapping(value = "events/{eventId}")
@@ -111,29 +142,32 @@ public class EventController {
 			Model model) {
 		Event event = eventService.getEventByID(eventId);
 		List<Message> messageList = messageService.getEventMessages(event);
-		
 		model.addAttribute("event", event);
 		model.addAttribute("messages", messageList);
+		logger.info("Event details: " + event.getEventName());
 		return "event/eventDetails";
 	}
 
-	@RequestMapping(value = "events/{eventId}/postMessage.html", method = RequestMethod.POST)
+	@RequestMapping(value = "events/{eventId}/postMessage.html")
 	public String postMessage(@PathVariable("eventId") long eventId,
-			@RequestParam("text") String text, Model model, Principal principal) {
-		User user = userService.getUser(principal.getName());
+			@RequestParam(value = "text", required = false) String text,
+			Model model, Principal principal) {
 		Event event = eventService.getEventByID(eventId);
-		String date = new SimpleDateFormat("dd-MM-yyyy' в 'HH:mm")
-				.format(new Date());
-
-		Message message = new Message();
-		message.setAuthor(user);
-		message.setDate(date);
-		message.setText(text);
-		message.setEvent(event);
-		messageService.save(message);
-
+		//User post message
+		if (!(text == null || text.equals(""))) {
+			User user = userService.getUser(principal.getName());
+			String date = new SimpleDateFormat("dd-MM-yyyy' в 'HH:mm")
+					.format(new Date());
+			Message message = new Message();
+			message.setAuthor(user);
+			message.setDate(date);
+			message.setText(text);
+			message.setEvent(event);
+			messageService.save(message);
+			logger.info("Post message: " + text + "; to event "
+					+ event.getEventName() + " ; by user " + user.getUsername());
+		}
 		List<Message> messageList = messageService.getEventMessages(event);
-		System.out.println(messageList);
 		model.addAttribute("event", event);
 		model.addAttribute("messages", messageList);
 

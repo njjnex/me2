@@ -51,7 +51,7 @@
 		</h3>
 				
 <c:choose>
-	<c:when test="${activeUser=='Admin'}"> <a class="remove" href="${event.id}/deleteEvent.html">Удалить</a></c:when>
+	<c:when test="${activeUser=='Admin'}"> <a class="remove" href="${pageContext.request.contextPath}/${event.id}/deleteEvent.html">Удалить</a></c:when>
 		<c:otherwise>			
 			<c:choose>
 					<c:when test="${!event.active and (event.createdBy.username ne activeUser)}"><a class="finished">Прошло</a></c:when>
@@ -75,7 +75,7 @@
 												<c:choose>
 													<c:when test="${(i eq 0)}">
 														<a class="remove"
-															href="${event.id}/deleteEvent.html">Удалить</a>
+															href="${pageContext.request.contextPath}/${event.id}/deleteEvent.html">Удалить</a>
 													</c:when>
 													<c:otherwise>
 														<a class="empty">_____</a>

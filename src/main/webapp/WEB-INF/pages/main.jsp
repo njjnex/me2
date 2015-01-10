@@ -51,7 +51,7 @@
 		</h3>
 				
 <c:choose>
-	<c:when test="${activeUser=='Admin'}"> <button type="button" class="btn btn-danger" onclick="windows.location.href='${event.id}/deleteEvent.html'">Удалить</button></c:when>
+	<c:when test="${activeUser=='Admin'}"> <button type="button" class="btn btn-danger" onclick="window.location.href='${pageContext.request.contextPath}/${event.id}/deleteEvent.html'">Удалить</button></c:when>
 		<c:otherwise>			
 			<c:choose>
 					<c:when test="${!event.active and (event.createdBy.username ne activeUser)}"><button type="button" class="btn btn-warning" disabled="disabled">Прошло</button></c:when>
@@ -74,10 +74,10 @@
 											<c:otherwise>
 												<c:choose>
 													<c:when test="${(i eq 0)}">
-														<button type="button" class="btn btn-danger" onclick="window.location.href='${event.id}/deleteEvent.html'">Удалить</button>
+														<button type="button" class="btn btn-danger" onclick="window.location.href='${pageContext.request.contextPath}/${event.id}/deleteEvent.html'">Удалить</button>
 													</c:when>
 													<c:otherwise>
-														<button type="button" class="btn btn-danger" onclick="window.location.href='${event.id}/deleteEvent.html'"  disabled="disabled">Удалить</button>
+														<button type="button" class="btn btn-danger" onclick="window.location.href='${pageContext.request.contextPath}/${event.id}/deleteEvent.html'"  disabled="disabled">Удалить</button>
 													
 													</c:otherwise>
 												</c:choose>	

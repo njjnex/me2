@@ -27,15 +27,18 @@
 		<security:form-login login-page="/user-login.html"
 			default-target-url="/index.jsp" authentication-failure-url="/error-login.html" />
 		<security:logout logout-url="/logout.html" logout-success-url="/index.jsp" />
-
 	</security:http>
 	
-	<!-- Hibernate configuration -->
+	<!-- Hibernate-related Configuration -->
+	 <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+          p:location="/WEB-INF/config/jdbcMySQL.properties" />
+	
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
-		p:driverClassName="com.mysql.jdbc.Driver" p:url="jdbc:mysql://localhost:3306/myproject"
-		p:username="root" p:password="root" />
-		
+		p:driverClassName="${jdbc.driverClassName}" p:url="${jdbc.databaseUrl}"
+		p:username="${jdbc.username}" p:password="${jdbc.password}"
+	 />
+				
 	<security:authentication-manager>
 	  <security:authentication-provider>
 		<security:jdbc-user-service data-source-ref="dataSource"
@@ -45,5 +48,5 @@
 		    "select username, role from user where username =?  " />
 	  </security:authentication-provider>
 	</security:authentication-manager>
-
+	
 </beans>

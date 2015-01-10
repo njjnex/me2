@@ -25,7 +25,7 @@ public class MessageDoaImpl implements MessageDao {
 		return sessionFactory
 				.getCurrentSession()
 				.createQuery(
-						"FROM Message message WHERE message.event =:event")
+						"FROM Message message WHERE message.event =:event order by date desc, id desc")
 				.setParameter("event", event).list();
 
 	}
