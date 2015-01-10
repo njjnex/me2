@@ -23,11 +23,27 @@
 	</c:forEach>
 	<div class="container">
 		<div class="resume">
+
 			<div class="row">
+
 				<div
 					class="col-xs-12 col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8">
+
+
 					<div class="panel panel-default">
+
+
+						<%--  <div class="text-center">
+											<h2>
+												<strong>${event.eventName}</strong>
+											</h2>
+										</div>  --%>
 						<div class="panel-heading resume-heading ">
+							<%-- <div class="text-center">
+											<h2>
+												<strong>${event.eventName}</strong>
+											</h2>
+										</div>  --%>
 							<div class="row">
 								<div class="col-lg-12">
 									<div class="col-xs-12 col-sm-4">
@@ -67,23 +83,21 @@
 														<i class="fa fa-phone"> ${event.createdBy.phone} </i>
 													</c:when>
 													<c:otherwise>
-														<span class="label label-primary">Только для
+														<span class="label label-info">Только для
 															участников мероприятия</span>
 													</c:otherwise>
 												</c:choose></li>
+											<li class="list-group-item list-group-item-warning"><strong>Место
+													проведения:
+													<p>${event.place}</p>
+											</strong>
 										</ul>
 									</div>
 								</div>
 							</div>
 						</div>
 
-
-
-
 						<div class="bs-callout bs-callout-danger">
-							<h4>Место проведения</h4>
-							<p>${event.place}</p>
-
 							<h4>Описание</h4>
 							<p>
 								<c:if test="${event.description eq null}"> Описание отстствует...</c:if>
@@ -149,43 +163,165 @@
 									</c:otherwise>
 								</c:choose>
 							</p>
+							<div class="bs-callout bs-callout-danger" id="danger2">
+								<div class="row">
+									<div class="col-lg-12 col-sm-12 col-xs-12">
+										<h4 id="addComment">Сообщения:</h4>
+										<p class="well">
+											Please <a href="#">sign in</a> to add comments!
+										</p>
+										<hr>
+										<ul class="media-list comments">
+											<li class="media"><a class="pull-left" href="#"> <img
+													class="media-object img-circle img-thumbnail"
+													src="http://snipplicious.com/images/guest.png" width="64"
+													alt="Generic placeholder image">
+											</a>
+												<div class="media-body">
+													<h5 class="media-heading pull-left">loneswan</h5>
+													<div class="comment-info pull-left">
+														<div class="btn btn-danger btn-xs" data-toggle="tooltip"
+															data-placement="top" title="Sent from ***0.0.1">
+															<i class="fa fa-user"></i>
+														</div>
+														<div class="btn btn-primary btn-xs">
+															<a class="fa fa-envelope white"
+																href="mailto:loneswan@loneswan.net"></a>
+														</div>
+														<div class="btn btn-default btn-xs">
+															<i class="fa fa-clock-o"></i> Posted 3 weeks ago
+														</div>
+													</div>
+													<br class="clearfix">
+													<p class="well">This is really awesome snippet!</p>
+												</div></li>
+											<li class="media"><a class="pull-left" href="#"> <img
+													class="media-object img-circle img-thumbnail"
+													src="http://snipplicious.com/images/guest.png" width="64"
+													alt="Generic placeholder image">
+											</a>
+												<div class="media-body">
+													<h5 class="media-heading pull-left">loneswan</h5>
+													<div class="comment-info pull-left">
+														<div class="btn btn-danger btn-xs" data-toggle="tooltip"
+															data-placement="top" title="Sent from ***0.0.1">
+															<i class="fa fa-user"></i>
+														</div>
+														<div class="btn btn-primary btn-xs">
+															<a class="fa fa-envelope white"
+																href="mailto:loneswan@loneswan.net"></a>
+														</div>
+														<div class="btn btn-default btn-xs">
+															<i class="fa fa-clock-o"></i> Posted 3 weeks ago
+														</div>
+													</div>
+													<br class="clearfix">
+													<p class="well">This is really awesome snippet!</p>
+												</div></li>
+											<li class="media"><a class="pull-left" href="#"> <img
+													class="media-object img-circle img-thumbnail"
+													src="http://snipplicious.com/images/guest.png" width="64"
+													alt="Generic placeholder image">
+											</a>
+												<div class="media-body">
+													<h5 class="media-heading pull-left">loneswan</h5>
+													<div class="comment-info pull-left">
+														<div class="btn btn-danger btn-xs" data-toggle="tooltip"
+															data-placement="top" title="Sent from ***0.0.1">
+															<i class="fa fa-user"></i>
+														</div>
+														<div class="btn btn-primary btn-xs">
+															<a class="fa fa-envelope white"
+																href="mailto:loneswan@loneswan.net"></a>
+														</div>
+														<div class="btn btn-default btn-xs">
+															<i class="fa fa-clock-o"></i> Posted 3 weeks ago
+														</div>
+													</div>
+													<br class="clearfix">
+													<p class="well">This is really awesome snippet!</p>
+												</div></li>
+										</ul>
+									</div>
+								</div>
+							</div>
 						</div>
+						<!-- <div class="bs-callout bs-callout-danger">
+				 <div class="row">
+  <div class="col-lg-12 col-sm-12 col-xs-12">
+    <h4 id="addComment">Сообщения:</h4>
+    <p class="well">Please <a href="#">sign in</a> to add comments!</p>
+    <hr>
+    <ul class="media-list comments">
+      <li class="media">
+        <a class="pull-left" href="#">
+        <img class="media-object img-circle img-thumbnail" src="http://snipplicious.com/images/guest.png" width="64" alt="Generic placeholder image">
+        </a>
+        <div class="media-body">
+          <h5 class="media-heading pull-left">loneswan</h5>
+          <div class="comment-info pull-left">
+            <div class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="Sent from ***0.0.1"><i class="fa fa-user"></i></div>
+            <div class="btn btn-primary btn-xs"><a class="fa fa-envelope white" href="mailto:loneswan@loneswan.net"></a></div>
+            <div class="btn btn-default btn-xs"><i class="fa fa-clock-o"></i> Posted 3 weeks ago</div>
+          </div>
+          <br class="clearfix">
+          <p class="well">This is really awesome snippet!</p>
+        </div>
+      </li>
+      <li class="media">
+        <a class="pull-left" href="#">
+        <img class="media-object img-circle img-thumbnail" src="http://snipplicious.com/images/guest.png" width="64" alt="Generic placeholder image">
+        </a>
+        <div class="media-body">
+          <h5 class="media-heading pull-left">loneswan</h5>
+          <div class="comment-info pull-left">
+            <div class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="Sent from ***0.0.1"><i class="fa fa-user"></i></div>
+            <div class="btn btn-primary btn-xs"><a class="fa fa-envelope white" href="mailto:loneswan@loneswan.net"></a></div>
+            <div class="btn btn-default btn-xs"><i class="fa fa-clock-o"></i> Posted 3 weeks ago</div>
+          </div>
+          <br class="clearfix">
+          <p class="well">This is really awesome snippet!</p>
+        </div>
+      </li>
+      <li class="media">
+        <a class="pull-left" href="#">
+        <img class="media-object img-circle img-thumbnail" src="http://snipplicious.com/images/guest.png" width="64" alt="Generic placeholder image">
+        </a>
+        <div class="media-body">
+          <h5 class="media-heading pull-left">loneswan</h5>
+          <div class="comment-info pull-left">
+            <div class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="Sent from ***0.0.1"><i class="fa fa-user"></i></div>
+            <div class="btn btn-primary btn-xs"><a class="fa fa-envelope white" href="mailto:loneswan@loneswan.net"></a></div>
+            <div class="btn btn-default btn-xs"><i class="fa fa-clock-o"></i> Posted 3 weeks ago</div>
+          </div>
+          <br class="clearfix">
+          <p class="well">This is really awesome snippet!</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+       
+        <p>
+          Software Engineering, Machine Learning, Image Processing,
+          Computer Vision, Artificial Neural Networks, Data Science,
+          Evolutionary Algorithms.
+        </p>
+         <p>
+<button class="btn btn-info" type="button">Large button</button>
+
+<button class="btn btn-success" type="button">Участвовать</button>
+</p>
+			</div>  -->
 					</div>
 				</div>
 			</div>
 
-
-			<div class="bs-callout bs-callout-danger">
-				<h4>Сообщения</h4>
-				<form action="${pageContext.request.contextPath}/events/${event.id}/postMessage.html" method="post">
-					<c:choose>
-						<c:when test="${activeUser eq 'anonymousUser'}">
-							<h5>Неизвестный пользователь.</h5>
-							<div class="form-group">
-								<textarea class="form-control" rows="3" id="disabledInput"
-									type="text"
-									placeholder="Для того чтобы оставлять сообщения необходимо зарегистрироваться..."
-									disabled></textarea>
-							</div>
-							<button type="submit" class="btn btn-default" disabled="disabled">Отправить</button>
-						</c:when>
-						<c:otherwise>
-							<h5>${activeUser}</h5>
-							<div class="form-group">
-								<textarea class="form-control" rows="3" type="text" name="text"
-									placeholder="Оставьте сообшение..."></textarea>
-							</div>
-							<button type="submit" class="btn btn-default">Отправить</button>
-						</c:otherwise>
-					</c:choose>
-				</form>
-					<c:forEach var="message" items="${messages}">
-					${message.author.username} <br>
-					${message.date}<br>
-					${message.text}<br>
-					</c:forEach>
-			</div>
 		</div>
 	</div>
+
+
+
+
 </body>
 <%@ include file="../templates/footer.jsp"%>

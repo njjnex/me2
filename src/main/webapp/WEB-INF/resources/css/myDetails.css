@@ -3,7 +3,10 @@ body {
 	padding: 5%;
 	font: 15px/18px "Helvetica Neue", Arial, Helvetica, sans-serif;
 	color: #555;
-	background: #f5f5f5 url(bg.jpg);
+	
+}
+.list-group{
+	background:#F8F4CB;
 }
 
 a {

@@ -68,7 +68,7 @@
 									<c:otherwise>
 										<c:choose>
 											<c:when test="${event.createdBy.username ne activeUser}">
-												<button type="button" class="btn btn-info" onclick="window.location.href='${event.id}/joinEvent.html'">Участвую!</button>
+												<button type="button" class="btn btn-success" onclick="window.location.href='${event.id}/joinEvent.html'">Участвую!</button>
 												<% alreadyJoined = true; %>
 											</c:when>
 											<c:otherwise>

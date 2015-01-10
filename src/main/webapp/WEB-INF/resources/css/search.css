@@ -6,7 +6,7 @@
     margin: 55px auto 35px auto;
     background: #fff;
     border: 1px solid; 
-    border-color: #DFDFDF;
+    border-color: #55B04F;
     border-radius: 10px;
     box-shadow: 0 1px 1px rgba(0,0,0,.4) inset, 0 1px 0 rgba(255,255,255,.2);
 }
@@ -18,7 +18,7 @@
     height: 32px;
     padding: 0px 5px;
     float: left;    
-    font: bold 16px 'lucida sans', 'trebuchet MS', 'Tahoma';
+    font: bold 16px "Helvetica Neue",Helvetica,Arial,sans-serif;
     border: 0;
     background: #fff;
     border-radius: 3px 0 0 3px;      
@@ -61,18 +61,18 @@
     font: bold 15px/25px 'lucida sans', 'trebuchet MS', 'Tahoma';
     color: #fff;
     text-transform: uppercase;
-    background: #d83c3c;
+    background:#E2B81F;
     border-radius: 7px;      
     text-shadow: 0 -1px 0 rgba(0, 0 ,0, .3);
 }   
    
 .form-wrapper button:hover{     
-    background: #e54040;
+    background: #EFCA44;
 }   
    
 .form-wrapper button:active,
 .form-wrapper button:focus{   
-    background: #c42f2f;
+    background: #EFCA44;
     outline: 0;   
 }
  
@@ -81,21 +81,21 @@
     position: absolute;
     border-width: 8px 8px 8px 0;
     border-style: solid solid solid none;
-    border-color: transparent #d83c3c transparent;
+    border-color: transparent #E2B81F transparent;
     top: 6px;
     left: -6px;
 }
  
 .form-wrapper button:hover:before{
-    border-right-color: #e54040;
+    border-right-color: #EFCA44;
 }
  
 .form-wrapper button:focus:before,
 .form-wrapper button:active:before{
-        border-right-color: #c42f2f;
+        border-right-color: #EFCA44;
 }      
  
 .form-wrapper button::-moz-focus-inner { /* remove extra button spacing for Mozilla Firefox */
     border: 0;
     padding: 0;
-}    }
+}    

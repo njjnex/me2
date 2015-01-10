@@ -6,8 +6,9 @@
 	
 	/*width: 1114px; /* total computed width = 222 x 3 + 226  for 4 plans in row*/
 	width: 892px;  /*computed width = 222 x 3 + 226 */
-	
-	 
+}
+.btn btn-success{
+	color:#0D0C0C;
 }
 #event-details .event {
 	font: 12px 'Lucida Sans', 'trebuchet MS', Arial, Helvetica;
@@ -26,10 +27,12 @@
 	 width: 1095px;
 	 margin-bottom:80px;
 	padding-botoom:80px;
+	height:20px;
 }
 #event-table.clear .plan  h3, #event-table.clear .noplan h3 {
 	font-size: 20px;
 	font-weight: normal;
+	heiht: 174 px;
 	padding: 20px;
 	margin: -20px -20px 50px -20px;
 	background-color: #fff;
@@ -39,8 +42,8 @@
 	background-image: -o-linear-gradient(#fff, #eee);
 	background-image: -ms-linear-gradient(#fff, #eee);
 	background-image: linear-gradient(#fff, #eee);
-	border-top-left-radius: 30px;
-    border-top-right-radius: 30px;  
+	border-top-left-radius: 20px;
+    border-top-right-radius: 20px;  
 }
 
 #event-details h3 span {
@@ -67,7 +70,7 @@
 }
 
 #event-details li {
-	border-top: 1px solid #ddd;
+	border-top:solid #ddd;
 	padding: 10px 0;
 }
 
@@ -75,8 +78,9 @@
 #event-table {
 	margin: 15px auto;
 	text-align: center;
-	margin-bottom:80px;
-	/* padding-botoom:80px; */
+	
+/* 	margin-bottom:80px; */
+	/* padding-top:80px; */
 	/*width: 1114px; /* total computed width = 222 x 4 + 226  for 4 plans in row*/
 	 width: 1006px; total /*computed width = 222 x 3 + 226 */
 }
@@ -89,26 +93,30 @@
 	background: #fff; 
 	color: #333;
 	padding: 20px;
-	width: 180px; /* plan width = 180 + 20 + 20 + 1 + 1 = 222px */      
+	width: 210px; /* plan width = 180 + 20 + 20 + 1 + 1 = 222px */   
+	heiht: 400px; 
 	float: left;
 	position: relative;
-	border-color:#DFDEDE;
+	border-color:#B9DBE5;
 	border-style: solid;
     border-radius: 20px;
+    height:421px;
     
 }
 #event-table .noplan {
 	font: 12px 'Lucida Sans', 'trebuchet MS', Arial, Helvetica;
 	text-shadow: 0 1px rgba(255,255,255,.8);        
-	background: #F8FAD7; 
-	border-color:#DFDEDE;     
-	border-style: solid;
-   	border-radius: 20px;
-	color: #333;
+	background: #F8FAD7;
+	color: #333; 
 	padding: 20px;
-	width: 180px; /* plan width = 180 + 20 + 20 + 1 + 1 = 222px */      
+	width: 210px; /* plan width = 180 + 20 + 20 + 1 + 1 = 222px */      
 	float: left;
 	position: relative;
+	border-color:#F3F6BD;     
+	border-style: solid;
+   	border-radius: 20px;
+   	height:421px;
+
 }
 
 #event-table #most-popular {
@@ -128,7 +136,7 @@
 /* --------------- */	
 
 #event-table h3 {
-	font-size: 20px;
+	font-size: 30px;
 	font-weight: normal;
 	padding: 20px;
 	margin: -20px -20px 50px -20px;
@@ -195,7 +203,7 @@ a:visited:hover.event-name{
 /* --------------- */
 
 #event-table ul {
-	margin: 20px 0 0 0;
+	margin: 15px 0 0 0;
 	padding: 0;
 	list-style: none;
 }
