@@ -16,7 +16,7 @@
 						request.setAttribute("joined", alreadyJoined);
 			%>
 		</c:if>
-		
+
 		<%
 			i++;
 				request.setAttribute("i", i);
@@ -50,7 +50,7 @@
 									<div class="col-xs-12 col-sm-4">
 										<figure>
 											<img class="img-circle img-responsive" alt=""
-												src="${pageContext.request.contextPath}/resources/images/events/${event.id}.jpg" 
+												src="${pageContext.request.contextPath}/resources/images/events/${event.id}.jpg"
 												onerror="if (this.src != '${event.id}.jpg') this.src = '${pageContext.request.contextPath}/resources/images/events/template.png';">
 										</figure>
 
@@ -79,7 +79,8 @@
 													${event.createdBy.username}</a></li>
 											<li class="list-group-item list-group-item-warning"><strong>Контакты:</strong>
 												<c:choose>
-													<c:when test="${joined || (activeUser eq event.createdBy.username)}">
+													<c:when
+														test="${joined || (activeUser eq event.createdBy.username)}">
 
 														<i class="fa fa-envelope"> ${event.createdBy.email} </i>
 														<i class="fa fa-phone"> ${event.createdBy.phone} </i>
@@ -165,84 +166,63 @@
 									</c:otherwise>
 								</c:choose>
 							</p>
+							<br> <br> <br>
 							<div class="bs-callout bs-callout-danger" id="danger2">
 								<div class="row">
 									<div class="col-lg-12 col-sm-12 col-xs-12">
 										<h4 id="addComment">Сообщения:</h4>
-										<p class="well">
-											Please <a href="#">sign in</a> to add comments!
-										</p>
-										<hr>
+
+
+										<form class="form-inline" method="post"
+											action="${pageContext.request.contextPath}/events/${eventId}/postMessage.html">
+											<c:choose>
+												<c:when test="${activeUser ne 'anonymousUser'}">
+													<div class="form-group">
+														<div class="input-group">
+
+															<textarea class="form-control" rows="3" cols="70" name="text"></textarea>
+															<br>
+														</div>
+													</div>
+													<button type="submit" class="btn btn-default">Отправить</button>
+												</c:when>
+												<c:otherwise>
+													<div class="form-group">
+														<div class="input-group">
+															<textarea class="form-control" rows="3" cols="70"  placeholder="Для отправки сообщений необходима авторизация."
+																id="disabledInput" disabled></textarea>
+															<br>
+														</div>
+													</div>
+													<button type="submit" class="btn btn-default" disabled="disabled">Отправить</button>
+
+												</c:otherwise>
+											</c:choose>
+										</form>
+									<hr>
 										<ul class="media-list comments">
-											<li class="media"><a class="pull-left" href="#"> <img
-													class="media-object img-circle img-thumbnail"
-													src="http://snipplicious.com/images/guest.png" width="64"
-													alt="Generic placeholder image">
-											</a>
-												<div class="media-body">
-													<h5 class="media-heading pull-left">loneswan</h5>
-													<div class="comment-info pull-left">
-														<div class="btn btn-danger btn-xs" data-toggle="tooltip"
-															data-placement="top" title="Sent from ***0.0.1">
-															<i class="fa fa-user"></i>
+											<c:forEach var="message" items="${messages}">
+												<li class="media"><a class="pull-left" href="#"> <img
+														class="media-object img-circle img-thumbnail"
+														src="${pageContext.request.contextPath}/resources/images/avatars/${message.author.id}.jpg"
+														onerror="if (this.src != '${user.id}.jpg') this.src = '${pageContext.request.contextPath}/resources/images/avatars/template.png';"
+														width="64" alt="Generic placeholder image">
+												</a>
+													<div class="media-body">
+														<h5 class="media-heading pull-left">
+															<a
+																href="${pageContext.request.contextPath}/${message.author.id}/userDetails.html">${message.author.username}</a>
+														</h5>
+														<div class="comment-info pull-left">
+															<div class="btn btn-default btn-xs">
+																<i class="fa fa-clock-o"></i> ${message.date}
+															</div>
 														</div>
-														<div class="btn btn-primary btn-xs">
-															<a class="fa fa-envelope white"
-																href="mailto:loneswan@loneswan.net"></a>
-														</div>
-														<div class="btn btn-default btn-xs">
-															<i class="fa fa-clock-o"></i> Posted 3 weeks ago
-														</div>
-													</div>
-													<br class="clearfix">
-													<p class="well">This is really awesome snippet!</p>
-												</div></li>
-											<li class="media"><a class="pull-left" href="#"> <img
-													class="media-object img-circle img-thumbnail"
-													src="http://snipplicious.com/images/guest.png" width="64"
-													alt="Generic placeholder image">
-											</a>
-												<div class="media-body">
-													<h5 class="media-heading pull-left">loneswan</h5>
-													<div class="comment-info pull-left">
-														<div class="btn btn-danger btn-xs" data-toggle="tooltip"
-															data-placement="top" title="Sent from ***0.0.1">
-															<i class="fa fa-user"></i>
-														</div>
-														<div class="btn btn-primary btn-xs">
-															<a class="fa fa-envelope white"
-																href="mailto:loneswan@loneswan.net"></a>
-														</div>
-														<div class="btn btn-default btn-xs">
-															<i class="fa fa-clock-o"></i> Posted 3 weeks ago
-														</div>
-													</div>
-													<br class="clearfix">
-													<p class="well">This is really awesome snippet!</p>
-												</div></li>
-											<li class="media"><a class="pull-left" href="#"> <img
-													class="media-object img-circle img-thumbnail"
-													src="http://snipplicious.com/images/guest.png" width="64"
-													alt="Generic placeholder image">
-											</a>
-												<div class="media-body">
-													<h5 class="media-heading pull-left">loneswan</h5>
-													<div class="comment-info pull-left">
-														<div class="btn btn-danger btn-xs" data-toggle="tooltip"
-															data-placement="top" title="Sent from ***0.0.1">
-															<i class="fa fa-user"></i>
-														</div>
-														<div class="btn btn-primary btn-xs">
-															<a class="fa fa-envelope white"
-																href="mailto:loneswan@loneswan.net"></a>
-														</div>
-														<div class="btn btn-default btn-xs">
-															<i class="fa fa-clock-o"></i> Posted 3 weeks ago
-														</div>
-													</div>
-													<br class="clearfix">
-													<p class="well">This is really awesome snippet!</p>
-												</div></li>
+														<br class="clearfix">
+														<p class="well">${message.text}</p>
+													</div></li>
+											</c:forEach>
+
 										</ul>
 									</div>
 								</div>
