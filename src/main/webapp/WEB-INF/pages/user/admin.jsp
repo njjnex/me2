@@ -14,7 +14,7 @@
 });
 </script>
 
-<link rel="stylesheet" href="./resources/css/table.css">
+<link rel="stylesheet" href="./resources/css/global.css">
 
 
 </head>

@@ -5,8 +5,62 @@ body {
 	color: #555;
 	
 }
-.list-group{
-	background:#F8F4CB;
+.img-rounded {
+    border-radius: 15px;
+}
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    background-color: #FFF;
+    border: 1px solid #DDD;
+	background-color: #eee;
+	background-image: -moz-linear-gradient(#fff,#eee);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#eee));    
+	background-image: -webkit-linear-gradient(#fff, #eee);
+	background-image: -o-linear-gradient(#fff, #eee);
+	background-image: -ms-linear-gradient(#fff, #eee);
+	background-image: linear-gradient(#fff, #eee);
+	color:#636161;
+	border-radius: 5px;
+}
+.nav-tabs > li {
+    float: left;
+    margin-bottom: -1px;
+     background-color: #FFF;
+    border: 1px solid #DDD;
+	background-color: #eee;
+	background-image: -moz-linear-gradient(#fff,#eee);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#eee));    
+	background-image: -webkit-linear-gradient(#fff, #eee);
+	background-image: -o-linear-gradient(#fff, #eee);
+	background-image: -ms-linear-gradient(#fff, #eee);
+	background-image: linear-gradient(#fff, #eee);
+	color:#636161;
+	border-radius: 5px;
+	 border-width: 1px 1px 1px 1px
+}
+.tab-content > .active {
+    display: block;
+    visibility: visible;
+	color:#636161;
+}
+#myEvents{
+	background-color: #eee;
+	background-image: -moz-linear-gradient(#fff,#eee);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#eee));    
+	background-image: -webkit-linear-gradient(#fff, #eee);
+	background-image: -o-linear-gradient(#fff, #eee);
+	background-image: -ms-linear-gradient(#fff, #eee);
+	background-image: linear-gradient(#fff, #eee);
+	color:#636161;
+	 border-radius: 10px;
+	 border-color:#ddd;
+	 border-style: solid;
+	  border-width: 1px 1px 1px 1px
+	 
+	
 }
 
 a {

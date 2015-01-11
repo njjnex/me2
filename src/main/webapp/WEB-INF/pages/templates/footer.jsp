@@ -6,8 +6,7 @@
 				new Date().getFullYear() > 2010
 						&& document.write(+new Date().getFullYear());
 			</script>
-			me2.by. <a href="mailto:njjnex@gmail.com" id="gmail"> Напишите
-				нам.</a>
+			me2.by. <a href="mailto:njjnex@gmail.com" id="gmail"> email.</a>
 		</p>
 	</div>
 </div>

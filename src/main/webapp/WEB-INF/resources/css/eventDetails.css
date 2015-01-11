@@ -9,7 +9,7 @@
 	
 }
 .list-group-item{
-	color: #ddd
+	color: #636161;
 	border-right-color:#ddd;
 	border-left-color:#ddd;
 	border-width: 1px 1px 1px 5px;
@@ -46,7 +46,7 @@
 }
 .img-responsive{
 	display: block;
-max-width: 100%;
+max-width: 200px;
 height: 186px;
 margin-left:10px;
 }
