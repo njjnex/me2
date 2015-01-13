@@ -79,10 +79,11 @@ span.tags
     }
 .img-responsive, .thumbnail > img, .thumbnail a > img, .carousel-inner > .item > img, .carousel-inner > .item > a > img {
     display: block;
-    max-width: 140px;
+    width: 140px;
     height: 140px;
     border-radius: 20px;
     margin-bottom:10px;
+    border: 1px solid #E3E3E3;
 }
 .well {
     min-height: 20px;
@@ -102,4 +103,5 @@ span.tags
 .profile {
     min-height: 400px;
     display: inline-block;
+    
 }

@@ -7,6 +7,9 @@ body {
 }
 .img-rounded {
     border-radius: 15px;
+    border-color:#ddd;
+	 border-style: solid;
+	  border-width: 1px 1px 1px 1px
 }
 .list-group-item {
     position: relative;
@@ -75,9 +78,10 @@ a {
 #blank-avatar{
 	width: 100px; 
 	height: 100px;
-	border-radius: 10px;
+	border-radius: 15px;
 	margin-top: 5%;
 	margin-left: 5%;
+	
 }
 .error {
 	color: #ff0000;

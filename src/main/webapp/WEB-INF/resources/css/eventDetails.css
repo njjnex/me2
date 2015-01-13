@@ -162,6 +162,7 @@ opacity:0.9;
     
 }
 #danger2{
+	/* margin: 5px; */
 	border-color: #ddd;
 	 background-color: #eee;
 	background-image: -moz-linear-gradient(#fff,#eee);
@@ -170,6 +171,7 @@ opacity:0.9;
 	background-image: -o-linear-gradient(#fff, #eee);
 	background-image: -ms-linear-gradient(#fff, #eee);
 	background-image: linear-gradient(#fff, #eee);
+	
 }
 
 .bs-callout-danger h4{
@@ -267,8 +269,9 @@ opacity:0.9;
 }
 
 .comments .comment-info {
-    margin-left: 6px;
-    margin-top: 21px;
+    margin-left: 16px;
+    margin-top: 22px;
+     border-radius: 10px;
 }
 
 .comments .comment-info .btn {
@@ -281,9 +284,19 @@ opacity:0.9;
 
 .comments .media-body p {
     position: relative;
-    background: #F7F7F7;
-    padding: 15px;
+    background: #fff;
+    padding: 25px;
     margin-top: 50px;
+    padding-bottom: 10px;
+    height: auto;
+    width: auto;
+    background-color: #eee;
+	background-image: -moz-linear-gradient(#fff,#eee);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#eee));    
+	background-image: -webkit-linear-gradient(#fff, #eee);
+	background-image: -o-linear-gradient(#fff, #eee);
+	background-image: -ms-linear-gradient(#fff, #eee);
+	background-image: linear-gradient(#fff, #eee);
 }
 
 .comments .media-body p::before {
@@ -291,14 +304,42 @@ opacity:0.9;
     box-shadow: -2px 2px 2px 0 rgba( 178, 178, 178, .4 );
     content: "\00a0";
     display: block;
-    height: 30px;
+    height: 25px;
     left: 20px;
     position: absolute;
     top: -13px;
     transform: rotate( 135deg );
-    width:  30px;
+    width:  25px;
 }
 
 .white {
     color: #fff;
+}
+.well {
+    height:35px;
+    padding: 19px;
+    font: 16px "Helvetica Neue",Helvetica,Arial,sans-serif;
+    margin-top:10px;
+    margin-bottom: 20px;
+    background-color: #F5F5F5;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05) inset;
+ }
+.img-thumbnail {
+    display: inline-block;
+    width: 80px;
+    height: 80px;
+    padding: 4px;
+    line-height: 1.42857;
+    background-color: #ddd;
+    border: 1px solid #DDD;
+    border-radius: 30px;
+    transition: all 0.2s ease-in-out 0s;
+}
+.btn-default {
+    color: #333;
+    background-color: #E9F9FB;
+    border-color: #CCC;
+    border-radius: 10px;
 }

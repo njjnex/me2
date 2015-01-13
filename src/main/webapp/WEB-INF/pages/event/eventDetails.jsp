@@ -86,7 +86,7 @@
 														<i class="fa fa-phone"> ${event.createdBy.phone} </i>
 													</c:when>
 													<c:otherwise>
-														<span class="label label-info">Только для
+														<span class="label label-success">Только для
 															участников мероприятия</span>
 													</c:otherwise>
 												</c:choose></li>
@@ -184,7 +184,7 @@
 															<br>
 														</div>
 													</div>
-													<button type="submit" class="btn btn-default">Отправить</button>
+													<button type="submit" class="btn btn-success">Отправить</button>
 												</c:when>
 												<c:otherwise>
 													<div class="form-group">
@@ -219,7 +219,7 @@
 															</div>
 														</div>
 														<br class="clearfix">
-														<p class="well">${message.text}</p>
+														<p class="well">${message.text}</p><span class="glyphicon glyphicon-remove-circle"></span>
 													</div></li>
 											</c:forEach>
 
