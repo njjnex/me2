@@ -27,4 +27,17 @@ public class MessageServiceImpl implements MessageService {
 	public List<Message> getEventMessages(Event event) {
 		return messageDao.getEventMessages(event);
 	}
+
+	@Override
+	@Transactional
+	public Message getMessage(long messageId) {
+				return messageDao.getMessage(messageId);
+	}
+
+	@Override
+	@Transactional
+	public void removeMessage(Message message) {
+		messageDao.removeMessage(message);
+		
+	}
 }

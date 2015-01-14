@@ -51,7 +51,7 @@ public class Event{
 	private String description;
 	@Column(name="PLACE")
 	private String place;
-	@OneToMany(mappedBy = "event", fetch=FetchType.LAZY)
+	@OneToMany(mappedBy = "event", fetch=FetchType.LAZY, orphanRemoval = true, cascade =  CascadeType.ALL)
 	private List<Message> messages;
 			
 	public List<Message> getMessages() {

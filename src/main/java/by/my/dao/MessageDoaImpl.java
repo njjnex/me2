@@ -2,6 +2,7 @@ package by.my.dao;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -27,6 +28,25 @@ public class MessageDoaImpl implements MessageDao {
 				.createQuery(
 						"FROM Message message WHERE message.event =:event order by date desc, id desc")
 				.setParameter("event", event).list();
+
+	}
+
+	@Override
+	public Message getMessage(long messageId) {
+		return (Message) sessionFactory
+				.getCurrentSession()
+				.createQuery(
+						"FROM Message message where message.id = :messageId")
+				.setParameter("messageId", messageId).uniqueResult();
+	}
+
+	@Override
+	public void removeMessage(Message message) {
+		
+		String query = "delete from myproject.message where MESSAGE_ID = :message_id";
+		Query q = sessionFactory.getCurrentSession().createSQLQuery(query);
+		q.setLong("message_id", message.getId());
+		q.executeUpdate();
 
 	}
 
