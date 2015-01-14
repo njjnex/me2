@@ -222,7 +222,6 @@
 															</div>
 														</div>
 														<br class="clearfix">
-
 														<p class="well">${message.text}</p>
 														<c:if test="${activeUser eq message.author.username}">
 															<a
