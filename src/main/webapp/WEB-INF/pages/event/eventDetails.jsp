@@ -180,7 +180,8 @@
 													<div class="form-group">
 														<div class="input-group">
 
-															<textarea class="form-control" rows="3" cols="70" name="text"></textarea>
+															<textarea class="form-control" rows="3" cols="70"
+																name="text"></textarea>
 															<br>
 														</div>
 													</div>
@@ -189,17 +190,19 @@
 												<c:otherwise>
 													<div class="form-group">
 														<div class="input-group">
-															<textarea class="form-control" rows="3" cols="70"  placeholder="Для отправки сообщений необходима авторизация."
+															<textarea class="form-control" rows="3" cols="70"
+																placeholder="Для отправки сообщений необходима авторизация."
 																id="disabledInput" disabled></textarea>
 															<br>
 														</div>
 													</div>
-													<button type="submit" class="btn btn-default" disabled="disabled">Отправить</button>
+													<button type="submit" class="btn btn-default"
+														disabled="disabled">Отправить</button>
 
 												</c:otherwise>
 											</c:choose>
 										</form>
-									<hr>
+										<hr>
 										<ul class="media-list comments">
 											<c:forEach var="message" items="${messages}">
 												<li class="media"><a class="pull-left" href="#"> <img
@@ -219,7 +222,14 @@
 															</div>
 														</div>
 														<br class="clearfix">
-														<p class="well">${message.text}</p><span class="glyphicon glyphicon-remove-circle"></span>
+														
+
+														<p class="well">${message.text}</p>
+														<c:if test="${activeUser eq message.author.username}">
+															<a
+																href="${pageContext.request.contextPath}/events/${eventId}/${message.id}/deleteMessage.html"
+																class="glyphicon glyphicon-remove-circle"></a>
+														</c:if>
 													</div></li>
 											</c:forEach>
 
@@ -228,73 +238,6 @@
 								</div>
 							</div>
 						</div>
-						<!-- <div class="bs-callout bs-callout-danger">
-				 <div class="row">
-  <div class="col-lg-12 col-sm-12 col-xs-12">
-    <h4 id="addComment">Сообщения:</h4>
-    <p class="well">Please <a href="#">sign in</a> to add comments!</p>
-    <hr>
-    <ul class="media-list comments">
-      <li class="media">
-        <a class="pull-left" href="#">
-        <img class="media-object img-circle img-thumbnail" src="http://snipplicious.com/images/guest.png" width="64" alt="Generic placeholder image">
-        </a>
-        <div class="media-body">
-          <h5 class="media-heading pull-left">loneswan</h5>
-          <div class="comment-info pull-left">
-            <div class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="Sent from ***0.0.1"><i class="fa fa-user"></i></div>
-            <div class="btn btn-primary btn-xs"><a class="fa fa-envelope white" href="mailto:loneswan@loneswan.net"></a></div>
-            <div class="btn btn-default btn-xs"><i class="fa fa-clock-o"></i> Posted 3 weeks ago</div>
-          </div>
-          <br class="clearfix">
-          <p class="well">This is really awesome snippet!</p>
-        </div>
-      </li>
-      <li class="media">
-        <a class="pull-left" href="#">
-        <img class="media-object img-circle img-thumbnail" src="http://snipplicious.com/images/guest.png" width="64" alt="Generic placeholder image">
-        </a>
-        <div class="media-body">
-          <h5 class="media-heading pull-left">loneswan</h5>
-          <div class="comment-info pull-left">
-            <div class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="Sent from ***0.0.1"><i class="fa fa-user"></i></div>
-            <div class="btn btn-primary btn-xs"><a class="fa fa-envelope white" href="mailto:loneswan@loneswan.net"></a></div>
-            <div class="btn btn-default btn-xs"><i class="fa fa-clock-o"></i> Posted 3 weeks ago</div>
-          </div>
-          <br class="clearfix">
-          <p class="well">This is really awesome snippet!</p>
-        </div>
-      </li>
-      <li class="media">
-        <a class="pull-left" href="#">
-        <img class="media-object img-circle img-thumbnail" src="http://snipplicious.com/images/guest.png" width="64" alt="Generic placeholder image">
-        </a>
-        <div class="media-body">
-          <h5 class="media-heading pull-left">loneswan</h5>
-          <div class="comment-info pull-left">
-            <div class="btn btn-danger btn-xs" data-toggle="tooltip" data-placement="top" title="Sent from ***0.0.1"><i class="fa fa-user"></i></div>
-            <div class="btn btn-primary btn-xs"><a class="fa fa-envelope white" href="mailto:loneswan@loneswan.net"></a></div>
-            <div class="btn btn-default btn-xs"><i class="fa fa-clock-o"></i> Posted 3 weeks ago</div>
-          </div>
-          <br class="clearfix">
-          <p class="well">This is really awesome snippet!</p>
-        </div>
-      </li>
-    </ul>
-  </div>
-</div>
-       
-        <p>
-          Software Engineering, Machine Learning, Image Processing,
-          Computer Vision, Artificial Neural Networks, Data Science,
-          Evolutionary Algorithms.
-        </p>
-         <p>
-<button class="btn btn-info" type="button">Large button</button>
-
-<button class="btn btn-success" type="button">Участвовать</button>
-</p>
-			</div>  -->
 					</div>
 				</div>
 			</div>
