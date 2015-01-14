@@ -222,12 +222,16 @@
 															</div>
 														</div>
 														<br class="clearfix">
-														<p class="well">${message.text}</p>
-														<c:if test="${activeUser eq message.author.username}">
+														<p class="well"><c:if test="${activeUser eq message.author.username}">
 															<a
 																href="${pageContext.request.contextPath}/events/${eventId}/${message.id}/deleteMessage.html"
 																class="glyphicon glyphicon-remove-circle"></a>
-														</c:if>
+														</c:if>${message.text}</p>
+														<%-- <c:if test="${activeUser eq message.author.username}">
+															<a
+																href="${pageContext.request.contextPath}/events/${eventId}/${message.id}/deleteMessage.html"
+																class="glyphicon glyphicon-remove-circle"></a>
+														</c:if> --%>
 													</div></li>
 											</c:forEach>
 
