@@ -25,7 +25,7 @@ public class Message {
 	@OneToOne
 	@JoinColumn(name="AUTHOR_ID", referencedColumnName="USER_ID")
 	private User author;
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="EVENT_ID", referencedColumnName="EVENT_ID")
 	private Event event;
 	

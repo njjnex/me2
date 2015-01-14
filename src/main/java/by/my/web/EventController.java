@@ -51,8 +51,7 @@ public class EventController {
 			HttpServletRequest request) {
 		Event event = new Event();
 		model.put("event", event);
-		logger.info(" User:"
-				+ request.getUserPrincipal()
+		logger.info(" User:" + request.getUserPrincipal()
 				+ "going to create new event.");
 		return "event/newEvent";
 	}
@@ -113,7 +112,7 @@ public class EventController {
 	public String delete(@PathVariable long eventId, Model model,
 			Principal principal) {
 		Event event = eventService.getEventByID(eventId);
-		//Only user that created event can delete it or Admin
+		// Only user that created event can delete it or Admin
 		if ((principal.getName().equals(event.getCreatedBy().getUsername()))
 				|| principal.getName().equals("Admin")) {
 			eventService.removeEvent(event);
@@ -153,7 +152,7 @@ public class EventController {
 			@RequestParam(value = "text", required = false) String text,
 			Model model, Principal principal) {
 		Event event = eventService.getEventByID(eventId);
-		//User post message
+		// User post message
 		if (!(text == null || text.equals(""))) {
 			User user = userService.getUser(principal.getName());
 			String date = new SimpleDateFormat("dd-MM-yyyy' в 'HH:mm")
@@ -172,5 +171,21 @@ public class EventController {
 		model.addAttribute("messages", messageList);
 
 		return "redirect:/events/{eventId}";
+	}
+
+	@RequestMapping(value = "events/{eventId}/{messageId}/deleteMessage.html")
+	public String deleteMessage(@PathVariable("eventId") long eventId,
+			@PathVariable("messageId") long messageId, Model model,
+			Principal principal) {
+		Event event = eventService.getEventByID(eventId);
+		Message message = messageService.getMessage(messageId);
+		if (principal.getName().equals(message.getAuthor().getUsername()) || principal.getName().equals("Admin")) {
+			messageService.removeMessage(message);
+		}
+		List<Message> messageList = messageService.getEventMessages(event);
+		model.addAttribute("event", event);
+		model.addAttribute("messages", messageList);
+		return "redirect:/events/{eventId}";
+
 	}
 }
