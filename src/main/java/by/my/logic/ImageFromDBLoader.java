@@ -66,7 +66,7 @@ public class ImageFromDBLoader {
 				while ((len = in.read(buff)) != -1) {
 					out.write(buff, 0, len);
 				}
-				System.out.println(appPath + PATH_EVENT + user.getId() + ".jpg"
+				System.out.println(appPath + PATH_AVATAR + user.getId() + ".jpg"
 						+ " file created");
 			} catch (Exception e) {
 

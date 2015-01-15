@@ -29,6 +29,10 @@ $(document).ready(function() {
 					notEmpty : {
 						message : 'Укажите дату начала.'
 					},
+					regexp: {
+                        regexp: /^\d{2}-\d{2}-\d{4} в \d{2}:\d{2}$/i,
+                        message: 'Дата в формате дд-мм-гггг в чч:мм.'
+                    },
 				}
 			},
 			eventMembersCount : {
