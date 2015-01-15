@@ -106,8 +106,8 @@
 								data-toggle="modal" data-target="#myModal">Bход</button></li>
 					</c:otherwise>
 				</c:choose>
-
 			</ul>
+		
 		</div>
 	</div>
 	<!-- Modal -->
@@ -142,7 +142,7 @@
 
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+						<button type="button" class="btn btn-warning" data-dismiss="modal">Закрыть</button>
 						<button type="submit" class="btn btn-primary">Войти</button>
 					</div>
 				</div>

@@ -15,11 +15,11 @@ $(document).ready(function() {
 					},
 					stringLength : {
 						min : 4,
-						max : 12,
+						max : 50,
 						message : 'Слишком короткое название.'
 					},
 					regexp : {
-						regexp : /^[a-zA-Z0-9-а-яА-Я]+$/,
+						regexp : /^[a-zA-Z0-9-а-яА-Я\s]+$/,
 						message : 'Недопустимые символы в названии.'
 					},
 				}

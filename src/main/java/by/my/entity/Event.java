@@ -2,6 +2,7 @@ package by.my.entity;
 
 import java.sql.Blob;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -50,14 +51,13 @@ public class Event{
 	private String description;
 	@Column(name="PLACE")
 	private String place;
-	@OneToMany(mappedBy = "event", fetch=FetchType.LAZY)
-	private Set<Message> messages;
-	
-		
-	public Set<Message> getMessages() {
+	@OneToMany(mappedBy = "event", fetch=FetchType.LAZY, orphanRemoval = true, cascade =  CascadeType.ALL)
+	private List<Message> messages;
+			
+	public List<Message> getMessages() {
 		return messages;
 	}
-	public void setMessages(Set<Message> messages) {
+	public void setMessages(List<Message> messages) {
 		this.messages = messages;
 	}
 	public String getPlace() {

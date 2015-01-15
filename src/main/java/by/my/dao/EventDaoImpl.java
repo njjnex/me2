@@ -36,41 +36,54 @@ public class EventDaoImpl implements EventDao {
 		}
 		session.save(event);
 	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Event> getEvents() {
 		return sessionFactory.getCurrentSession()
 				.createQuery("FROM Event event order by active desc, id desc").list(); //sorting shows active events first
 	}
+
 	@Override
 	public void removeEvent(Event event) {
+		//Flash all event messages
+		String query = "delete from container.MESSAGE where EVENT_ID = :event_id";
+		Query q = sessionFactory.getCurrentSession().createSQLQuery(query);
+		q.setLong("event_id", event.getId());
+		q.executeUpdate();
+		//Delete Event
 		sessionFactory.getCurrentSession().delete(event);
 	}
+
 	@Override
 	public Event getEventByID(long eventId) {
 		return (Event) sessionFactory.getCurrentSession().get(Event.class,
-			eventId);
+				eventId);
 	}
+
 	@Override
 	public void updateEvent(Event event) {
 		sessionFactory.getCurrentSession().merge(event);
 	}
+
 	@Override
 	public void joinEvent(long eventId, long userId) {
-		String query = "insert into myproject.members_joined_event (JOINED_EVENT_ID,USER_ID) VALUES (:event_id, :user_id)";
+		String query = "insert into container.MEMBERS_JOINED_EVENT (JOINED_EVENT_ID,USER_ID) VALUES (:event_id, :user_id)";
 		Query q = sessionFactory.getCurrentSession().createSQLQuery(query);
 		q.setLong("event_id", eventId);
 		q.setLong("user_id", userId);
 		q.executeUpdate();
 	}
+
 	@Override
 	public void unjoinEvent(long eventId, long userId) {
-		String query = "delete from myproject.members_joined_event where JOINED_EVENT_ID  = :event_id and USER_ID = :user_id";
+		String query = "delete from container.MEMBERS_JOINED_EVENT where JOINED_EVENT_ID  = :event_id and USER_ID = :user_id";
 		Query q = sessionFactory.getCurrentSession().createSQLQuery(query);
 		q.setLong("event_id", eventId);
 		q.setLong("user_id", userId);
 		q.executeUpdate();
 	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Event> getUsersEvents(User user) {
@@ -78,17 +91,23 @@ public class EventDaoImpl implements EventDao {
 				.createQuery("FROM Event event WHERE event.createdBy = :user")
 				.setParameter("user", user).list();
 	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Event> search(String name) {
-		 return sessionFactory.getCurrentSession().createQuery("FROM Event event WHERE event.eventName = :name").setParameter("name", name).list();
-		
+		return sessionFactory.getCurrentSession()
+				.createQuery("FROM Event event WHERE event.eventName = :name")
+				.setParameter("name", name).list();
+
 	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Event> getUserJoinedEvents(User user) {
-		return sessionFactory.getCurrentSession()
-				.createQuery("FROM Event event WHERE :user in elements(event.eventMembersJoined)")
+		return sessionFactory
+				.getCurrentSession()
+				.createQuery(
+						"FROM Event event WHERE :user in elements(event.eventMembersJoined)")
 				.setParameter("user", user).list();
 	}
 }

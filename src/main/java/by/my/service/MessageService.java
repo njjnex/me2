@@ -8,4 +8,6 @@ import by.my.entity.Event;
 public interface MessageService {
 	public void save(Message message);
 	public List<Message> getEventMessages(Event event);
+	public Message getMessage(long messageId);
+	public void removeMessage(Message message);
 }

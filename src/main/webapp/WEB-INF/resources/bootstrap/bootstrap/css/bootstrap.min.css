@@ -1099,9 +1099,9 @@ html {
 body {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 14px;
-	line-height: 1.42857143;
+	line-height: normal;
 	color: #333;
-	background-color: #fff
+	/* background-color: #fff */
 }
 
 input,button,select,textarea {
@@ -1111,8 +1111,10 @@ input,button,select,textarea {
 }
 
 a {
-	color: #337ab7;
-	text-decoration: none
+	color: #636161;
+	text-decoration: none;
+	
+	
 }
 
 a:hover,a:focus {
@@ -1597,7 +1599,7 @@ pre code {
 }
 
 .container-fluid {
-	padding-right: 15px;
+	padding-right: 25px;
 	padding-left: 15px;
 	margin-right: auto;
 	margin-left: auto
@@ -2943,7 +2945,7 @@ textarea.input-lg,textarea.form-group-lg .form-control,select[multiple].input-lg
 	display: inline-block;
 	padding: 6px 12px;
 	margin-bottom: 0;
-	font-size: 14px;
+	font-size: 16px;
 	font-weight: 400;
 	line-height: 1.42857143;
 	text-align: center;
@@ -3995,7 +3997,7 @@ textarea.input-group-sm>.form-control,textarea.input-group-sm>.input-group-addon
 
 .navbar {
 	position: relative;
-	min-height: 50px;
+	min-height: 70px;
 	margin-bottom: 20px;
 	border: 1px solid transparent
 }

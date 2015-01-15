@@ -46,7 +46,7 @@
 				<!--left col-->
 				<img title="profile image" class="img-rounded img-responsive"
 					src="/static/avatar${user.id}.jpg" onerror="if (this.src != '${user.id}.jpg') this.src = '${pageContext.request.contextPath}/resources/images/avatars/template.png';"
-					style="display: inline-block; width: 150px; height: 150px; overflow: hidden;">
+					style="display: inline-block; width: 200px; height: 200px; overflow: hidden;">
 				<h3>${user.username}</h3>
 				<ul class="list-group">
 					<li class="list-group-item text-muted">Активность</li>

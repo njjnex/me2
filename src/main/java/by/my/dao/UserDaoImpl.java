@@ -17,7 +17,7 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public void removeUser(User user) {
 		long userId = user.getId();
-		String query = "delete from myproject.members_joined_event WHERE USER_ID = :user_id";
+		String query = "delete from container.MEMBERS_JOINED_EVENT WHERE USER_ID = :user_id";
 		Query q = sessionFactory.getCurrentSession().createSQLQuery(query);
 		q.setLong("user_id", userId);
 		q.executeUpdate();

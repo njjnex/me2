@@ -14,39 +14,39 @@
 });
 </script>
 
-<link rel="stylesheet" href="./resources/css/table.css">
+<link rel="stylesheet" href="./resources/css/global.css">
 
 
 </head>
 <body>
 <div id="content">
-<table>
+<table border="1" id="admintable">
 <tr>
-<th>Имя пользователя </th>
-<th> Пароль </th>
-<th> Создал мероприятия</th>
-<th> Участвует в мероприятиях </th>
+<th id="thadmin">Имя пользователя </th>
+<th id="thadmin"> Пароль </th>
+<th id="thadmin"> Создал мероприятия</th>
+<th id="thadmin"> Участвует в мероприятиях </th>
 
-<th> Удалить </th>
+<th id="thadmin"> Удалить </th>
 </tr>
 
 <c:forEach var="user" items="${users }">
 <tr>
-<td>${user.username}</td>
-<td>${user.password}</td>
-<td> <c:forEach var="event" items="${user.userCreatedEvents}" >
+<td id="thadmin">${user.username}</td>
+<td id="thadmin">${user.password}</td>
+<td id="thadmin"> <c:forEach var="event" items="${user.userCreatedEvents}" >
 		${event.eventName} 
 	 </c:forEach>
 </td>
-<td>
+<td id="thadmin">
 	 <c:forEach var="event" items="${user.userJoinedEvents}" >
 		${event.eventName} 
 	 </c:forEach>
 </td>
 
-<td>
+<td id="thadmin">
 <c:if test="${user.username != 'Admin'}">
-<button id = "mybutton"  onclick="location.href='${user.id}/deleteUser.html'">Удалить пользователя</button>
+<button id = "mybuttonadmin"  onclick="location.href='${user.id}/deleteUser.html'">Удалить пользователя</button>
 </c:if>
 </td>
 

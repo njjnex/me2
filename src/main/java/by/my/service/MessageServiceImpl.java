@@ -13,7 +13,6 @@ import by.my.entity.Message;
 
 @Service
 public class MessageServiceImpl implements MessageService {
-	
 	@Autowired
 	MessageDao messageDao;
 
@@ -27,5 +26,18 @@ public class MessageServiceImpl implements MessageService {
 	@Transactional
 	public List<Message> getEventMessages(Event event) {
 		return messageDao.getEventMessages(event);
+	}
+
+	@Override
+	@Transactional
+	public Message getMessage(long messageId) {
+				return messageDao.getMessage(messageId);
+	}
+
+	@Override
+	@Transactional
+	public void removeMessage(Message message) {
+		messageDao.removeMessage(message);
+		
 	}
 }

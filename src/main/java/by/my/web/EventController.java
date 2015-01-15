@@ -51,8 +51,7 @@ public class EventController {
 			HttpServletRequest request) {
 		Event event = new Event();
 		model.put("event", event);
-		logger.info(request.getRequestURL() + " User:"
-				+ request.getUserPrincipal().getName()
+				logger.info(" User:" + request.getUserPrincipal()
 				+ "going to create new event.");
 		return "event/newEvent";
 	}
