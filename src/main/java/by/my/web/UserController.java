@@ -58,21 +58,9 @@ public class UserController {
 			@RequestParam("confirmPassword") String passwordRep,
 			@RequestParam(value = "file", required = false) MultipartFile file,
 			@RequestParam("terms") Boolean terms) {
-
-		// Converting Spring MultipartFile to Blob
+		
 		Blob blob = null;
-		try {
-			byte[] bytes = file.getBytes();
-			blob = new SerialBlob(bytes);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		// No need to load user avatar from db if user didn't upload it
-		if (file.isEmpty()) {
-			user.setAvatarLoded(true);
-			avatarLoaded = true;
-		}
-
+		
 		if (userService.getUser(user.getUsername()) != null) {
 			ObjectError error = new ObjectError("nonUniqueUser",
 					"Пользователь с таким именем уже существует.");
@@ -83,15 +71,27 @@ public class UserController {
 		} else {
 			user.setUserRole("ROLE_USER");
 			user.setEnabled(true);
-			user.setAvatar(blob);
+			avatarLoaded = true;
+			if (!file.isEmpty()) {
+				try {
+					user.setAvatarLoded(false);
+					avatarLoaded = false;
+					byte[] bytes = file.getBytes();
+					blob = new SerialBlob(bytes);
+					user.setAvatar(blob);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
 			userService.createUser(user);
-
+			
 			if (!user.isAvatarLoded()) {
 				ImageFromDBLoader imageLoader = new ImageFromDBLoader();
 				imageLoader.loadUserAvatar(user);
 				user.setAvatarLoded(true);
 				userService.updateUser(user);
 			}
+			
 			logger.info("Registred user: " + user.getUsername() + " is avatar loaded :" + user.isAvatarLoded());
 			return "redirect:/success.html";
 		}

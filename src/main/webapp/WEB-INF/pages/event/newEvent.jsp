@@ -3,6 +3,19 @@
 <title>Новое мероприятие.</title>
 <%@ include file="../templates/header.jsp"%>
 
+<!-- Bootstrap datetimepicker -->
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/js/moment.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/bootstrap/bootstrap/js/transition.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/bootstrap/bootstrap/js/collapse.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/resources/bootstrap/bootstrap/js/bootstrap-datetimepicker.js"></script>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/bootstrap/bootstrap/css/bootstrap-datetimepicker.css" />
+<!-- End bootstrap datetimepicker -->
+
 <!-- Bootstrap-validator-->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/bootstrap/bootstrap-validator/css/bootstrapValidator.min.css" />
@@ -28,11 +41,11 @@
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/form.css" />
 
-<form:form class="form-horizontal" role="form" action="newEvent.html" method="post"
-	 enctype="multipart/form-data" commandName="event">
-		
+<form:form class="form-horizontal" role="form" action="newEvent.html"
+	method="post" enctype="multipart/form-data" commandName="event">
+
 	<div class="form-group">
-		<form:label for="inputName" class="col-md-3 control-label" 
+		<form:label for="inputName" class="col-md-3 control-label"
 			path="eventName">Название мероприятия *</form:label>
 		<div class="col-md-5">
 			<form:input type="text" class="form-control" id="inputName"
@@ -43,8 +56,14 @@
 		<form:label path="dateStarts" for="inputDate"
 			class="col-md-3 control-label">Дата и время начала *</form:label>
 		<div class="col-md-5">
-			<form:input type="datetime-local" class="form-control" id="inputDate"
-				placeholder="Дата мероприятия" path="dateStarts" />
+			<div class='input-group date' id='datetimepicker2'>
+				<form:input type='text' class="form-control" path="dateStarts" data-date-format="DD-MM-YYYY в HH:mm" />
+				<span class="input-group-addon"><span
+					class="glyphicon glyphicon-calendar"></span> </span>
+			</div>
+			<%-- <form:input type="datetime-local" class="form-control" id="inputDate"
+				placeholder="Дата мероприятия" path="dateStarts" /> --%>
+
 		</div>
 	</div>
 	<div class="form-group">
@@ -92,22 +111,28 @@
 	</div>
 
 	<div class="form-group">
-		<form:label path="description" for="inputInformation" class="col-md-3 control-label">Информация для участников</form:label>
+		<form:label path="description" for="inputInformation"
+			class="col-md-3 control-label">Информация для участников</form:label>
 		<div class="col-md-5">
 			<form:textarea path="description" class="form-control" rows="5"></form:textarea>
 		</div>
 	</div>
-<div class="form-group">
+	<div class="form-group">
 		<div class="col-sm-offset-3 col-md-5">
-	<form:button type="submit" class="btn btn-primary btn-lg">Создать событие</form:button>
-</div>
-</div>
+			<form:button type="submit" class="btn btn-primary btn-lg">Создать событие</form:button>
+		</div>
+	</div>
 
 </form:form>
 <script>
 	$('.fileinput').fileinput();
 	$(document).ready(function() {
 		$('.fileinput').bootstrapValidator();
-	}); 
+	});
+	$(function() {
+		$('#datetimepicker2').datetimepicker({
+			language : 'ru'
+		});
+	});
 </script>
 <%@ include file="../templates/footer.jsp"%>
