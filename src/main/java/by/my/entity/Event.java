@@ -1,6 +1,7 @@
 package by.my.entity;
 
 import java.sql.Blob;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -18,6 +19,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "EVENT")
@@ -53,6 +55,8 @@ public class Event{
 	private String place;
 	@OneToMany(mappedBy = "event", fetch=FetchType.LAZY, orphanRemoval = true, cascade =  CascadeType.ALL)
 	private List<Message> messages;
+	@Transient
+	private Date compare;
 			
 	public List<Message> getMessages() {
 		return messages;
@@ -126,4 +130,11 @@ public class Event{
 	public void setImage(Blob image) {
 		this.image = image;
 	}
+	public Date getCompare() {
+		return compare;
+	}
+	public void setCompare(Date compare) {
+		this.compare = compare;
+	}
+	
 }

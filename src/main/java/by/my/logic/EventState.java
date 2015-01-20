@@ -2,6 +2,8 @@ package by.my.logic;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -64,7 +66,8 @@ public class EventState {
 				e.printStackTrace();
 			}
 		}
-
+		Collections.sort(eventList, new EventDateCompare());
+		Collections.sort(eventList, new EventStateCompare());
 		return eventList;
 	}
 }

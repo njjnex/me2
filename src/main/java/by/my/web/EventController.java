@@ -64,12 +64,10 @@ public class EventController {
 		// Converting date format
 		try {
 			String dateStarts = event.getDateStarts();
-			DateFormat outputFormat = new SimpleDateFormat(
-					"dd-MM-yyyy' в 'HH:mm");
-			DateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
-			Date date = inputFormat.parse(dateStarts);
-			String outputDate = outputFormat.format(date);
-			event.setDateStarts(outputDate);
+			System.out.println(dateStarts + "date starts");
+			DateFormat format = new SimpleDateFormat("dd-MM-yyy 'в' HH:mm");
+			Date date = format.parse(dateStarts);
+			System.out.println(dateStarts + "date starts");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
