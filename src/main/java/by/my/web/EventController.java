@@ -61,16 +61,7 @@ public class EventController {
 			Principal principal, Map<String, Object> model,
 			@RequestParam(value = "file", required = false) MultipartFile file,
 			HttpSession session) throws HibernateException, IOException {
-		// Converting date format
-		try {
-			String dateStarts = event.getDateStarts();
-			System.out.println(dateStarts + "date starts");
-			DateFormat format = new SimpleDateFormat("dd-MM-yyy 'в' HH:mm");
-			Date date = format.parse(dateStarts);
-			System.out.println(dateStarts + "date starts");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		
 		String createdUserName = principal.getName();
 		User createdUser = userService.getUser(createdUserName);
 		event.setCreatedBy(createdUser);

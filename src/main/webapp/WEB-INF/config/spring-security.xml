@@ -16,6 +16,7 @@
 	<security:intercept-url pattern="/success.html" access="permitAll"/>
 	<security:intercept-url pattern="/terms.html" access="permitAll"/>
 	<security:intercept-url pattern="/events/*" access="permitAll"/>
+	<security:intercept-url pattern="/*/userDetails.html" access="permitAll"/>
 	<security:intercept-url pattern="/user-login.html" access="permitAll"/>
 	<security:intercept-url pattern="/error-login.html" access="permitAll"/>
 	<security:intercept-url pattern="/resources/**" access="permitAll"/>
