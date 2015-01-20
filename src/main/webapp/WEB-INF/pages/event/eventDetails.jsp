@@ -206,8 +206,8 @@
 											<c:forEach var="message" items="${messages}">
 												<li class="media"><a class="pull-left" href="#"> <img
 														class="media-object img-circle img-thumbnail"
-														src="/static/avatar${user.id}.jpg"
-									onerror="if (this.src != 'avatar${user.id}.jpg') this.src = '${pageContext.request.contextPath}/resources/images/avatars/template.png';"
+														src="/static/avatar${message.author.id}.jpg"
+									onerror="if (this.src != 'avatar${message.author.id}.jpg') this.src = '${pageContext.request.contextPath}/resources/images/avatars/template.png';"
 														width="64" alt="Generic placeholder image">
 												</a>
 													<div class="media-body">

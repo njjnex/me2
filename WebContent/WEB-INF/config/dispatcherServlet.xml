@@ -11,6 +11,7 @@
 	<mvc:default-servlet-handler />
 	<mvc:resources mapping="/resources/**" location="WEB-INF/resources/" />
 	<context:component-scan base-package="by.my" />
+	<async-supported>true</async-supported>
 
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">

@@ -15,8 +15,8 @@ $(document).ready(function() {
 					},
 					stringLength : {
 						min : 4,
-						max : 50,
-						message : 'Слишком короткое название.'
+						max : 14,
+						message : 'Название должно содержать от 4 до 14 сиволов.'
 					},
 					regexp : {
 						regexp : /^[a-zA-Z0-9-а-яА-Я\s]+$/,

@@ -41,7 +41,7 @@ public class EventDaoImpl implements EventDao {
 	@Override
 	public List<Event> getEvents() {
 		return sessionFactory.getCurrentSession()
-				.createQuery("FROM Event event order by active desc, id desc").list(); //sorting shows active events first
+				.createQuery("FROM Event event order by active desc, dateStarts desc").list(); //sorting shows active events first
 	}
 
 	@Override

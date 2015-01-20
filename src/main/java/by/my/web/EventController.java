@@ -51,7 +51,7 @@ public class EventController {
 			HttpServletRequest request) {
 		Event event = new Event();
 		model.put("event", event);
-				logger.info(" User:" + request.getUserPrincipal()
+		logger.info(" User:" + request.getUserPrincipal()
 				+ "going to create new event.");
 		return "event/newEvent";
 	}
@@ -105,14 +105,13 @@ public class EventController {
 			logger.info(request.getRequestURL() + " Joined event ID: "
 					+ eventId + " by USER: " + joinedUserName);
 		}
-		return "event/eventDetails";
+		return "redirect:/events/{eventId}";
 	}
 
 	@RequestMapping(value = "{eventId}/deleteEvent.html")
 	public String delete(@PathVariable long eventId, Model model,
 			Principal principal) {
 		Event event = eventService.getEventByID(eventId);
-		eventService.removeEvent(event);
 		// Only user that created event can delete it or Admin
 		if ((principal.getName().equals(event.getCreatedBy().getUsername()))
 				|| principal.getName().equals("Admin")) {
@@ -134,7 +133,7 @@ public class EventController {
 		model.addAttribute("event", event);
 		logger.info("Unjoined event ID: " + eventId + " by USER: "
 				+ joinedUserName);
-		return "event/eventDetails";
+		return "redirect:/events/{eventId}";
 	}
 
 	@RequestMapping(value = "events/{eventId}")
@@ -171,6 +170,22 @@ public class EventController {
 		model.addAttribute("event", event);
 		model.addAttribute("messages", messageList);
 
-		return "event/eventDetails";
+		return "redirect:/events/{eventId}";
+	}
+
+	@RequestMapping(value = "events/{eventId}/{messageId}/deleteMessage.html")
+	public String deleteMessage(@PathVariable("eventId") long eventId,
+			@PathVariable("messageId") long messageId, Model model,
+			Principal principal) {
+		Event event = eventService.getEventByID(eventId);
+		Message message = messageService.getMessage(messageId);
+		if (principal.getName().equals(message.getAuthor().getUsername()) || principal.getName().equals("Admin")) {
+			messageService.removeMessage(message);
+		}
+		List<Message> messageList = messageService.getEventMessages(event);
+		model.addAttribute("event", event);
+		model.addAttribute("messages", messageList);
+		return "redirect:/events/{eventId}";
+
 	}
 }

@@ -63,23 +63,19 @@ public class UserController {
 			@RequestParam(value = "file", required = false) MultipartFile file,
 			@RequestParam("terms") Boolean terms) {
 
-		Blob blob = null;
-			
+	Blob blob = null;
+		
 		if (userService.getUser(user.getUsername()) != null) {
 			ObjectError error = new ObjectError("nonUniqueUser",
 					"Пользователь с таким именем уже существует.");
 			bindingResult.addError(error);
 		}
-		
 		if (bindingResult.hasErrors()) {
 			return "user/newUser";
 		} else {
 			user.setUserRole("ROLE_USER");
 			user.setEnabled(true);
-
-			// Converting Spring MultipartFile to Blob
-			// No need to load user avatar from db if user didn't upload it
-			// if user avatar changed
+			avatarLoaded = true;
 			if (!file.isEmpty()) {
 				try {
 					user.setAvatarLoded(false);
@@ -91,16 +87,16 @@ public class UserController {
 					e.printStackTrace();
 				}
 			}
+			userService.createUser(user);
 			
 			if (!user.isAvatarLoded()) {
 				ImageFromDBLoader imageLoader = new ImageFromDBLoader();
 				imageLoader.loadUserAvatar(user);
 				user.setAvatarLoded(true);
+				userService.updateUser(user);
 			}
 			
-			userService.createUser(user);
-			logger.info("Registred user: " + user.getUsername()
-					+ " is avatar loaded :" + user.isAvatarLoded());
+			logger.info("Registred user: " + user.getUsername() + " is avatar loaded :" + user.isAvatarLoded());
 			return "redirect:/success.html";
 		}
 	}
